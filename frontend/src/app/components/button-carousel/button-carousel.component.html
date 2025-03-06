@@ -1,0 +1,19 @@
+<div class="container-fluid d-flex align-items-center justify-content-center mt-3 px-md-5">
+  <div class="carousel-container">
+    <button class="carousel-btn left" (click)="scrollLeft()">
+      <i class="fas fa-angle-left"></i>
+    </button>
+
+    <div #scrollContainer class="carousel-wrapper">
+      <ul class="carousel-content">
+        <li *ngFor="let btn of buttons">
+          <button class="btn btn btn-sm">{{ btn }}</button>
+        </li>
+      </ul>
+    </div>
+
+    <button class="carousel-btn right" (click)="scrollRight()">
+      <i class="fas fa-angle-right"></i>
+    </button>
+  </div>
+</div>

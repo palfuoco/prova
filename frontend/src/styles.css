@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+  --primary-color: #f58903;
+  --primary-color-hover: #DC7B02;
+}
+
+.navbar .nav-link, a {
+  font-family: "Lobster Two", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.lobster-two-bold {
+  font-family: "Lobster Two", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.lobster-two-regular-italic {
+  font-family: "Lobster Two", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.lobster-two-bold-italic {
+  font-family: "Lobster Two", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+

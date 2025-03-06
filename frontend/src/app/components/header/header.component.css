@@ -1,0 +1,154 @@
+header {
+  background: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px 0;
+  border-bottom: 60px;
+}
+
+.navbar-brand img {
+  max-width: 250px;
+}
+
+.navbar {
+  border-radius: 100px;
+  padding: 10px;
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.navbar-nav .nav-item {
+  flex: 1;
+  text-align: center;
+}
+
+.navbar-nav .nav-link {
+  font-size: 18px;
+  color: #333;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--primary-color);
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.searchform {
+  width: 80%;
+  max-width: 900px;
+}
+
+.searchform .form-group {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.searchform input {
+  flex: 1;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  outline: none;
+  border-radius: 50px 0 0 50px;
+  height: 40px;
+}
+
+.searchform button {
+  background: white;
+  color: black;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 16px;
+  border-radius: 0 50px 50px 0;
+  height: 40px;
+  padding: 8px 15px;
+}
+
+.searchform button:hover {
+  background: var(--primary-color);
+}
+
+.nav-link {
+  position: relative;
+  padding: 10px 20px;
+}
+
+.nav-link.active::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  width: 100%;
+  height: 4px;
+  background: var(--primary-color);
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+
+.nav-link.active:hover::before {
+}
+
+.icon-login {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background-color: lightgray;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  overflow: hidden; /* Nasconde l'animazione che esce fuori */
+  transition: color 0.3s ease;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+}
+.icon-login:hover::before {
+  width: 100%;
+  height: 100%;
+}
+.icon-login::before {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 0%;
+  background-color: orange;
+  border-radius: 50%;
+  transition: width 0.3s ease-out, height 0.3s ease-out;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+.icon-login i {
+  color: black;
+  font-size: 20px;
+  position: relative;
+  z-index: 1;
+}
+.icon-login:hover i {
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .searchform {
+    width: 95%;
+  }
+}
+
