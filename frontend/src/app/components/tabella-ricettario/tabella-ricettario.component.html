@@ -1,31 +1,63 @@
-<div class="container-fluid row">
-  <div class="col-md-3">
+<div class="container-fluid row mt-5 px-md-5">
+  <div class="col-md-2 d-flex justify-content-center">
+    <div id="sidebarFiltri" class="p-3 mt-3 bg-light rounded shadow-sm w-100">
+      <h4 class="text-center mb-3">Filtra per</h4>
 
+      <div class="mb-3">
+        <label for="dpdPortata" class="form-label fw-bold">🍽 Portata</label>
+        <div class="btn-group w-100">
+          <button class="btn btn-secondary btn-sm dropdown-toggle w-100" id="dpdPortata" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Seleziona Portata
+          </button>
+          <ul class="dropdown-menu w-100">
+            <li><a class="dropdown-item" (click)="showRicetteByTipo('Antipasto')" href="#">Antipasto</a></li>
+            <li><a class="dropdown-item" (click)="showRicetteByTipo('Primo')" href="#">Primo</a></li>
+            <li><a class="dropdown-item" (click)="showRicetteByTipo('Secondo')" href="#">Secondo</a></li>
+            <li><a class="dropdown-item" (click)="showRicetteByTipo('Dolce')" href="#">Dolce</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mb-5">
+        <label for="dpdTempo" class="form-label fw-bold">⏳ Tempo di Preparazione</label>
+        <div class="btn-group w-100">
+          <button class="btn btn-secondary btn-sm dropdown-toggle w-100" id="dpdTempo" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Seleziona...
+          </button>
+          <ul class="dropdown-menu w-100">
+            <li><a class="dropdown-item" href="#">Max 15 min</a></li>
+            <li><a class="dropdown-item" href="#">Max 30 min</a></li>
+            <li><a class="dropdown-item" href="#">Max 60 min</a></li>
+            <li><a class="dropdown-item" href="#">Più di 60 min</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="col-md-9">
-    <table class="table">
-      <tbody>
-      <tr>
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="..." alt="Card image cap">
+
+
+<div class="col-md-10">
+    <div class="row">
+      <div class="col-md-4 mb-3" *ngFor="let ricetta of ricette">
+        <div class="card" style="width: 100%;">
+          <img class="card-img-top" src="{{path_img + ricetta.img + '.jpg'}}" alt="Card image cap">
+          <div class="card-header">
+            <h5 class="card-title">{{ ricetta.nome }}</h5>
+          </div>
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <h6 class="card-subtitle mb-2 text-muted" style="color: var(--primary-color) !important; font-weight: bold !important;">
+              {{ ricetta.tipo }}
+            </h6>
+            <h6 class="card-subtitle mb-2 text-muted">
+              {{ ricetta.tempoPreparazione }} min, {{ ricetta.ingredienti.split(',').length }} ingredienti
+            </h6>
+            <p class="card-text">{{ ricetta.descrizione }}</p>
+          </div>
+          <div class="card-footer">
+            <i class="fas fa-star" style="color: var(--primary-color)"></i>
           </div>
         </div>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-      </tr>
-      </tbody>
-    </table>
+      </div>
+    </div>
   </div>
 </div>

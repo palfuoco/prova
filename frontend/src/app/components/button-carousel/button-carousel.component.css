@@ -1,15 +1,12 @@
-/* Contenitore principale del carosello */
 .carousel-container {
   display: flex;
   align-items: center;
-  justify-content: center; /* Centra il carosello */
+  justify-content: center;
   gap: 10px;
-  position: relative; /* Necessario per il posizionamento delle frecce */
-  width: 100%; /* Fa sì che il carosello si adatti al contenitore */
-  max-width: 1130px; /* Stessa larghezza del componente sottostante */
+  position: relative;
+  width: 100%;
 }
 
-/* Wrapper del carosello */
 .carousel-wrapper {
   overflow: hidden;
   white-space: nowrap;
@@ -17,7 +14,6 @@
   width: 100%;
 }
 
-/* Contenuto del carosello (lista dei bottoni) */
 .carousel-content {
   display: flex;
   gap: 15px;
@@ -26,7 +22,6 @@
   list-style: none;
 }
 
-/* Bottone nel carosello */
 .carousel-btn {
   background: none;
   border: none;

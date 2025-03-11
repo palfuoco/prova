@@ -1,0 +1,14 @@
+#sidebarFiltri {
+  background-color: var(--mute-color);
+  border-radius: 30px;
+}
+
+#btnApplicaFiltri {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+#btnApplicaFiltri:hover {
+  background-color: var(--primary-color-hover);
+  border-color: var(--primary-color-hover);
+}
