@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForOf } from '@angular/common';
 import {ApiService} from '../../apiService';
+import {RouterLink} from '@angular/router';
 
 export interface Ricetta {
   id: number;
@@ -8,7 +9,6 @@ export interface Ricetta {
   descrizione: string,
   ingredienti: string;
   tempoPreparazione: number
-  provincia: string,
   regione: string,
   difficolta: string,
   tipo: string,
@@ -19,7 +19,7 @@ export interface Ricetta {
 @Component({
   selector: 'app-tabella-ricettario',
   standalone: true,
-  imports: [NgForOf],
+  imports: [NgForOf, RouterLink],
   templateUrl: './tabella-ricettario.component.html',
   styleUrls: ['./tabella-ricettario.component.css']
 })
@@ -39,6 +39,12 @@ export class TabellaRicettarioComponent implements OnInit {
   showRicetteByTipo(tipo: string): void {
     this.apiService.getByAny(this.apiUrl + "/portata",tipo).subscribe((data) => {
       this.ricette = data;
-    })
+    });
+  }
+
+  showRicettaByTempoPreparazione(tempoPreparazione:number):void {
+    this.apiService.getByAny(this.apiUrl + "/tempo_preparazione", tempoPreparazione).subscribe((data) => {
+      this.ricette = data;
+    });
   }
 }

@@ -25,10 +25,10 @@
             Seleziona...
           </button>
           <ul class="dropdown-menu w-100">
-            <li><a class="dropdown-item" href="#">Max 15 min</a></li>
-            <li><a class="dropdown-item" href="#">Max 30 min</a></li>
-            <li><a class="dropdown-item" href="#">Max 60 min</a></li>
-            <li><a class="dropdown-item" href="#">Più di 60 min</a></li>
+            <li><a class="dropdown-item" (click)="showRicettaByTempoPreparazione(15)" href="#">Max 15 min</a></li>
+            <li><a class="dropdown-item" (click)="showRicettaByTempoPreparazione(30)" href="#">Max 30 min</a></li>
+            <li><a class="dropdown-item" (click)="showRicettaByTempoPreparazione(60)" href="#">Max 60 min</a></li>
+            <li><a class="dropdown-item" (click)="showRicettaByTempoPreparazione(2000)" href="#">Più di 60 min</a></li>
           </ul>
         </div>
       </div>
@@ -36,11 +36,12 @@
   </div>
 
 
-<div class="col-md-10">
-    <div class="row">
-      <div class="col-md-4 mb-3" *ngFor="let ricetta of ricette">
-        <div class="card" style="width: 100%;">
-          <img class="card-img-top" src="{{path_img + ricetta.img + '.jpg'}}" alt="Card image cap">
+  <div class="col-md-10 mt-3">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-2 g-md-3">
+      <div class="col" *ngFor="let ricetta of ricette">
+        <a [routerLink]="['/dettagli', ricetta.id]" class="card-link">
+        <div class="card shadow-lg">
+          <img class="card-img-top" src="{{path_img + ricetta.img + '.jpg'}}" alt="Card image">
           <div class="card-header">
             <h5 class="card-title">{{ ricetta.nome }}</h5>
           </div>
@@ -53,11 +54,12 @@
             </h6>
             <p class="card-text">{{ ricetta.descrizione }}</p>
           </div>
-          <div class="card-footer">
+          <div class="card-footer text-center">
             <i class="fas fa-star" style="color: var(--primary-color)"></i>
           </div>
         </div>
+        </a>
       </div>
     </div>
   </div>
-</div>
+

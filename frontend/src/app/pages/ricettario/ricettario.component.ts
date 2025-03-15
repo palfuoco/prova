@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {MapComponent} from '../../components/map/map.component';
 import {HeaderComponent} from '../../components/header/header.component';
 import {
   BannerRisultatiRicetteComponent
@@ -9,7 +8,7 @@ import {TabellaRicettarioComponent} from '../../components/tabella-ricettario/ta
 @Component({
   selector: 'app-ricettario',
   standalone: true,
-  imports: [MapComponent, HeaderComponent, BannerRisultatiRicetteComponent, TabellaRicettarioComponent],
+  imports: [HeaderComponent, BannerRisultatiRicetteComponent, TabellaRicettarioComponent],
   templateUrl: './ricettario.component.html',
   styleUrls: ['./ricettario.component.css']
 })

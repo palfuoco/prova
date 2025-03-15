@@ -6,7 +6,6 @@ public class RicettaModel {
     private String descrizione;
     private String ingredienti;
     private Byte tempoPreparazione;
-    private String provincia;
     private String regione;
     private String difficolta;
     private String tipo;
@@ -15,13 +14,12 @@ public class RicettaModel {
 
     public RicettaModel() {}
 
-    public RicettaModel(Integer id, String nome, String descrizione, String ingredienti, Byte tempoPreparazione, String provincia, String regione, String difficolta, String tipo, String descrizionePreparazione, String img) {
+    public RicettaModel(Integer id, String nome, String descrizione, String ingredienti, Byte tempoPreparazione, String regione, String difficolta, String tipo, String descrizionePreparazione, String img) {
         this.id = id;
         this.nome = nome;
         this.descrizione = descrizione;
         this.ingredienti = ingredienti;
         this.tempoPreparazione = tempoPreparazione;
-        this.provincia = provincia;
         this.regione = regione;
         this.difficolta = difficolta;
         this.tipo = tipo;
@@ -67,14 +65,6 @@ public class RicettaModel {
 
     public void setTempoPreparazione(Byte tempoPreparazione) {
         this.tempoPreparazione = tempoPreparazione;
-    }
-
-    public String getProvincia() {
-        return provincia;
-    }
-
-    public void setProvincia(String provincia) {
-        this.provincia = provincia;
     }
 
     public String getRegione() {

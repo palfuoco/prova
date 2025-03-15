@@ -16,7 +16,6 @@ public class RicettaRowMapper implements RowMapper<RicettaModel> {
         ricetta.setDescrizione(rs.getString("descrizione"));
         ricetta.setIngredienti(rs.getString("ingredienti"));
         ricetta.setTempoPreparazione(rs.getByte("tempo_preparazione"));
-        ricetta.setProvincia(rs.getString("provincia"));
         ricetta.setRegione(rs.getString("regione"));
         ricetta.setDifficolta(rs.getString("difficolta"));
         ricetta.setTipo(rs.getString("tipo"));

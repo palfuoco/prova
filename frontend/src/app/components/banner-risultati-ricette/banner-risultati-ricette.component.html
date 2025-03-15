@@ -1,12 +1,16 @@
 <app-button-carousel></app-button-carousel>
 
-<div class="container-fluid px-md-5 mt-5 mb-5">
+<div class="container-fluid custom-container px-md-5 py-4 mt-5 mb-5">
   <div class="row align-items-center">
     <div class="col-md-6 d-flex align-items-center justify-content-center">
-      <a href="#">Trovati d ricette in i</a>
+      <a href="#" class="btn-custom">Trovati ricette</a>
     </div>
     <div class="col-md-6 d-flex align-items-center justify-content-center">
-      <app-map></app-map>
+      <a href="#" id="vediMappa" class="btn-custom" (click)="toggleMap($event)">{{ showMap ? 'Nascondi Mappa' : 'Vedi Mappa' }}</a>
     </div>
   </div>
+</div>
+
+<div *ngIf="showMap" class="map-container">
+  <app-map></app-map>
 </div>

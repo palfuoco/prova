@@ -38,6 +38,11 @@ public class RicettaController {
         return ResponseEntity.ok().header("Content-Type","application/json").body(ricettaDAO.getByTipo(tipo));
     }
 
+    @GetMapping("/tempo_preparazione/{tempoPreparazione}")
+    public ResponseEntity<List<RicettaModel>> getRicettaByTempoPreparazione(@PathVariable Integer tempoPreparazione) {
+        return ResponseEntity.ok().header("Content-Type","application/json").body(ricettaDAO.getByTempoPreparazione(tempoPreparazione));
+    }
+
     @DeleteMapping("/{id}")
     public void deleteRicetta(@PathVariable int id) {
         ricettaDAO.delete(id);

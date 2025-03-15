@@ -13,9 +13,10 @@ import java.util.List;
 public class RicettaDAOImpl implements DAO<RicettaModel, Integer> {
     private static final String SELECT_QUERY = "SELECT * FROM ricetta WHERE id=?";
     private static final String SELECT_QUERY_BY_TIPO = "SELECT * FROM ricetta WHERE tipo =?";
+    private static final String SELECT_QUERY_BY_TEMPO = "SELECT * FROM ricetta WHERE tempo_preparazione <= ?";
     private static final String SELECT_ALL_QUERY = "SELECT * FROM ricetta";
-    private static final String INSERT_QUERY = "INSERT INTO ricetta (nome, descrizione, ingredienti, tempo_preparazione, provincia, regione, difficolta, tipo, descrizione_preparazione, img) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String UPDATE_QUERY = "UPDATE ricetta SET id=?, nome=?, descrizione=?, ingreidenti=?, tempo_preparazione=?, provincia=?, regione=?, difficolta=?, tipo=?, descrizione_preparazione=?, img=? WHERE id=?";
+    private static final String INSERT_QUERY = "INSERT INTO ricetta (nome, descrizione, ingredienti, tempo_preparazione, regione, difficolta, tipo, descrizione_preparazione, img) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String UPDATE_QUERY = "UPDATE ricetta SET id=?, nome=?, descrizione=?, ingreidenti=?, tempo_preparazione=?, regione=?, difficolta=?, tipo=?, descrizione_preparazione=?, img=? WHERE id=?";
     private static final String DELETE_QUERY = "DELETE FROM ricetta WHERE id=?";
 
     @Autowired
@@ -30,6 +31,10 @@ public class RicettaDAOImpl implements DAO<RicettaModel, Integer> {
         return jdbcTemplate.query(SELECT_QUERY_BY_TIPO, new Object[]{tipo}, new RicettaRowMapper());
     }
 
+    public List<RicettaModel> getByTempoPreparazione(Integer tempoPreparazione) {
+        return jdbcTemplate.query(SELECT_QUERY_BY_TEMPO, new Object[]{tempoPreparazione}, new RicettaRowMapper());
+    }
+
     @Override
     public List<RicettaModel> getAll() {
         return jdbcTemplate.query(SELECT_ALL_QUERY, new RicettaRowMapper());
@@ -42,7 +47,6 @@ public class RicettaDAOImpl implements DAO<RicettaModel, Integer> {
                 ricettaModel.getDescrizione(),
                 ricettaModel.getIngredienti(),
                 ricettaModel.getTempoPreparazione(),
-                ricettaModel.getProvincia(),
                 ricettaModel.getRegione(),
                 ricettaModel.getDifficolta(),
                 ricettaModel.getTipo(),
@@ -58,7 +62,6 @@ public class RicettaDAOImpl implements DAO<RicettaModel, Integer> {
                 ricettaModel.getDescrizione(),
                 ricettaModel.getIngredienti(),
                 ricettaModel.getTempoPreparazione(),
-                ricettaModel.getProvincia(),
                 ricettaModel.getRegione(),
                 ricettaModel.getDifficolta(),
                 ricettaModel.getTipo(),
