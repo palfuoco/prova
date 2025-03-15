@@ -33,6 +33,6 @@
 p, h1, h4, h5, h6, .btn {
   font-family: "Fredoka", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400; /* Cambia tra 300 e 700 se necessario */
+  font-weight: 400;
   font-style: normal;
 }
