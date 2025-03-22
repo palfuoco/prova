@@ -2,6 +2,7 @@ package io.unical.demacs.informatica.mangia_italia.restController;
 
 import io.unical.demacs.informatica.mangia_italia.DAOImpl.RicettaDAOImpl;
 import io.unical.demacs.informatica.mangia_italia.model.RicettaModel;
+import io.unical.demacs.informatica.mangia_italia.proxy.RicettaProxy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +19,8 @@ public class RicettaController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<RicettaModel>> getAllRicetta() {
-        List<RicettaModel> ricette = ricettaDAO.getAll();
+    public ResponseEntity<List<RicettaProxy>> getAllRicetta() {
+        List<RicettaProxy> ricette = ricettaDAO.getAllLazy();
         return ResponseEntity.ok().header("Content-Type", "application/json").body(ricette);
     }
 
@@ -34,13 +35,13 @@ public class RicettaController {
     }
 
     @GetMapping("/portata/{tipo}")
-    public ResponseEntity<List<RicettaModel>> getRicettaByTipo(@PathVariable String tipo) {
-        return ResponseEntity.ok().header("Content-Type","application/json").body(ricettaDAO.getByTipo(tipo));
+    public ResponseEntity<List<RicettaProxy>> getRicettaByTipo(@PathVariable String tipo) {
+        return ResponseEntity.ok().header("Content-Type","application/json").body(ricettaDAO.getByTipoLazy(tipo));
     }
 
     @GetMapping("/tempo_preparazione/{tempoPreparazione}")
-    public ResponseEntity<List<RicettaModel>> getRicettaByTempoPreparazione(@PathVariable Integer tempoPreparazione) {
-        return ResponseEntity.ok().header("Content-Type","application/json").body(ricettaDAO.getByTempoPreparazione(tempoPreparazione));
+    public ResponseEntity<List<RicettaProxy>> getRicettaByTempoPreparazione(@PathVariable Integer tempoPreparazione) {
+        return ResponseEntity.ok().header("Content-Type","application/json").body(ricettaDAO.getByTempoPreparazioneLazy(tempoPreparazione));
     }
 
     @DeleteMapping("/{id}")
