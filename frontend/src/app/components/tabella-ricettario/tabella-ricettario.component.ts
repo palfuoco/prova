@@ -1,31 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForOf } from '@angular/common';
 import {ApiService} from '../../apiService';
-import {RouterLink} from '@angular/router';
 import {RicetteService} from './tabella-ricettario.service';
+import {CardRicettaComponent, Ricetta} from '../card-ricetta/card-ricetta.component';
 
-export interface Ricetta {
-  id: number;
-  nome: string;
-  descrizione: string,
-  ingredienti: string;
-  tempoPreparazione: number
-  regione: string,
-  difficolta: string,
-  tipo: string,
-  descrizionePreparazione: string,
-  img: string;
-}
 
 @Component({
   selector: 'app-tabella-ricettario',
   standalone: true,
-  imports: [NgForOf, RouterLink],
+  imports: [NgForOf, CardRicettaComponent],
   templateUrl: './tabella-ricettario.component.html',
   styleUrls: ['./tabella-ricettario.component.css']
 })
 export class TabellaRicettarioComponent implements OnInit {
-  path_img: string = "assets/img_ricette/";
   public ricette: Ricetta[] = [];
   private apiUrl = 'http://localhost:8080/api/ricette';
 

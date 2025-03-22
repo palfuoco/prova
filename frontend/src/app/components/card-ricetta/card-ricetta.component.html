@@ -1,0 +1,20 @@
+<a [routerLink]="['/dettagli', ricetta.id]" class="card-link">
+  <div class="card shadow-lg">
+    <img class="card-img-top" src="{{path_img + ricetta.img + '.jpg'}}" alt="Card image">
+    <div class="card-header">
+      <h5 class="card-title">{{ ricetta.nome }}</h5>
+    </div>
+    <div class="card-body">
+      <h6 class="card-subtitle mb-2 text-muted" style="color: var(--primary-color) !important; font-weight: bold !important;">
+        {{ ricetta.tipo }}
+      </h6>
+      <h6 class="card-subtitle mb-2 text-muted">
+        {{ ricetta.tempoPreparazione }} min, {{ ricetta.ingredienti.split(',').length }} ingredienti
+      </h6>
+      <p class="card-text">{{ ricetta.descrizione }}</p>
+    </div>
+    <div class="card-footer text-center">
+      <i class="fas fa-star" style="color: var(--primary-color)"></i>
+    </div>
+  </div>
+</a>

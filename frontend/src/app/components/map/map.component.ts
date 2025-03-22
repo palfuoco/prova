@@ -1,7 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
 import {ApiService} from '../../apiService';
-import {Ricetta} from '../tabella-ricettario/tabella-ricettario.component';
 
 export interface Regione {
   nome: string,
