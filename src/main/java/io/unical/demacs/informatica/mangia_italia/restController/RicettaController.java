@@ -44,6 +44,7 @@ public class RicettaController {
         return ResponseEntity.ok().header("Content-Type","application/json").body(ricettaDAO.getByTempoPreparazioneLazy(tempoPreparazione));
     }
 
+    @GetMapping("/regione/{regione}")
     @DeleteMapping("/{id}")
     public void deleteRicetta(@PathVariable int id) {
         ricettaDAO.delete(id);
