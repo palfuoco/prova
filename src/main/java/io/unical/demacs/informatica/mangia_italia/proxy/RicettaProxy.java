@@ -5,7 +5,6 @@ import io.unical.demacs.informatica.mangia_italia.model.RicettaModel;
 
 public class RicettaProxy extends RicettaModel {
     private final RicettaDAOImpl ricettaDAO;
-    private boolean isLoaded = false;
 
     public RicettaProxy(Integer id, String nome, String ingredienti, String descrizione, String difficolta,Byte tempoPreparazione,String img,String tipo, RicettaDAOImpl ricettaDAO) {
         this.setId(id);
