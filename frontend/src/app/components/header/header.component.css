@@ -115,7 +115,7 @@ header {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  overflow: hidden; /* Nasconde l'animazione che esce fuori */
+  overflow: hidden;
   transition: color 0.3s ease;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
 }

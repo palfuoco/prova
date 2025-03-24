@@ -29,9 +29,9 @@
       </button>
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" routerLink="/" routerLinkActive="active" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="/ricette" routerLinkActive="active" id="navlink_ricette" href="#">Ricette</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="/tradizioni" routerLinkActive="active" href="#">Tradizioni Culinarie</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/ricettario" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" id="navlink_ricette">Ricette</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/tradizioni" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Tradizioni Culinarie</a></li>
         </ul>
       </div>
     </div>
