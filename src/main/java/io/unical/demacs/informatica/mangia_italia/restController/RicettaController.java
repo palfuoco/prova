@@ -45,6 +45,10 @@ public class RicettaController {
     }
 
     @GetMapping("/regione/{regione}")
+    public ResponseEntity<List<RicettaProxy>> getRicettaByRegione(@PathVariable String regione) {
+        return ResponseEntity.ok().header("Content-Type","application/json").body(ricettaDAO.getByRegioneLazy(regione));
+    }
+
     @DeleteMapping("/{id}")
     public void deleteRicetta(@PathVariable int id) {
         ricettaDAO.delete(id);

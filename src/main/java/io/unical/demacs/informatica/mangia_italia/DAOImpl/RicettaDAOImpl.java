@@ -17,6 +17,7 @@ public class RicettaDAOImpl implements DAO<RicettaModel, Integer> {
     private static final String SELECT_QUERY = "SELECT * FROM ricetta WHERE id=?";
     private static final String SELECT_QUERY_BY_TIPO = "SELECT id, nome, ingredienti, descrizione, difficolta, tempo_preparazione, img, tipo FROM ricetta WHERE tipo =?";
     private static final String SELECT_QUERY_BY_TEMPO = "SELECT id, nome, ingredienti, descrizione, difficolta, tempo_preparazione, img, tipo FROM ricetta WHERE tempo_preparazione <= ?";
+    private static final String SELECT_QUERY_BY_REGIONE = "SELECT id, nome, ingredienti, descrizione, difficolta, tempo_preparazione, img, tipo FROM ricetta WHERE regione = ?";
     private static final String SELECT_ALL_QUERY = "SELECT * FROM ricetta";
     private static final String INSERT_QUERY = "INSERT INTO ricetta (nome, descrizione, ingredienti, tempo_preparazione, regione, difficolta, tipo, descrizione_preparazione, img) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_QUERY = "UPDATE ricetta SET id=?, nome=?, descrizione=?, ingreidenti=?, tempo_preparazione=?, regione=?, difficolta=?, tipo=?, descrizione_preparazione=?, img=? WHERE id=?";
@@ -42,6 +43,11 @@ public class RicettaDAOImpl implements DAO<RicettaModel, Integer> {
     public List<RicettaProxy> getByTempoPreparazioneLazy(Integer tempoPreparazione) {
         return jdbcTemplate.query(SELECT_QUERY_BY_TEMPO, new Object[]{tempoPreparazione}, new RicettaLazyRowMapper(this));
     }
+
+    public List<RicettaProxy> getByRegioneLazy(String regione) {
+        return jdbcTemplate.query(SELECT_QUERY_BY_REGIONE, new Object[]{regione}, new RicettaLazyRowMapper(this));
+    }
+
 
     @Override
     public List<RicettaModel> getAll() {

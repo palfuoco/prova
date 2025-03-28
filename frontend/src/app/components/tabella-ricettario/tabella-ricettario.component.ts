@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForOf } from '@angular/common';
 import {ApiService} from '../../apiService';
-import {RicetteService} from './tabella-ricettario.service';
+import {RicetteService} from '../../ricette.service';
 import {CardRicettaComponent, Ricetta} from '../card-ricetta/card-ricetta.component';
 
 
