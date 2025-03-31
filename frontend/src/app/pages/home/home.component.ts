@@ -3,6 +3,7 @@ import {HeaderComponent} from '../../components/header/header.component';
 import {FooterComponent} from '../../components/footer/footer.component';
 import {CarouselHomeComponent} from '../../components/carousel-home/carousel-home.component';
 import {RigaRegioneComponent} from '../../components/riga-regione/riga-regione.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -12,5 +13,7 @@ import {RigaRegioneComponent} from '../../components/riga-regione/riga-regione.c
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-
+  constructor(private titleService: Title) {
+    this.titleService.setTitle('Home - Mangia Italia');
+  }
 }

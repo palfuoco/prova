@@ -11,10 +11,11 @@ public class RicettaModel {
     private String tipo;
     private String descrizionePreparazione;
     private String img;
+    private Integer doseIniziale;
 
     public RicettaModel() {}
 
-    public RicettaModel(Integer id, String nome, String descrizione, String ingredienti, Byte tempoPreparazione, String regione, String difficolta, String tipo, String descrizionePreparazione, String img) {
+    public RicettaModel(Integer id, String nome, String descrizione, String ingredienti, Byte tempoPreparazione, String regione, String difficolta, String tipo, String descrizionePreparazione, String img, Integer doseIniziale) {
         this.id = id;
         this.nome = nome;
         this.descrizione = descrizione;
@@ -25,6 +26,7 @@ public class RicettaModel {
         this.tipo = tipo;
         this.descrizionePreparazione = descrizionePreparazione;
         this.img = img;
+        this.doseIniziale = doseIniziale;
     }
 
     public Integer getId() {
@@ -105,5 +107,13 @@ public class RicettaModel {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public Integer getDoseIniziale() {
+        return doseIniziale;
+    }
+
+    public void setDoseIniziale(Integer doseIniziale) {
+        this.doseIniziale = doseIniziale;
     }
 }

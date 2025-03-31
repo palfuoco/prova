@@ -1,47 +1,54 @@
-<div class="container-fluid row mt-5 px-md-5">
-  <div class="col-md-2 d-flex justify-content-center">
-    <div id="sidebarFiltri" class="p-3 mt-3 bg-light rounded shadow-sm w-100">
-      <h4 class="text-center mb-3">Filtra per</h4>
+<div class="container-fluid mt-5 px-md-5">
+  <div class="row justify-content-center">
 
-      <div class="mb-3">
-        <label for="dpdPortata" class="form-label fw-bold">🍽 Portata</label>
-        <div class="btn-group w-100">
-          <button class="btn btn-secondary btn-sm dropdown-toggle w-100" id="dpdPortata" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Seleziona Portata
-          </button>
-          <ul class="dropdown-menu w-100">
-            <li><a class="dropdown-item" (click)="showRicetteByTipo('Antipasto')" href="#">Antipasto</a></li>
-            <li><a class="dropdown-item" (click)="showRicetteByTipo('Primo')" href="#">Primo</a></li>
-            <li><a class="dropdown-item" (click)="showRicetteByTipo('Secondo')" href="#">Secondo</a></li>
-            <li><a class="dropdown-item" (click)="showRicetteByTipo('Dolce')" href="#">Dolce</a></li>
-          </ul>
+    <div class="col-md-2 d-flex justify-content-center">
+      <div class="sidebar p-3 mt-3 bg-light rounded shadow-sm w-100">
+        <h4 class="text-center mb-3">Filtra per</h4>
+
+        <div class="mb-3">
+          <label for="dpdPortata" class="form-label fw-bold">🍽 Portata</label>
+          <div class="btn-group w-100">
+            <button class="btn btn-secondary btn-sm dropdown-toggle w-100" id="dpdPortata" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Seleziona Portata
+            </button>
+            <ul class="dropdown-menu w-100">
+              <li><a class="dropdown-item" (click)="showRicetteByTipo('Antipasto')" href="#">Antipasto</a></li>
+              <li><a class="dropdown-item" (click)="showRicetteByTipo('Primo')" href="#">Primo</a></li>
+              <li><a class="dropdown-item" (click)="showRicetteByTipo('Secondo')" href="#">Secondo</a></li>
+              <li><a class="dropdown-item" (click)="showRicetteByTipo('Dolce')" href="#">Dolce</a></li>
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <div class="mb-5">
-        <label for="dpdTempo" class="form-label fw-bold">⏳ Tempo di Preparazione</label>
-        <div class="btn-group w-100">
-          <button class="btn btn-secondary btn-sm dropdown-toggle w-100" id="dpdTempo" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Seleziona...
-          </button>
-          <ul class="dropdown-menu w-100">
-            <li><a class="dropdown-item" (click)="showRicettaByTempoPreparazione(15)" href="#">Max 15 min</a></li>
-            <li><a class="dropdown-item" (click)="showRicettaByTempoPreparazione(30)" href="#">Max 30 min</a></li>
-            <li><a class="dropdown-item" (click)="showRicettaByTempoPreparazione(60)" href="#">Max 60 min</a></li>
-            <li><a class="dropdown-item" (click)="showRicettaByTempoPreparazione(2000)" href="#">Più di 60 min</a></li>
-          </ul>
+        <div class="mb-3">
+          <label for="dpdTempo" class="form-label fw-bold">⏳ Tempo di Preparazione</label>
+          <div class="btn-group w-100">
+            <button class="btn btn-secondary btn-sm dropdown-toggle w-100" id="dpdTempo" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Seleziona...
+            </button>
+            <ul class="dropdown-menu w-100">
+              <li><a class="dropdown-item" (click)="showRicettaByTempoPreparazione(15)" href="#">Max 15 min</a></li>
+              <li><a class="dropdown-item" (click)="showRicettaByTempoPreparazione(30)" href="#">Max 30 min</a></li>
+              <li><a class="dropdown-item" (click)="showRicettaByTempoPreparazione(60)" href="#">Max 60 min</a></li>
+              <li><a class="dropdown-item" (click)="showRicettaByTempoPreparazione(2000)" href="#">Più di 60 min</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
+    <div class="col-md-8 mt-3">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        <div class="col" *ngFor="let ricetta of ricette">
+          <app-card-ricetta [ricetta]="ricetta"></app-card-ricetta>
+        </div>
+      </div>
+    </div>
 
-  <div class="col-md-10 mt-3">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-2 g-md-3">
-      <div class="col" *ngFor="let ricetta of ricette">
-        <app-card-ricetta [ricetta] = "ricetta"></app-card-ricetta>
+    <div class="col-md-2 d-flex justify-content-center">
+      <div class="sidebar p-3 mt-3 bg-light rounded shadow-sm w-100">
+        <h5 class="text-center mb-3">Sono indeciso/a tra...</h5>
       </div>
     </div>
   </div>
 </div>
-

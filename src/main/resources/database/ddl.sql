@@ -86,7 +86,8 @@ CREATE TABLE public.ricetta (
     difficolta character varying(100) NOT NULL,
     tipo character varying(200) NOT NULL,
     descrizione_preparazione text,
-    img character varying(100) NOT NULL
+    img character varying(100) NOT NULL,
+    dose_iniziale integer
 );
 
 

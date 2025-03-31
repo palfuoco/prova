@@ -21,6 +21,7 @@ public class RicettaRowMapper implements RowMapper<RicettaModel> {
         ricetta.setTipo(rs.getString("tipo"));
         ricetta.setDescrizionePreparazione(rs.getString("descrizione_preparazione"));
         ricetta.setImg(rs.getString("img"));
+        ricetta.setDoseIniziale(rs.getInt("dose_iniziale"));
         return ricetta;
     }
 }

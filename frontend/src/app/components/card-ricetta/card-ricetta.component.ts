@@ -12,6 +12,7 @@ export interface Ricetta {
   tipo: string,
   descrizionePreparazione: string,
   img: string;
+  dose: number;
 }
 
 @Component({

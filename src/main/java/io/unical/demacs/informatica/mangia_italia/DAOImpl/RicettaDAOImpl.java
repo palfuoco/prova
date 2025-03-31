@@ -19,8 +19,8 @@ public class RicettaDAOImpl implements DAO<RicettaModel, Integer> {
     private static final String SELECT_QUERY_BY_TEMPO = "SELECT id, nome, ingredienti, descrizione, difficolta, tempo_preparazione, img, tipo FROM ricetta WHERE tempo_preparazione <= ?";
     private static final String SELECT_QUERY_BY_REGIONE = "SELECT id, nome, ingredienti, descrizione, difficolta, tempo_preparazione, img, tipo FROM ricetta WHERE regione = ?";
     private static final String SELECT_ALL_QUERY = "SELECT * FROM ricetta";
-    private static final String INSERT_QUERY = "INSERT INTO ricetta (nome, descrizione, ingredienti, tempo_preparazione, regione, difficolta, tipo, descrizione_preparazione, img) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String UPDATE_QUERY = "UPDATE ricetta SET id=?, nome=?, descrizione=?, ingreidenti=?, tempo_preparazione=?, regione=?, difficolta=?, tipo=?, descrizione_preparazione=?, img=? WHERE id=?";
+    private static final String INSERT_QUERY = "INSERT INTO ricetta VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String UPDATE_QUERY = "UPDATE ricetta SET (nome, descrizione, ingredienti, tempo_preparazione, regione, difficolta, tipo, descrizione_preparazione, img, dose_iniziale) = ROW(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) WHERE id = ?";
     private static final String DELETE_QUERY = "DELETE FROM ricetta WHERE id=?";
 
     @Autowired
@@ -65,7 +65,8 @@ public class RicettaDAOImpl implements DAO<RicettaModel, Integer> {
                 ricettaModel.getDifficolta(),
                 ricettaModel.getTipo(),
                 ricettaModel.getDescrizionePreparazione(),
-                ricettaModel.getImg());
+                ricettaModel.getImg(),
+                ricettaModel.getDoseIniziale());
     }
 
     @Override
@@ -81,8 +82,9 @@ public class RicettaDAOImpl implements DAO<RicettaModel, Integer> {
                 ricettaModel.getTipo(),
                 ricettaModel.getDescrizionePreparazione(),
                 ricettaModel.getImg(),
-                ricettaModel.getId());
+                ricettaModel.getDoseIniziale(),
 
+                ricettaModel.getId());
     }
 
     @Override
