@@ -1,8 +1,10 @@
 package io.unical.demacs.informatica.mangia_italia.DAOImpl;
 
 import io.unical.demacs.informatica.mangia_italia.DAO;
+import io.unical.demacs.informatica.mangia_italia.mapper.RegioneLazyRowMapper;
 import io.unical.demacs.informatica.mangia_italia.mapper.RegioneRowMapper;
 import io.unical.demacs.informatica.mangia_italia.model.RegioneModel;
+import io.unical.demacs.informatica.mangia_italia.proxy.RegioneProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -12,6 +14,7 @@ import java.util.List;
 @Repository
 public class RegioneDAOImpl implements DAO<RegioneModel,String> {
     private static final String SELECT_QUERY = "SELECT * FROM regione WHERE nome=?";
+    private static final String SELECT_ALL_LAZY = "SELECT nome FROM regione";
     private static final String SELECT_ALL_QUERY = "SELECT * FROM regione";
     private static final String INSERT_QUERY = "INSERT INTO regione (nome, latitudine, longitudine) VALUES (?, ?, ?)";
     private static final String UPDATE_QUERY = "UPDATE regione SET nome = ?, latitudine = ?, longitudine = ? WHERE nome = ?";
@@ -29,6 +32,10 @@ public class RegioneDAOImpl implements DAO<RegioneModel,String> {
     @Override
     public List<RegioneModel> getAll() {
         return jdbcTemplate.query(SELECT_ALL_QUERY, new RegioneRowMapper());
+    }
+
+    public List<RegioneProxy> getAllLazy() {
+        return jdbcTemplate.query(SELECT_ALL_LAZY, new RegioneLazyRowMapper(this));
     }
 
     public List<RegioneModel> getNumRicette() {

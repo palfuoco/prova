@@ -2,6 +2,7 @@ package io.unical.demacs.informatica.mangia_italia.restController;
 
 import io.unical.demacs.informatica.mangia_italia.DAOImpl.RegioneDAOImpl;
 import io.unical.demacs.informatica.mangia_italia.model.RegioneModel;
+import io.unical.demacs.informatica.mangia_italia.proxy.RegioneProxy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,12 @@ public class RegioneController {
     @GetMapping("/num_ricette")
     public ResponseEntity<List<RegioneModel>> getNumRicetteRegioni() {
         return ResponseEntity.ok().header("Content-Type","application/json").body(regioneDAO.getNumRicette());
+    }
+
+    @GetMapping("/all_lazy")
+    public ResponseEntity<List<RegioneProxy>> getAllLazyRegioni() {
+        List<RegioneProxy> regioni = regioneDAO.getAllLazy();
+        return ResponseEntity.ok().header("Content-Type","application/json").body(regioni);
     }
 
 }

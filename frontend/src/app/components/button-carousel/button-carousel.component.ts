@@ -1,5 +1,7 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import {NgForOf} from '@angular/common';
+import {ApiService} from '../../apiService';
+import {Regione} from '../../model/regione';
 
 @Component({
   selector: 'app-button-carousel',
@@ -10,11 +12,18 @@ import {NgForOf} from '@angular/common';
     NgForOf
   ]
 })
-export class ButtonCarouselComponent implements AfterViewInit {
+export class ButtonCarouselComponent implements AfterViewInit, OnInit {
   @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
   private apiUrl: string = "http://localhost:8080/api/regioni";
 
-  buttons = ['Calabria','Sardegna', 'Sicilia', 'Campania', 'Basilicata', 'Lazio', 'Umbria', 'Lombardia', 'Marche', 'Piemonte', 'Abruzzo', 'Trentino Alto-Adige', 'Veneto', 'Toscana', 'Liguria', 'Emilia Romagna', "Valle d'Aosta", 'Molise', 'Puglia', 'Friuli Venezia Giulia'];
+  constructor(private apiService: ApiService<Regione>) {}
+  public regioni: Regione[] = [];
+
+  ngOnInit(): void {
+    this.apiService.getAll(this.apiUrl + "/all_lazy").subscribe((data) => {
+      this.regioni = data;
+    });
+  }
 
   ngAfterViewInit() {
     const container = this.scrollContainer.nativeElement;

@@ -6,8 +6,8 @@
 
     <div #scrollContainer class="carousel-wrapper">
       <ul class="carousel-content">
-        <li *ngFor="let btn of buttons">
-          <button class="btn btn btn-sm">{{ btn }}</button>
+        <li *ngFor="let regione of regioni">
+          <button class="btn btn btn-sm">{{ regione.nome }}</button>
         </li>
       </ul>
     </div>

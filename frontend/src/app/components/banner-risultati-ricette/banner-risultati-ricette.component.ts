@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {ButtonCarouselComponent} from '../button-carousel/button-carousel.component';
 import {MapComponent} from '../map/map.component';
 import {NgIf} from '@angular/common';
-import {RicetteService} from '../../ricette.service';
+import {RicetteService} from '../../service/ricette.service';
 
 @Component({
   selector: 'app-banner-risultati-ricette',
