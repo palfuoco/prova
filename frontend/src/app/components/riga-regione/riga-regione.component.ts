@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForOf} from '@angular/common';
 import {ApiService} from '../../apiService';
-import {CardRicettaComponent, Ricetta} from '../card-ricetta/card-ricetta.component';
+import {CardRicettaComponent} from '../card-ricetta/card-ricetta.component';
 import {RicetteService} from '../../ricette.service';
+import {Ricetta} from '../../model/ricetta';
 
 @Component({
   selector: 'app-riga-regione',

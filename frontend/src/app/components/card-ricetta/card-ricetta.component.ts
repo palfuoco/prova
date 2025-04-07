@@ -1,19 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {RouterLink} from '@angular/router';
-
-export interface Ricetta {
-  id: number;
-  nome: string;
-  descrizione: string,
-  ingredienti: string;
-  tempoPreparazione: number
-  regione: string,
-  difficolta: string,
-  tipo: string,
-  descrizionePreparazione: string,
-  img: string;
-  dose: number;
-}
+import {Ricetta} from '../../model/ricetta';
 
 @Component({
   selector: 'app-card-ricetta',

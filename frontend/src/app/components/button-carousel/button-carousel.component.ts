@@ -12,6 +12,7 @@ import {NgForOf} from '@angular/common';
 })
 export class ButtonCarouselComponent implements AfterViewInit {
   @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
+  private apiUrl: string = "http://localhost:8080/api/regioni";
 
   buttons = ['Calabria','Sardegna', 'Sicilia', 'Campania', 'Basilicata', 'Lazio', 'Umbria', 'Lombardia', 'Marche', 'Piemonte', 'Abruzzo', 'Trentino Alto-Adige', 'Veneto', 'Toscana', 'Liguria', 'Emilia Romagna', "Valle d'Aosta", 'Molise', 'Puglia', 'Friuli Venezia Giulia'];
 
