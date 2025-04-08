@@ -1,8 +1,8 @@
--- Sequenze
+
 CREATE SEQUENCE recensione_id_seq START 1 INCREMENT 1;
 CREATE SEQUENCE ricetta_id_seq START 1 INCREMENT 1;
 
--- Tabella: utente
+
 CREATE TABLE utente (
                         email VARCHAR(200) PRIMARY KEY,
                         nickname VARCHAR(200) NOT NULL,
@@ -10,14 +10,14 @@ CREATE TABLE utente (
                         regione_di_residenza VARCHAR(100) NOT NULL
 );
 
--- Tabella: regione
+
 CREATE TABLE regione (
                          nome VARCHAR(100) PRIMARY KEY,
                          latitudine REAL NOT NULL,
                          longitudine REAL NOT NULL
 );
 
--- Tabella: ricetta
+
 CREATE TABLE ricetta (
                          id INTEGER PRIMARY KEY DEFAULT nextval('ricetta_id_seq'),
                          nome VARCHAR(200) NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE ricetta (
                          dose_iniziale INTEGER
 );
 
--- Tabella: recensione
+
 CREATE TABLE recensione (
                             id INTEGER PRIMARY KEY DEFAULT nextval('recensione_id_seq'),
                             voto NUMERIC(1,0) NOT NULL,
