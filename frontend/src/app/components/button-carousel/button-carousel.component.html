@@ -7,7 +7,7 @@
     <div #scrollContainer class="carousel-wrapper">
       <ul class="carousel-content">
         <li *ngFor="let regione of regioni">
-          <button class="btn btn btn-sm">{{ regione.nome }}</button>
+          <button class="btn btn btn-sm" [class.selected]="regioniPremute.includes(regione.nome)" (click)="filtraRegione(regione.nome)">{{ regione.nome }}</button>
         </li>
       </ul>
     </div>

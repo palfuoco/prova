@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import { NgForOf } from '@angular/common';
 import {ApiService} from '../../apiService';
 import {RicetteService} from '../../service/ricette.service';
@@ -15,28 +15,22 @@ import {Ricetta} from '../../model/ricetta';
 })
 export class TabellaRicettarioComponent implements OnInit {
   public ricette: Ricetta[] = [];
-  private apiUrl = 'http://localhost:8080/api/ricette';
 
-  constructor(private apiService: ApiService<Ricetta>, private ricetteService: RicetteService) {}
+  constructor(private ricetteService: RicetteService) {}
 
-  ngOnInit(): void {
-    this.apiService.getAll(this.apiUrl + "/all").subscribe((data) => {
+  ngOnInit() {
+    this.ricetteService.ricette$.subscribe((data) => {
       this.ricette = data;
-      this.ricetteService.updateNumRicette(this.ricette.length);
     });
+
+    this.ricetteService.showAll();
   }
 
-  showRicetteByTipo(tipo: string): void {
-    this.apiService.getByAny(this.apiUrl + "/portata",tipo).subscribe((data) => {
-      this.ricette = data;
-      this.ricetteService.updateNumRicette(this.ricette.length);
-    });
+  filterByTipo(tipo:string):void {
+    this.ricetteService.showRicetteByTipo(tipo);
   }
 
-  showRicettaByTempoPreparazione(tempoPreparazione:number):void {
-    this.apiService.getByAny(this.apiUrl + "/tempo_preparazione", tempoPreparazione).subscribe((data) => {
-      this.ricette = data;
-      this.ricetteService.updateNumRicette(this.ricette.length);
-    });
+  filterByTempoPreparazione(tempo:number):void {
+    this.ricetteService.showRicettaByTempoPreparazione(tempo);
   }
 }

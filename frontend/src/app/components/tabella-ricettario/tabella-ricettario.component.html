@@ -12,10 +12,10 @@
               Seleziona Portata
             </button>
             <ul class="dropdown-menu w-100">
-              <li><a class="dropdown-item" (click)="showRicetteByTipo('Antipasto')" href="#">Antipasto</a></li>
-              <li><a class="dropdown-item" (click)="showRicetteByTipo('Primo')" href="#">Primo</a></li>
-              <li><a class="dropdown-item" (click)="showRicetteByTipo('Secondo')" href="#">Secondo</a></li>
-              <li><a class="dropdown-item" (click)="showRicetteByTipo('Dolce')" href="#">Dolce</a></li>
+              <li><button class="dropdown-item" (click)="filterByTipo('Antipasto')">Antipasto</button></li>
+              <li><button class="dropdown-item" (click)="filterByTipo('Primo')">Primo</button></li>
+              <li><button class="dropdown-item" (click)="filterByTipo('Secondo')">Secondo</button></li>
+              <li><button class="dropdown-item" (click)="filterByTipo('Dolce')">Dolce</button></li>
             </ul>
           </div>
         </div>
@@ -27,10 +27,10 @@
               Seleziona...
             </button>
             <ul class="dropdown-menu w-100">
-              <li><a class="dropdown-item" (click)="showRicettaByTempoPreparazione(15)" href="#">Max 15 min</a></li>
-              <li><a class="dropdown-item" (click)="showRicettaByTempoPreparazione(30)" href="#">Max 30 min</a></li>
-              <li><a class="dropdown-item" (click)="showRicettaByTempoPreparazione(60)" href="#">Max 60 min</a></li>
-              <li><a class="dropdown-item" (click)="showRicettaByTempoPreparazione(2000)" href="#">Più di 60 min</a></li>
+              <li><button class="dropdown-item" (click)="filterByTempoPreparazione(15)">Max 15 min</button></li>
+              <li><button class="dropdown-item" (click)="filterByTempoPreparazione(30)">Max 30 min</button></li>
+              <li><button class="dropdown-item" (click)="filterByTempoPreparazione(60)">Max 60 min</button></li>
+              <li><button class="dropdown-item" (click)="filterByTempoPreparazione(2000)">Più di 60 min</button></li>
             </ul>
           </div>
         </div>

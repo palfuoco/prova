@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild, OnInit } from '@angula
 import {NgForOf} from '@angular/common';
 import {ApiService} from '../../apiService';
 import {Regione} from '../../model/regione';
+import {RicetteService} from '../../service/ricette.service';
 
 @Component({
   selector: 'app-button-carousel',
@@ -13,10 +14,10 @@ import {Regione} from '../../model/regione';
   ]
 })
 export class ButtonCarouselComponent implements AfterViewInit, OnInit {
-  constructor(private apiService: ApiService<Regione>) {}
+  constructor(private apiService: ApiService<Regione>, private ricettaService: RicetteService) {}
   @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
   private apiUrl: string = "http://localhost:8080/api/regioni";
-  public buttonPremuti: string[] = [];
+  public regioniPremute: string[] = [];
 
   public regioni: Regione[] = [];
 
@@ -71,5 +72,21 @@ export class ButtonCarouselComponent implements AfterViewInit, OnInit {
     });
   }
 
+
+  filtraRegione(regione: string) {
+    const index = this.regioniPremute.indexOf(regione);
+    if (index > -1) {
+      this.regioniPremute.splice(index, 1);
+    } else {
+      this.regioniPremute.push(regione);
+    }
+
+    if (this.regioniPremute.length > 0) {
+      this.ricettaService.showRicettaByRegioni(this.regioniPremute);
+    }
+    else {
+      this.ricettaService.showAll();
+    }
+  }
 
 }

@@ -16,6 +16,10 @@ export class ApiService<T> {
     return this.http.get<T[]>(`${url}/${any}`);
   }
 
+  getByAnyArray(url: string, any: any[]): Observable<T[]> {
+    return this.http.get<T[]>(`${url}/${any}`);
+  }
+
   create(url: string, data: T): Observable<T> {
     return this.http.post<T>(url, data);
   }

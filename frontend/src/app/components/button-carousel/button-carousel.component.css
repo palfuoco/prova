@@ -10,12 +10,12 @@
   white-space: nowrap;
   scroll-behavior: smooth;
   width: 100%;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .carousel-wrapper::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+  display: none;
 }
 
 .carousel-content {
@@ -36,6 +36,12 @@
 }
 
 .btn:hover {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.selected {
   background-color: var(--primary-color);
   color: white;
   border-color: var(--primary-color);

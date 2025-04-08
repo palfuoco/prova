@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -22,6 +25,7 @@ public class RicettaDAOImpl implements DAO<RicettaModel, Integer> {
     private static final String INSERT_QUERY = "INSERT INTO ricetta VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_QUERY = "UPDATE ricetta SET (nome, descrizione, ingredienti, tempo_preparazione, regione, difficolta, tipo, descrizione_preparazione, img, dose_iniziale) = ROW(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) WHERE id = ?";
     private static final String DELETE_QUERY = "DELETE FROM ricetta WHERE id=?";
+
 
     @Autowired
     private final JdbcTemplate jdbcTemplate = null;
@@ -42,6 +46,17 @@ public class RicettaDAOImpl implements DAO<RicettaModel, Integer> {
 
     public List<RicettaProxy> getByTempoPreparazioneLazy(Integer tempoPreparazione) {
         return jdbcTemplate.query(SELECT_QUERY_BY_TEMPO, new Object[]{tempoPreparazione}, new RicettaLazyRowMapper(this));
+    }
+
+    public List<RicettaProxy> getByRegioniLazy(String[] regioni) {
+        if (regioni.length == 0) return new ArrayList<>();
+
+        String placeholders = String.join(",", Collections.nCopies(regioni.length, "?"));
+        String query = "SELECT id, nome, ingredienti, descrizione, difficolta, tempo_preparazione, img, tipo, regione FROM ricetta WHERE regione IN (" + placeholders + ")";
+
+        Object[] params = Arrays.copyOf(regioni, regioni.length, Object[].class);
+
+        return jdbcTemplate.query(query, params, new RicettaLazyRowMapper(this));
     }
 
     public List<RicettaProxy> getByRegioneLazy(String regione) {

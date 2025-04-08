@@ -44,9 +44,18 @@ public class RicettaController {
         return ResponseEntity.ok().header("Content-Type","application/json").body(ricettaDAO.getByTempoPreparazioneLazy(tempoPreparazione));
     }
 
-    @GetMapping("/regione/{regione}")
-    public ResponseEntity<List<RicettaProxy>> getRicettaByRegione(@PathVariable String regione) {
-        return ResponseEntity.ok().header("Content-Type","application/json").body(ricettaDAO.getByRegioneLazy(regione));
+    @GetMapping("/regioni")
+    public ResponseEntity<List<RicettaProxy>> getRicetteByRegioni(@RequestParam List<String> regioni) {
+        return ResponseEntity.ok()
+                .header("Content-Type", "application/json")
+                .body(ricettaDAO.getByRegioniLazy(regioni.toArray(new String[0])));
+    }
+
+    @GetMapping("/regione")
+    public ResponseEntity<List<RicettaProxy>> getRicetteByRegione(@PathVariable String regione) {
+        return ResponseEntity.ok()
+                .header("Content-Type", "application/json")
+                .body(ricettaDAO.getByRegioneLazy(regione));
     }
 
     @DeleteMapping("/{id}")
