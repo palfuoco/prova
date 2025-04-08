@@ -13,10 +13,11 @@ import {Regione} from '../../model/regione';
   ]
 })
 export class ButtonCarouselComponent implements AfterViewInit, OnInit {
+  constructor(private apiService: ApiService<Regione>) {}
   @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
   private apiUrl: string = "http://localhost:8080/api/regioni";
+  public buttonPremuti: string[] = [];
 
-  constructor(private apiService: ApiService<Regione>) {}
   public regioni: Regione[] = [];
 
   ngOnInit(): void {
