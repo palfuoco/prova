@@ -1,0 +1,10 @@
+<div class="container-fluid row mt-5 px-md-5">
+  <h4 class="text-left mb-3">Prepara queste ricette in meno di 15 minuti</h4>
+  <div class="col-md-12 mt-3">
+    <div class="horizontal-scroll d-flex flex-nowrap">
+      <div class="col-10 col-sm-6 col-md-4 col-lg-3 me-3" *ngFor="let ricetta of ricette">
+        <app-card-ricetta [ricetta] = "ricetta"></app-card-ricetta>
+      </div>
+    </div>
+  </div>
+</div>
