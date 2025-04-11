@@ -44,6 +44,13 @@ export class RicetteService {
     });
   }
 
+  showRicettaByRegione(regione:String):void{
+    this.apiService.getByAny(this.apiUrl + "/regione", regione).subscribe((data) => {
+      this.ricetteSubject.next(data);
+      this.updateNumRicette(data.length);
+    });
+  }
+
   showAll():void {
     this.apiService.getAll(this.apiUrl + "/all").subscribe((data) => {
       this.ricetteSubject.next(data);

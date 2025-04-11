@@ -17,13 +17,13 @@ import {RicetteService} from '../../service/ricette.service';
 export class RigaVelociComponent  implements OnInit{
   public tempo: number=15;
   public ricette: Ricetta[] = []
-  private apiUrl = 'http://localhost:8080/api/ricette';
-  constructor(private apiService: ApiService<Ricetta>, private ricetteService: RicetteService) {}
+
+  constructor(private ricetteService: RicetteService) {}
 
   ngOnInit(): void {
-    this.apiService.getByAny(this.apiUrl + "/tempo_preparazione/",this.tempo).subscribe((data) => {
+    this.ricetteService.ricette$.subscribe((data) => {
       this.ricette = data;
-      this.ricetteService.updateNumRicette(this.ricette.length);
-    })
+    });
+    this.ricetteService.showRicettaByTempoPreparazione(this.tempo);
   }
 }
