@@ -17,10 +17,13 @@
       </div>
 
       <div class="col-md-4 d-flex align-items-center justify-content-center">
-        <a class="icon-login" routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" id="navlink_login"><i class="fas fa-user"></i></a>
+        <button class="icon-login" (click)="showLogin()"><!--routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" id="navlink_login"-->
+          <i class="fas fa-user"></i>
+        </button>
       </div>
     </div>
   </div>
+
 
   <nav class="navbar navbar-expand-md navbar-light bg-white mt-3 shadow-sm">
     <div class="container">
@@ -37,3 +40,8 @@
     </div>
   </nav>
 </header>
+
+<app-finestra-login
+  [visible]="isLoginVisible"
+  (closed)="isLoginVisible = false">
+</app-finestra-login>
