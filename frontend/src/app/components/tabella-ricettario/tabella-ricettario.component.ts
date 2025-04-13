@@ -25,12 +25,4 @@ export class TabellaRicettarioComponent implements OnInit {
 
     this.ricetteService.showAll();
   }
-
-  filterByTipo(tipo:string):void {
-    this.ricetteService.showRicetteByTipo(tipo);
-  }
-
-  filterByTempoPreparazione(tempo:number):void {
-    this.ricetteService.showRicettaByTempoPreparazione(tempo);
-  }
 }

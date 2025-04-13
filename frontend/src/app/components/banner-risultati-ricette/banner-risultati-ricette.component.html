@@ -1,12 +1,68 @@
-<app-button-carousel></app-button-carousel>
+<div class="container-fluid custom-container mt-5 mb-5 py-4 px-md-5">
+  <div class="banner-grid">
 
-<div class="container-fluid custom-container px-md-5 py-4 mt-5 mb-5">
-  <div class="row align-items-center">
-    <div class="col-md-6 d-flex align-items-center justify-content-center">
-      <h5 style="color: #cacbcc">Trovate {{numRicetteTrovate}} ricette</h5>
+
+    <div class="banner-left">
+      <h5 class="mb-0" style="color: #cacbcc">Trovate {{ numRicetteTrovate }} ricette</h5>
     </div>
-    <div class="col-md-6 d-flex align-items-center justify-content-center">
-      <a href="#" id="vediMappa" class="btn-custom" (click)="toggleMap($event)">{{ showMap ? 'Nascondi Mappa' : 'Vedi Mappa' }}</a>
+
+
+    <div class="banner-center">
+      <a id="vediMappa" class="btn-custom" (click)="toggleMap($event)">
+        {{ showMap ? 'Nascondi Mappa' : 'Vedi Mappa' }}
+      </a>
+    </div>
+
+
+    <div class="banner-right d-flex align-items-center gap-3 justify-content-end">
+      <div class="d-flex align-items-center gap-3 button-group-custom">
+
+        <div class="dropdown custom-dropdown" [class.show]="filtraOpen">
+          <button class="btn btn-clean" type="button" (click)="toggleFiltraDropdown()" aria-expanded="false">
+            <i class="fa-solid fa-filter me-1" style="font-size: 10pt"></i>Filtra
+          </button>
+          <div class="dropdown-menu filter-dropdown p-3 show" *ngIf="filtraOpen" (click)="$event.stopPropagation()">
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Portata</label>
+              <select class="form-select custom-select"
+                      [(ngModel)]="selectedTipo"
+                      (change)="onTipoChange()">
+                <option selected disabled value="">Seleziona Portata</option>
+                <option value="Antipasto">Antipasto</option>
+                <option value="Primo">Primo</option>
+                <option value="Secondo">Secondo</option>
+                <option value="Dolce">Dolce</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Tempo di Preparazione</label>
+              <select class="form-select custom-select mt-2"
+                      [(ngModel)]="selectedTempo"
+                      (change)="onTempoChange()">
+                <option selected disabled value="0">Seleziona Tempo</option>
+                <option [value]="15">Max 15 min</option>
+                <option [value]="30">Max 30 min</option>
+                <option [value]="60">Max 60 min</option>
+                <option [value]="2000">Più di 60 min</option>
+              </select>
+            </div>
+
+            <div class="text-end mt-3">
+              <button class="btn-reset" (click)="resetFiltri()">
+                <i class="fas fa-rotate-left me-1"></i> Reset Filtri
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <span class="divider">|</span>
+
+        <button class="btn btn-clean">
+          <i class="fas fa-heart me-1" style="font-size: 10pt"></i> Preferiti
+        </button>
+      </div>
     </div>
   </div>
 </div>
