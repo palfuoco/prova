@@ -92,7 +92,15 @@ INSERT INTO ricetta (nome, descrizione, ingredienti, tempo_preparazione, regione
                                                                                                                                                        '1.Cuociamo le patate e schiacciamole.2.Aggiungiamo farina e uovo per formare un impasto.3.Formiamo gli gnocchi e cuociamoli in acqua bollente.4.Condire con sugo a piacere.',
                                                                                                                                                        'gnocchi_patate', 4),
 
-                                                                                                                                                      ('Insalata di riso', 'Un piatto fresco e leggero, perfetto per l''estate.','300g riso, 1 peperone, 100g piselli, 1 tonno in scatola, 50g mais, q.b. olio, sale e pepe',30, 'Lazio', 'Facile', 'Contorno','1.Cuociamo il riso e lo lasciamo raffreddare.2.Aggiungiamo i peperoni, piselli, tonno e mais.3.Condiamo con olio, sale e pepe.', 'insalata_riso', 4);
+                                                                                                                                                        ('Orecchiette alle cime di rapa',
+                                                                                                                                                           'Specialità pugliese con verdura e acciughe.',
+                                                                                                                                                           '400g orecchiette, 500g cime di rapa, 2 acciughe, 1 spicchio d’aglio, olio evo, peperoncino',
+                                                                                                                                                           35, 'Puglia', 'Facile', 'Primo',
+                                                                                                                                                           '1.Bollire le cime di rapa.2.Soffriggere aglio, acciughe e peperoncino.3.Aggiungere la pasta e le cime di rapa e saltare.',
+                                                                                                                                                           'orecchiette_rapa', 4),
+
+                                                                                                                                                        ('Insalata di riso', 'Un piatto fresco e leggero, perfetto per l''estate.','300g riso, 1 peperone, 100g piselli, 1 tonno in scatola, 50g mais, q.b. olio, sale e pepe',30, 'Lazio', 'Facile', 'Contorno','1.Cuociamo il riso e lo lasciamo raffreddare.2.Aggiungiamo i peperoni, piselli, tonno e mais.3.Condiamo con olio, sale e pepe.', 'insalata_riso', 4);
+
 
 
 INSERT INTO regione (nome, latitudine, longitudine) VALUES
