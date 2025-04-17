@@ -1,9 +1,7 @@
 .horizontal-scroll {
   overflow-x: auto;
-  padding-bottom: 1rem;
+  padding: 20px;
   scroll-snap-type: x mandatory;
 }
 
-.horizontal-scroll > div {
-  scroll-snap-align: start;
-}
+

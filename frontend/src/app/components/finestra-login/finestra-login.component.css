@@ -15,6 +15,47 @@
   display: flex;
 }
 
+.login-header {
+  display: flex;
+  align-items: center;
+}
+
+.login-title {
+  align-content: center;
+  margin-left: 120px;
+}
+
+.btn-close-inline {
+  font-size: 40px;
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  margin-left: 100px;
+  margin-bottom: 25px;
+  line-height: 1;
+}
+
+.btn-close-inline:hover {
+  color: #dc3545;
+}
+
+.login-box form input {
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.login-box form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.login-box form button {
+  margin-top: 10px;
+}
+
 .login-box {
   background-color: white;
   padding: 2rem;
@@ -24,3 +65,4 @@
   width: 100%;
   text-align: center;
 }
+

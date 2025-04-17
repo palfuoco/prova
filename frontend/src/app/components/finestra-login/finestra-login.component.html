@@ -1,7 +1,28 @@
 <div class="overlay-login" [ngClass]="{ 'active': visible }">
   <div class="login-box">
-    <h1>Login</h1>
-    <p>Qui ci va il contenuto del form login.</p>
-    <button (click)="closeLogin()" class="btn btn-secondary mt-3">Chiudi</button>
+    <div class="login-header">
+      <h1 class="login-title mb-3">Login</h1>
+      <button class="btn-close-inline" (click)="closeLogin()">&times;</button>
+    </div>
+
+    <div class="login-text mb-4">
+        <p>
+          Inserisci <i>nome utente e password</i> se sei già registrato,
+          altrimenti <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">registrati</a>.
+        </p>
+    </div>
+    <form>
+      <div class="mb-3 text-start">
+        <label for="username" class="form-label">Nome utente</label>
+        <input type="text" id="username" class="form-control" placeholder="Inserisci il tuo username">
+      </div>
+
+      <div class="mb-3 text-start">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" class="form-control" placeholder="Inserisci la tua password">
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Accedi</button>
+    </form>
   </div>
 </div>
