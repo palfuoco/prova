@@ -2,6 +2,7 @@ package io.unical.demacs.informatica.mangia_italia.DAOImpl;
 
 import io.unical.demacs.informatica.mangia_italia.DAO;
 import io.unical.demacs.informatica.mangia_italia.model.UtenteModel;
+import io.unical.demacs.informatica.mangia_italia.proxy.UtenteProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,8 +12,7 @@ import java.util.List;
 
 @Repository
 public class UtenteDAOImpl implements DAO<UtenteModel, String> {
-    private static final String SELECT_QUERY = "SELECT * FROM utente WHERE email=?";
-    private static final String SELECT_ALL_QUERY = "SELECT * FROM utente";
+    private static final String SELECT_USER = "SELECT * FROM utente WHERE nickname=? AND password=?";
     private static final String INSERT_QUERY = "INSERT INTO utente (email, nickname, password, regione_di_residenza) VALUES (?, ?, ?, ?)";
     private static final String UPDATE_QUERY = "UPDATE utente SET email=?, nickname=?, password=? WHERE email=?";
     private static final String DELETE_QUERY = "DELETE FROM utente WHERE email=?";
@@ -20,14 +20,28 @@ public class UtenteDAOImpl implements DAO<UtenteModel, String> {
     @Autowired
     private final JdbcTemplate jdbcTemplate = null;
 
+    public UtenteProxy getAutenticazione(String email, String password) {
+        try {
+            return jdbcTemplate.queryForObject(SELECT_USER, new Object[]{email, password},
+                    (rs, rowNum) -> new UtenteProxy(
+                            rs.getString("nickname"),
+                            rs.getString("password"),
+                            this
+                    )
+            );
+        } catch (Exception e) {
+            return null; // Utente non trovato o errore
+        }
+    }
+
     @Override
-    public UtenteModel get(String email) {
-        return jdbcTemplate.queryForObject(SELECT_QUERY, new Object[]{email}, new BeanPropertyRowMapper<>(UtenteModel.class));
+    public UtenteModel get(String key) {
+        return null;
     }
 
     @Override
     public List<UtenteModel> getAll() {
-        return jdbcTemplate.query(SELECT_ALL_QUERY, new BeanPropertyRowMapper<>(UtenteModel.class));
+        return List.of(); /*mmmmh vediamo le password di tutti quelli registrati*/
     }
 
     @Override
