@@ -20,9 +20,9 @@ public class UtenteDAOImpl implements DAO<UtenteModel, String> {
     @Autowired
     private final JdbcTemplate jdbcTemplate = null;
 
-    public UtenteProxy getAutenticazione(String email, String password) {
+    public UtenteProxy getAutenticazione(String nickname, String password) {
         try {
-            return jdbcTemplate.queryForObject(SELECT_USER, new Object[]{email, password},
+            return jdbcTemplate.queryForObject(SELECT_USER, new Object[]{nickname, password},
                     (rs, rowNum) -> new UtenteProxy(
                             rs.getString("nickname"),
                             rs.getString("password"),

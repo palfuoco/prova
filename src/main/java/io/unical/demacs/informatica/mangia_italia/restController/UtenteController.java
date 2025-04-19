@@ -22,10 +22,10 @@ public class UtenteController {
 
     @PostMapping("/autenticazione")
     public ResponseEntity<?> autenticazione(@RequestBody UtenteModel loginRequest) {
-        String email = loginRequest.getEmail();
+        String nickname = loginRequest.getNickname();
         String password = loginRequest.getPassword();
 
-        UtenteProxy utente = utenteDAO.getAutenticazione(email, password);
+        UtenteProxy utente = utenteDAO.getAutenticazione(nickname, password);
         if (utente != null) {
             return ResponseEntity.ok().header("Content-Type", "application/json").body(utente);
         } else {
