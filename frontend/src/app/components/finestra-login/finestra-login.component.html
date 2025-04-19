@@ -14,12 +14,12 @@
     <form>
       <div class="mb-3 text-start">
         <label for="username" class="form-label">Nome utente</label>
-        <input type="text" id="username" [(ngModel)]="nickname" class="form-control" placeholder="Inserisci il tuo username">
+        <input [(ngModel)]="nickname" [ngModelOptions]="{standalone: true}" type="text" id="username"  class="form-control" placeholder="Inserisci il tuo username">
       </div>
 
       <div class="mb-3 text-start">
         <label for="password" class="form-label">Password</label>
-        <input type="password" id="password" [(ngModel)]="password" class="form-control" placeholder="Inserisci la tua password">
+        <input [(ngModel)]="password" [ngModelOptions]="{standalone: true}" type="password" id="password"  class="form-control" placeholder="Inserisci la tua password">
       </div>
 
       <button type="submit" class="btn btn-primary w-100" (click)="submit()">Accedi</button>
@@ -28,4 +28,5 @@
       Credenziali non valide. Riprova.
     </div>
   </div>
+
 </div>

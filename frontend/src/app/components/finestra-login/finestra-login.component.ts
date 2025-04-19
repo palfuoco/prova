@@ -1,9 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import {NgClass} from '@angular/common';
+import {NgClass, NgIf} from '@angular/common';
 import {RouterLink, RouterLinkActive} from '@angular/router';
-import {ApiService} from '../../apiService';
-import {Ricetta} from '../../model/ricetta';
-import {RicetteService} from '../../service/ricette.service';
 import {Utente} from '../../model/utente';
 import {UtenteService} from '../../service/utente.service';
 import {FormsModule} from '@angular/forms';
@@ -14,7 +11,8 @@ import {FormsModule} from '@angular/forms';
     NgClass,
     RouterLink,
     RouterLinkActive,
-    FormsModule
+    FormsModule,
+    NgIf
   ],
   templateUrl: './finestra-login.component.html',
   styleUrl: './finestra-login.component.css'
