@@ -23,8 +23,8 @@ export class FinestraLoginComponent {
   @Output() registrazioneRichiesta = new EventEmitter<void>();
   public nickname: string = "";
   public password: string = "";
+  public utente: Utente[] | null = null;
   public erroreLogin: boolean = false;
-  public noLogin: boolean = false;
 
   constructor(private utenteService: UtenteService) {}
 
@@ -37,19 +37,15 @@ export class FinestraLoginComponent {
   }
 
   submit(): void {
-    this.utenteService.autenticaUtente(this.nickname, this.password).subscribe({
-      next: (utenti) => {
-        if (utenti && utenti.length > 0) {
-          this.erroreLogin = false;
-          this.noLogin=false;
-          this.utenteService['utenteSubject'].next(utenti[0]); // aggiorno l'utente corrente
-          this.closeLogin(); // chiudo la finestra
-        } else {
-          this.noLogin = true;
-        }
-      },
-      error: (err) => {
-        console.error("Errore durante l'autenticazione:", err);
+    this.utenteService.autenticaUtente(this.nickname, this.password);
+
+    this.utenteService.utente$.subscribe((data) => {
+      this.utente = data;
+
+      if (this.utente && this.utente.length > 0){
+        this.erroreLogin = false;
+        this.closeLogin();
+      } else {
         this.erroreLogin = true;
       }
     });

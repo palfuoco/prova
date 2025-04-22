@@ -7,7 +7,7 @@ import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-banner-risultati-ricette',
-  imports: [ButtonCarouselComponent, MapComponent, NgIf, FormsModule],
+  imports: [ MapComponent, NgIf, FormsModule],
   templateUrl: './banner-risultati-ricette.component.html',
   standalone: true,
   styleUrl: './banner-risultati-ricette.component.css'

@@ -11,8 +11,6 @@ import { Utente } from '../../model/utente';
   imports: [
     NgClass,
     NgIf,
-    RouterLink,
-    RouterLinkActive,
     FormsModule
   ],
   templateUrl: './finestra-register.component.html',
