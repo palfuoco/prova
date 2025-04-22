@@ -1,6 +1,8 @@
 package io.unical.demacs.informatica.mangia_italia.DAOImpl;
 
 import io.unical.demacs.informatica.mangia_italia.DAO;
+import io.unical.demacs.informatica.mangia_italia.mapper.RicettaLazyRowMapper;
+import io.unical.demacs.informatica.mangia_italia.mapper.UtenteLazyRowMapper;
 import io.unical.demacs.informatica.mangia_italia.model.UtenteModel;
 import io.unical.demacs.informatica.mangia_italia.proxy.UtenteProxy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +22,12 @@ public class UtenteDAOImpl implements DAO<UtenteModel, String> {
     @Autowired
     private final JdbcTemplate jdbcTemplate = null;
 
-    public UtenteProxy getAutenticazione(String nickname, String password) {
+    public List<UtenteProxy> getAutenticazione(String nickname, String password) {
         try {
-            return jdbcTemplate.queryForObject(SELECT_USER, new Object[]{nickname, password},
-                    (rs, rowNum) -> new UtenteProxy(
-                            rs.getString("nickname"),
-                            rs.getString("password"),
-                            this
-                    )
-            );
+            System.out.println("Tentativo di autenticazione per utente: " + nickname);
+            return jdbcTemplate.query(SELECT_USER, new Object[]{nickname, password}, new UtenteLazyRowMapper(this));
         } catch (Exception e) {
+            System.out.println("non ha trovato");
             return null; // Utente non trovato o errore
         }
     }

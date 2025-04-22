@@ -1,6 +1,5 @@
 package io.unical.demacs.informatica.mangia_italia.mapper;
 
-import io.unical.demacs.informatica.mangia_italia.DAOImpl.RegioneDAOImpl;
 import io.unical.demacs.informatica.mangia_italia.DAOImpl.UtenteDAOImpl;
 import io.unical.demacs.informatica.mangia_italia.proxy.UtenteProxy;
 import org.springframework.jdbc.core.RowMapper;

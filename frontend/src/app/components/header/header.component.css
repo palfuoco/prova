@@ -118,6 +118,8 @@ header {
   overflow: hidden;
   transition: color 0.3s ease;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 .icon-login:hover::before {
   width: 100%;

@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import {NgClass, NgIf} from '@angular/common';
-import {RouterLink, RouterLinkActive} from '@angular/router';
-import {Utente} from '../../model/utente';
-import {UtenteService} from '../../service/utente.service';
-import {FormsModule} from '@angular/forms';
+import { NgClass, NgIf } from '@angular/common';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Utente } from '../../model/utente';
+import { UtenteService } from '../../service/utente.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-finestra-login',
@@ -20,10 +20,11 @@ import {FormsModule} from '@angular/forms';
 export class FinestraLoginComponent {
   @Input() visible: boolean = false;
   @Output() closed = new EventEmitter<void>();
-  public nickname: String="";
-  protected password: String="";
-  public utente: Utente | null =null;
+  @Output() registrazioneRichiesta = new EventEmitter<void>();
+  public nickname: string = "";
+  public password: string = "";
   public erroreLogin: boolean = false;
+  public noLogin: boolean = false;
 
   constructor(private utenteService: UtenteService) {}
 
@@ -31,15 +32,20 @@ export class FinestraLoginComponent {
     this.closed.emit();
   }
 
+  vaiARegistrazione(): void {
+    this.registrazioneRichiesta.emit();
+  }
+
   submit(): void {
     this.utenteService.autenticaUtente(this.nickname, this.password).subscribe({
-      next: (data) => {
-        if (data && data.length>0) {
-          this.utente = data[0];
+      next: (utenti) => {
+        if (utenti && utenti.length > 0) {
           this.erroreLogin = false;
-          this.closeLogin();
+          this.noLogin=false;
+          this.utenteService['utenteSubject'].next(utenti[0]); // aggiorno l'utente corrente
+          this.closeLogin(); // chiudo la finestra
         } else {
-          this.erroreLogin = true;
+          this.noLogin = true;
         }
       },
       error: (err) => {

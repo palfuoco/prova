@@ -124,3 +124,5 @@ INSERT INTO regione (nome, latitudine, longitudine) VALUES
                                                         ('Sicilia', 37.599995, 14.015356),
                                                         ('Sardegna', 40.120876, 9.012893),
                                                         ('Liguria', 44.31679, 8.396494);
+
+INSERT INTO utente (email, nickname, password, regione_di_residenza)  VALUES ('bernardini@gmail.com','LordBernie','password','CS')

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { ApiService } from '../apiService';
 import { Utente } from '../model/utente';
 
@@ -14,21 +14,15 @@ export class UtenteService {
 
   constructor(private apiService: ApiService<Utente>) {}
 
-  autenticaUtente(nickname: String, password: String): Observable<Utente[]> {
+  autenticaUtente(nickname: string, password: string): Observable<Utente[]> {
     const credenziali = `${nickname}/${password}`;
-    return this.apiService.getByAny(this.apiUrl, credenziali);
+    return this.apiService.getByAny(this.apiUrl + "/autenticazione", credenziali);
   }
 
-  /**
-   * Recupera l'utente corrente dallo stato locale.
-   */
   getUtenteCorrente(): Utente | null {
     return this.utenteSubject.value;
   }
 
-  /**
-   * Effettua il logout azzerando lo stato.
-   */
   logout(): void {
     this.utenteSubject.next(null);
   }

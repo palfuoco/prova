@@ -20,14 +20,15 @@ public class UtenteController {
         this.utenteDAO = utenteDAO;
     }
 
-    @PostMapping("/autenticazione")
+    @GetMapping("/autenticazione")
     public ResponseEntity<?> autenticazione(@RequestBody UtenteModel loginRequest) {
         String nickname = loginRequest.getNickname();
         String password = loginRequest.getPassword();
 
-        UtenteProxy utente = utenteDAO.getAutenticazione(nickname, password);
+        List<UtenteProxy> utente = utenteDAO.getAutenticazione(nickname, password);
         if (utente != null) {
-            return ResponseEntity.ok().header("Content-Type", "application/json").body(utente);
+            return ResponseEntity.ok().header("Content-Type", "application/json")
+                    .body(utente);
         } else {
             return ResponseEntity.status(401).body("Credenziali non valide");
         }
