@@ -25,8 +25,10 @@ export class FinestraRegisterComponent {
   public nickname: string = "";
   public password: string = "";
   public regione: string = "";
+  public utente: Utente[] | null = null;
 
   public erroreRegistrazione: boolean = false;
+  public successoRegistrazione: boolean = false;
 
   constructor(private utenteService: UtenteService) {}
 
@@ -38,7 +40,7 @@ export class FinestraRegisterComponent {
     this.loginRichiesto.emit();
   }
 
-  register(): void {/*
+  register(): void {
     const nuovoUtente: Utente = {
       email: this.email,
       nickname: this.nickname,
@@ -46,16 +48,17 @@ export class FinestraRegisterComponent {
       regioneDiResidenza: this.regione
     };
 
-    this.utenteService.registraUtente(nuovoUtente).subscribe({
-      next: () => {
+    this.utenteService.registraUtente(nuovoUtente);
+    this.utenteService.utente$.subscribe((data) => {
+      this.utente = data;
+
+      if (this.utente) {
         this.erroreRegistrazione = false;
-        this.closed.emit(); // Chiudi la finestra alla fine
-      },
-      error: () => {
+        this.successoRegistrazione = true;
+      } else {
         this.erroreRegistrazione = true;
+        this.successoRegistrazione = false;
       }
-    });*/
+    });
   }
-
-
 }

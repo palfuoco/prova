@@ -30,9 +30,15 @@ public class UtenteController {
         }
     }
 
-    @PostMapping
-    public void createUtente(@RequestBody UtenteModel utenteModel) {
-        utenteDAO.save(utenteModel);
+    @GetMapping("registrazione")
+    public ResponseEntity<?> registrazione(@RequestParam String email, @RequestParam String nickname, @RequestParam String password, @RequestParam String regione) {
+        try {
+            UtenteModel utente=new UtenteModel(email, nickname, password, regione);
+            utenteDAO.save(utente);
+            return ResponseEntity.ok("Utente registrato con successo!");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Errore durante la registrazione");
+        }
     }
 
     @PutMapping
