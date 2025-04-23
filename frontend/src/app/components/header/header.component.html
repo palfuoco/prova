@@ -3,7 +3,7 @@
     <div class="row align-items-center">
       <div class="col-md-4 d-flex align-items-center justify-content-center">
         <a class="navbar-brand" href="#">
-          <img src="assets/MangiaItalia_logo.png" class="img-fluid w-50"/>
+          <img src="assets/MangiaItalia_logo.png" class="img-fluid w-50" />
         </a>
       </div>
 
@@ -17,10 +17,10 @@
       </div>
 
       <div class="col-md-4 d-flex align-items-center justify-content-center">
-        <button class="icon-login" (click)="showLogin()"><!--routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" id="navlink_login"-->
+        <button class="icon-login" (click)="showLogin()">
           <i class="fas fa-user"></i>
         </button>
-        <div *ngIf="utenteCorrente" class="text-muted small mt-1">
+        <div *ngIf="utenteCorrente" class="icon-login-text mt-1">
           {{ utenteCorrente.nickname }}
         </div>
       </div>

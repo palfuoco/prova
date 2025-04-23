@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgClass, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink, RouterLinkActive } from '@angular/router';
 import { UtenteService } from '../../service/utente.service';
 import { Utente } from '../../model/utente';
 
@@ -25,7 +24,6 @@ export class FinestraRegisterComponent {
   public nickname: string = "";
   public password: string = "";
   public regione: string = "";
-  public utente: Utente[] | null = null;
 
   public erroreRegistrazione: boolean = false;
   public successoRegistrazione: boolean = false;
@@ -48,14 +46,14 @@ export class FinestraRegisterComponent {
       regioneDiResidenza: this.regione
     };
 
-    this.utenteService.registraUtente(nuovoUtente);
-    this.utenteService.utente$.subscribe((data) => {
-      this.utente = data;
-
-      if (this.utente) {
-        this.erroreRegistrazione = false;
-        this.successoRegistrazione = true;
-      } else {
+    this.utenteService.registraUtente(nuovoUtente).subscribe({
+      next: (response) => {
+        if (response.status === 200) {
+          this.erroreRegistrazione = false;
+          this.successoRegistrazione = true;
+        }
+      },
+      error: (error) => {
         this.erroreRegistrazione = true;
         this.successoRegistrazione = false;
       }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ApiService } from '../apiService';
 import { Utente } from '../model/utente';
-import {HttpParams} from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -22,11 +22,9 @@ export class UtenteService {
     });
   }
 
-  registraUtente(utente: Utente): void {
+  registraUtente(utente: Utente): Observable<HttpResponse<string>> {
     const url = `${this.apiUrl}/registrazione?email=${encodeURIComponent(utente.email)}&nickname=${encodeURIComponent(utente.nickname)}&password=${encodeURIComponent(utente.password)}&regione=${encodeURIComponent(utente.regioneDiResidenza)}`;
-    this.apiService.getAll(url).subscribe((data)=> {
-      this.utenteSubject.next(data);
-    });
+    return this.apiService.http.get(url, { observe: 'response' , responseType: 'text'});
   }
 
   getUtenteCorrente(): Utente[] | null {
