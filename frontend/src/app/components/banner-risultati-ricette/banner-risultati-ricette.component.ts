@@ -7,7 +7,7 @@ import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-banner-risultati-ricette',
-  imports: [MapComponent, NgIf, FormsModule],
+  imports: [ButtonCarouselComponent, MapComponent, NgIf, FormsModule],
   templateUrl: './banner-risultati-ricette.component.html',
   standalone: true,
   styleUrl: './banner-risultati-ricette.component.css'
@@ -60,20 +60,6 @@ export class BannerRisultatiRicetteComponent {
       this.filtraOpen = false;
     }
   }
-
-  preferitiOpen = false;
-
-  ricettePreferite = this;
-
-  togglePreferitiDropdown() {
-    this.preferitiOpen = !this.preferitiOpen;
-    this.filtraOpen = false;
-
-    /*if (this.preferitiOpen) {
-      this.ricetteService.showRicettePreferite(this.emailUtente);
-    }*/
-  }
-
 
 
 }

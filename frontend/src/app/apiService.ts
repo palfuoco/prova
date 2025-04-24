@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService<T> {
-  constructor(private http: HttpClient) {}
+  constructor(public http: HttpClient) {}
 
   getAll(url: string): Observable<T[]> {
     return this.http.get<T[]>(url);

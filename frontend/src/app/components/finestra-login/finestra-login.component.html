@@ -8,7 +8,7 @@
     <div class="login-text mb-4">
         <p>
           Inserisci <i>nome utente e password</i> se sei già registrato,
-          altrimenti <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">registrati</a>.
+          altrimenti <a (click)="vaiARegistrazione()" style="cursor: pointer;">registrati</a>.
         </p>
     </div>
     <form>
@@ -27,6 +27,7 @@
     <div *ngIf="erroreLogin" class="alert alert-danger mt-3 text-center">
       Credenziali non valide. Riprova.
     </div>
+
   </div>
 
 </div>
