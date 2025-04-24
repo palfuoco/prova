@@ -4,6 +4,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Utente } from '../../model/utente';
 import { UtenteService } from '../../service/utente.service';
 import { FormsModule } from '@angular/forms';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-finestra-login',
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     NgIf
   ],
   templateUrl: './finestra-login.component.html',
-  styleUrl: './finestra-login.component.css'
+  styleUrl: './finestra-login.component.css',
+  standalone: true
 })
 export class FinestraLoginComponent {
   @Input() visible: boolean = false;
@@ -23,7 +25,7 @@ export class FinestraLoginComponent {
   @Output() registrazioneRichiesta = new EventEmitter<void>();
   public nickname: string = "";
   public password: string = "";
-  public utente: Utente[] | null = null;
+  public utente: Utente| null = null;
   public erroreLogin: boolean = false;
 
   constructor(private utenteService: UtenteService) {}
@@ -31,23 +33,29 @@ export class FinestraLoginComponent {
   closeLogin(): void {
     this.closed.emit();
   }
+  private subscription: Subscription | null = null;
 
   vaiARegistrazione(): void {
     this.registrazioneRichiesta.emit();
   }
-
-  submit(): void {
-    this.utenteService.autenticaUtente(this.nickname, this.password);
-
-    this.utenteService.utente$.subscribe((data) => {
+  ngOnInit(): void {
+    this.subscription = this.utenteService.utente$.subscribe((data) => {
       this.utente = data;
 
-      if (this.utente && this.utente.length > 0){
+      if (this.utente) {
         this.erroreLogin = false;
         this.closeLogin();
       } else {
         this.erroreLogin = true;
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
+  }
+
+  submit(): void {
+    this.utenteService.autenticaUtente(this.nickname, this.password);
   }
 }

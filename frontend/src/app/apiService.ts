@@ -27,4 +27,7 @@ export class ApiService<T> {
   delete(url: string, any: any): Observable<void> {
     return this.http.delete<void>(`${url}/${any}`);
   }
+  getById(url: string, id: number): Observable<T> {
+    return this.http.get<T>(`${url}/${id}`);
+  }
 }

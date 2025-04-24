@@ -14,6 +14,9 @@ export class RicetteService {
   private ricetteSubject = new BehaviorSubject<Ricetta[]>([]);
   ricette$ = this.ricetteSubject.asObservable();
 
+  private ricettaSelezionataSubject = new BehaviorSubject<Ricetta | null>(null);
+  ricettaSelezionata$ = this.ricettaSelezionataSubject.asObservable();
+
   constructor(private apiService: ApiService<Ricetta>) {}
 
   updateNumRicette(count: number) {
@@ -55,6 +58,17 @@ export class RicetteService {
     this.apiService.getAll(this.apiUrl + "/all").subscribe((data) => {
       this.ricetteSubject.next(data);
       this.updateNumRicette(data.length);
+    });
+  }
+
+  setRicettaSelezionata(ricetta: Ricetta): void {
+    this.ricettaSelezionataSubject.next(ricetta);
+  }
+
+  // Metodo per caricare la ricetta tramite ID
+  loadRicettaById(id: number): void {
+    this.apiService.getById(this.apiUrl, id).subscribe((ricetta) => {
+      this.ricettaSelezionataSubject.next(ricetta);
     });
   }
 }
