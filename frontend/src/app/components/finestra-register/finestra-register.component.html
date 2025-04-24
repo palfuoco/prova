@@ -36,8 +36,12 @@
       <button type="submit" class="btn btn-success w-100" (click)="register()">Registrati</button>
     </form>
 
+    <div *ngIf="successoRegistrazione" class="alert alert-success mt-3 text-center">
+      Registrazione avvenuta con successo.
+    </div>
     <div *ngIf="erroreRegistrazione" class="alert alert-danger mt-3 text-center">
       Errore durante la registrazione. Riprova.
     </div>
+
   </div>
 </div>
