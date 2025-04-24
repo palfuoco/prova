@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { ApiService } from '../apiService';
 import { Utente } from '../model/utente';
+import {HttpResponse} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,10 @@ export class UtenteService {
 
   setUtenteCorrente(utente: Utente): void {
     this.utenteSubject.next(utente);
+  }
+  registraUtente(utente: Utente): Observable<HttpResponse<string>> {
+    const url = `${this.apiUrl}/registrazione?email=${encodeURIComponent(utente.email)}&nickname=${encodeURIComponent(utente.nickname)}&password=${encodeURIComponent(utente.password)}&regione=${encodeURIComponent(utente.regioneDiResidenza)}`;
+    return this.apiService.http.get(url, { observe: 'response' , responseType: 'text'});
   }
 
   logout(): void {
