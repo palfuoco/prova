@@ -24,7 +24,12 @@ export class ApiService<T> {
     return this.http.put<T>(`${url}/${any}`, data);
   }
 
-  delete(url: string, any: any): Observable<void> {
+  deleteByAny(url: string, any: any): Observable<void> {
     return this.http.delete<void>(`${url}/${any}`);
+  }
+
+
+  delete(url: string): Observable<void> {
+    return this.http.delete<void>(`${url}`);
   }
 }

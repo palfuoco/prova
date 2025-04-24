@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import {ApiService} from '../apiService';
 import {Ricetta} from '../model/ricetta';
+import {PreferitiService} from './preferiti.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class RicetteService {
   private ricetteSubject = new BehaviorSubject<Ricetta[]>([]);
   ricette$ = this.ricetteSubject.asObservable();
 
-  constructor(private apiService: ApiService<Ricetta>) {}
+  constructor(private apiService: ApiService<Ricetta>, private preferitiService: PreferitiService) {}
 
   updateNumRicette(count: number) {
     this.numRicetteSource.next(count);
@@ -57,4 +58,12 @@ export class RicetteService {
       this.updateNumRicette(data.length);
     });
   }
+
+  showRicettePreferite(email: string): void {
+    this.preferitiService.getPreferitiRicette(email).subscribe((ricette: Ricetta[]) => {
+      this.ricetteSubject.next(ricette);
+      this.updateNumRicette(ricette.length);
+    });
+  }
+
 }

@@ -8,20 +8,6 @@
   padding: 20px;
 }
 
-.btn-clean {
-  background: none;
-  border: none;
-  color: #333;
-  font-weight: 600;
-  font-size: 1rem;
-  padding: 6px 12px;
-  transition: color 0.2s ease;
-  position: relative;
-}
-
-.btn-clean:hover {
-  color: var(--primary-color);
-}
 
 .btn-custom {
   background: linear-gradient(135deg, var(--primary-color), #feb47b);
