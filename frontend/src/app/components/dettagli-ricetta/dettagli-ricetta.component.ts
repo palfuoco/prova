@@ -23,31 +23,14 @@ export class DettagliRicettaComponent implements OnInit {
   passaggiPreparazione: string[] = [];
 
 
-  /* ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.apiService.getById('http://localhost:8080/api/ricette', +id).subscribe((data) => {
-        this.ricetta = data;
-      });
-    }
 
-
-    const descrizione = this.ricetta?.descrizionePreparazione || '';
-    this.passaggiPreparazione = descrizione
-      .split(/[0-9]+\. ?/)  // nota lo spazio dopo il punto
-      .filter(s => s.trim() !== '');
-
-    console.log(this.passaggiPreparazione);
-
-    console.log(descrizione);  // Verifica cosa contiene questa variabile
-
-  } */
 
   @Output() idRicettaLoaded = new EventEmitter<number>();
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.apiService.getById('http://localhost:8080/api/ricette', +id).subscribe((data) => {
+      this.apiService.getByValue('http://localhost:8080/api/ricette', +id).subscribe((data) => {
+        console.log(data)
         this.ricetta = data;
 
 

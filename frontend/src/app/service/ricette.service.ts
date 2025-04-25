@@ -61,14 +61,5 @@ export class RicetteService {
     });
   }
 
-  setRicettaSelezionata(ricetta: Ricetta): void {
-    this.ricettaSelezionataSubject.next(ricetta);
-  }
 
-  // Metodo per caricare la ricetta tramite ID
-  loadRicettaById(id: number): void {
-    this.apiService.getById(this.apiUrl, id).subscribe((ricetta) => {
-      this.ricettaSelezionataSubject.next(ricetta);
-    });
-  }
 }
