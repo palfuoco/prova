@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import {ApiService} from '../apiService';
 import {Ricetta} from '../model/ricetta';
+import {PreferitiService} from './preferiti.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class RicetteService {
   private ricettaSelezionataSubject = new BehaviorSubject<Ricetta | null>(null);
   ricettaSelezionata$ = this.ricettaSelezionataSubject.asObservable();
 
-  constructor(private apiService: ApiService<Ricetta>) {}
+  constructor(private apiService: ApiService<Ricetta>, private preferitiService: PreferitiService) {}
 
   updateNumRicette(count: number) {
     this.numRicetteSource.next(count);
@@ -65,10 +66,15 @@ export class RicetteService {
     this.ricettaSelezionataSubject.next(ricetta);
   }
 
-  // Metodo per caricare la ricetta tramite ID
   loadRicettaById(id: number): void {
     this.apiService.getById(this.apiUrl, id).subscribe((ricetta) => {
       this.ricettaSelezionataSubject.next(ricetta);
+    });
+  }
+  showRicettePreferite(email: string): void {
+    this.preferitiService.getPreferitiRicette(email).subscribe((ricette: Ricetta[]) => {
+      this.ricetteSubject.next(ricette);
+      this.updateNumRicette(ricette.length);
     });
   }
 }
