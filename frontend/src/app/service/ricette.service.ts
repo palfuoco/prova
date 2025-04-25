@@ -59,11 +59,11 @@ export class RicetteService {
     });
   }
 
-  showRicettePreferite(email: string): void {
+  /*showRicettePreferite(email: string): void {
     this.preferitiService.getPreferitiRicette(email).subscribe((ricette: Ricetta[]) => {
       this.ricetteSubject.next(ricette);
       this.updateNumRicette(ricette.length);
     });
-  }
+  }*/
 
 }
