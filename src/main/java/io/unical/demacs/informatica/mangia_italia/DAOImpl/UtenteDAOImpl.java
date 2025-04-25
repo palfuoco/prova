@@ -43,12 +43,13 @@ public class UtenteDAOImpl implements DAO<UtenteModel, String> {
     }
 
     @Override
-    public void save(UtenteModel utente) {
+    public void save(UtenteModel utenteModel) {
         jdbcTemplate.update(INSERT_QUERY,
-                utente.getEmail(),
-                utente.getNickname(),
-                utente.getPassword(),
-                utente.getRegioneDiResidenza());
+                utenteModel.getEmail(),
+                utenteModel.getNickname(),
+                utenteModel.getPassword(),
+                utenteModel.getRegioneDiResidenza());
+
     }
 
     @Override

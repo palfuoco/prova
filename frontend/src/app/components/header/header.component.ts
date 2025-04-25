@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit{
   ngOnInit(): void {
     this.utenteService.utente$.subscribe(utente => {
       if (utente) {
-        this.utenteCorrente = utente[0];
+        this.utenteCorrente = utente;
       }
     });
   }

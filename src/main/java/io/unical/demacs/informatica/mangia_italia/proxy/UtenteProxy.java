@@ -7,9 +7,10 @@ import io.unical.demacs.informatica.mangia_italia.model.UtenteModel;
 public class UtenteProxy extends UtenteModel {
     private final UtenteDAOImpl utenteDAO;
 
-    public UtenteProxy(String nickname, String password, UtenteDAOImpl utenteDAO) {
+    public UtenteProxy(String nickname, String password,String email, UtenteDAOImpl utenteDAO) {
         this.setNickname(nickname);
         this.setPassword(password);
+        this.setEmail(email);
         this.utenteDAO=utenteDAO;
     }
 }
