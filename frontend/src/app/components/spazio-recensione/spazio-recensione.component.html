@@ -1,0 +1,54 @@
+<div class="spazio-recensione-container">
+  <h2>Recensioni</h2>
+
+  <div *ngIf="recensioni.length === 0">
+    <p>Nessuna recensione disponibile per questa ricetta.</p>
+  </div>
+
+  <div *ngIf="recensioni.length > 0" class="lista-recensioni">
+    <div *ngFor="let r of recensioniMostrate" class="recensione">
+      <div class="dettagli-recensione">
+        <div>
+          <span class="utente">{{ r.email_utente }}</span>
+          <div class="stelle-recensione">
+            <ng-container *ngFor="let i of [].constructor(r.voto)">
+              <span class="stella piena">&#9733;</span>
+            </ng-container>
+            <ng-container *ngFor="let i of [].constructor(5 - r.voto)">
+              <span class="stella">&#9733;</span>
+            </ng-container>
+          </div>
+        </div>
+        <span class="data">{{ r.data_pubblicazione | date: 'dd/MM/yyyy' }}</span>
+      </div>
+
+
+
+      <p>{{ r.commento }}</p>
+    </div>
+
+    <button *ngIf="recensioni.length > 3" (click)="toggleMostraTutte()">
+      {{ mostraTutte ? 'Mostra meno' : 'Mostra tutte' }}
+    </button>
+  </div>
+
+  <hr />
+
+  <h3>Lascia una recensione</h3>
+
+  <div class="stelle-scelta">
+    <span
+      *ngFor="let stella of [1,2,3,4,5]"
+      (click)="setVoto(stella)"
+      (mouseover)="hoverVoto = stella"
+      (mouseleave)="hoverVoto = 0"
+      class="stella"
+      [class.piena]="stella <= (hoverVoto || nuovaRecensione.voto)">
+      &#9733;
+    </span>
+  </div>
+
+  <textarea [(ngModel)]="nuovaRecensione.commento" placeholder="Scrivi un commento..."></textarea>
+  <button (click)="inviaRecensione()">Invia</button>
+</div>
+

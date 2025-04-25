@@ -1,0 +1,9 @@
+<app-header></app-header>
+
+<!-- Quando DettagliRicetta emette l'id, lo salviamo -->
+<app-dettagli-ricetta (idRicettaLoaded)="onIdRicettaLoaded($event)"></app-dettagli-ricetta>
+
+<!-- Passiamo l'id a SpazioRecensione -->
+<app-spazio-recensione *ngIf="idRicetta" [id_ricetta]="idRicetta"></app-spazio-recensione>
+
+<app-footer></app-footer>

@@ -15,6 +15,9 @@ export class RicetteService {
   private ricetteSubject = new BehaviorSubject<Ricetta[]>([]);
   ricette$ = this.ricetteSubject.asObservable();
 
+  private ricettaSelezionataSubject = new BehaviorSubject<Ricetta | null>(null);
+  ricettaSelezionata$ = this.ricettaSelezionataSubject.asObservable();
+
   constructor(private apiService: ApiService<Ricetta>, private preferitiService: PreferitiService) {}
 
   updateNumRicette(count: number) {
@@ -59,11 +62,19 @@ export class RicetteService {
     });
   }
 
+  setRicettaSelezionata(ricetta: Ricetta): void {
+    this.ricettaSelezionataSubject.next(ricetta);
+  }
+
+  loadRicettaById(id: number): void {
+    this.apiService.getById(this.apiUrl, id).subscribe((ricetta) => {
+      this.ricettaSelezionataSubject.next(ricetta);
+    });
+  }
   showRicettePreferite(email: string): void {
     this.preferitiService.getPreferitiRicette(email).subscribe((ricette: Ricetta[]) => {
       this.ricetteSubject.next(ricette);
       this.updateNumRicette(ricette.length);
     });
   }
-
 }

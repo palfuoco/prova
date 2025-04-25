@@ -1,0 +1,17 @@
+.proceeding-section {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+}
+.step {
+  margin-bottom: 1.5rem;
+}
+.step h3 {
+  color: #d35400;
+  margin-bottom: 0.3rem;
+}
+.step p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
