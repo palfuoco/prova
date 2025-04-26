@@ -25,7 +25,7 @@ export class RigaRegioneComponent implements OnInit {
 
   ngOnInit(): void {
     this.utenteService.utente$.subscribe((utente) => {
-      if (!utente) {
+      if (!utente || utente.regioneDiResidenza=='') {
         this.regione = this.regioni[Math.floor(Math.random() * this.regioni.length)];
 
         this.apiService.getByAny(this.apiUrl + "/regione", this.regione).subscribe((data) => {

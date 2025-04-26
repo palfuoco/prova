@@ -1,10 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgClass, NgIf } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Utente } from '../../model/utente';
 import { UtenteService } from '../../service/utente.service';
 import { FormsModule } from '@angular/forms';
-import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-finestra-login',
