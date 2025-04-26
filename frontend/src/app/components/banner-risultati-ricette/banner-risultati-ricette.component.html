@@ -59,9 +59,25 @@
 
         <span class="divider">|</span>
 
-        <button class="btn btn-clean">
-          <i class="fas fa-heart me-1" style="font-size: 10pt"></i> Preferiti
-        </button>
+        <div class="dropdown custom-dropdown" [class.show]="preferitiOpen">
+          <button class="btn btn-clean" type="button" (click)="togglePreferitiDropdown()" aria-expanded="false">
+            <i class="fas fa-heart me-1" style="font-size: 10pt"></i> Preferiti
+          </button>
+
+          <div class="dropdown-menu filter-dropdown p-3 show" *ngIf="preferitiOpen" (click)="$event.stopPropagation()">
+            <div *ngIf="ricettePreferite.length > 0; else nessunPreferito">
+              <ul class="list-unstyled mb-0">
+                <li *ngFor="let ricetta of ricettePreferite">
+                  <i class="fas fa-utensils me-1 text-danger"></i> {{ ricetta.nome }}
+                </li>
+              </ul>
+            </div>
+            <ng-template #nessunPreferito>
+              <div class="text-muted">Nessuna ricetta tra i preferiti</div>
+            </ng-template>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

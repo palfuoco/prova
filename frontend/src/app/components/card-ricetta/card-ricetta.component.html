@@ -14,7 +14,14 @@
       <p class="card-text">{{ ricetta.descrizione }}</p>
     </div>
     <div class="card-footer text-center">
-      <i class="fas fa-star" style="color: var(--primary-color)"></i>
+      <div class="row">
+        <div class="col-md-6 d-flex justify-content-start align-items-center">
+          <i class="fas fa-star" style="color: var(--primary-color)"></i>
+        </div>
+        <div class="col-md-6 d-flex justify-content-end align-items-center">
+          <button class="btn-clean"><i class="fas fa-heart"></i> </button>
+        </div>
+      </div>
     </div>
   </div>
 </a>

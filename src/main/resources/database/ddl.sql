@@ -43,3 +43,10 @@ CREATE TABLE recensione (
                             FOREIGN KEY (email_utente) REFERENCES utente(email),
                             FOREIGN KEY (id_ricetta) REFERENCES ricetta(id)
 );
+
+create table preferiti(
+                          email_utente varchar(100) not null references utente(email),
+                          id_ricetta int not null references ricetta(id),
+
+                          primary key (email_utente,id_ricetta)
+);
