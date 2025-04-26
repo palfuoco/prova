@@ -28,8 +28,8 @@ export class ApiService<T> {
     return this.http.delete<void>(`${url}/${any}`);
   }
 
-  getById(url: string, id: number): Observable<T> {
-    return this.http.get<T>(`${url}/${id}`);
+  getByValue(url: string, value: any): Observable<T> {
+    return this.http.get<T>(`${url}/${value}`);
   }
 
   delete(url: string): Observable<void> {
