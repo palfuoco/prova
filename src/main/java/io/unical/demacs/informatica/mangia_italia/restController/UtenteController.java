@@ -3,7 +3,6 @@ package io.unical.demacs.informatica.mangia_italia.restController;
 import io.unical.demacs.informatica.mangia_italia.DAOImpl.UtenteDAOImpl;
 import io.unical.demacs.informatica.mangia_italia.model.UtenteModel;
 import io.unical.demacs.informatica.mangia_italia.proxy.UtenteProxy;
-import io.unical.demacs.informatica.mangia_italia.mapper.UtenteLazyRowMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

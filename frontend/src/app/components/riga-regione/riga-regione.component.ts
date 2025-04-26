@@ -33,7 +33,7 @@ export class RigaRegioneComponent implements OnInit {
       })
     }
     else{
-      this.regione="di tua appartenenza";
+      this.regione="da dove provieni";
       this.apiService.getByAny(this.apiUrl + "/regione",utente.regioneDiResidenza).subscribe((data) => {
         this.ricette = data;
         this.ricetteService.updateNumRicette(this.ricette.length);

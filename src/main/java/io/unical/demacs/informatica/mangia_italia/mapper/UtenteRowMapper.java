@@ -7,10 +7,10 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UtenteLazyRowMapper implements RowMapper<UtenteProxy> {
+public class UtenteRowMapper implements RowMapper<UtenteProxy> {
     private final UtenteDAOImpl utenteDAO;
 
-    public UtenteLazyRowMapper(UtenteDAOImpl utenteDAO) {
+    public UtenteRowMapper(UtenteDAOImpl utenteDAO) {
         this.utenteDAO = utenteDAO;
     }
 
