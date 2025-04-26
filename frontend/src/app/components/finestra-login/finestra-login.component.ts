@@ -39,10 +39,8 @@ export class FinestraLoginComponent {
   submit(): void {
     this.utenteService.autenticaUtente(this.nickname, this.password);
 
-    /*sostituire con getUtenteCorrente*/
     this.utenteService.utente$.subscribe((data) => {
       this.utente = data;
-
       if (this.utente) {
         this.erroreLogin = false;
         this.closeLogin();

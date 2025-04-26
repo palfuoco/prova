@@ -10,7 +10,7 @@ import {HttpResponse} from '@angular/common/http';
 export class UtenteService {
   private apiUrl = 'http://localhost:8080/api/utenti';
 
-  private utenteSubject = new BehaviorSubject<Utente | null>(null); // 👈 uno solo, non un array
+  private utenteSubject = new BehaviorSubject<Utente | null>(null);
   utente$ = this.utenteSubject.asObservable();
 
   constructor(private apiService: ApiService<Utente>) {}
