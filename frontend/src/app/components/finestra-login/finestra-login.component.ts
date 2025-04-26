@@ -10,8 +10,6 @@ import {Subscription} from 'rxjs';
   selector: 'app-finestra-login',
   imports: [
     NgClass,
-    RouterLink,
-    RouterLinkActive,
     FormsModule,
     NgIf
   ],
@@ -33,13 +31,15 @@ export class FinestraLoginComponent {
   closeLogin(): void {
     this.closed.emit();
   }
-  private subscription: Subscription | null = null;
 
   vaiARegistrazione(): void {
     this.registrazioneRichiesta.emit();
   }
-  ngOnInit(): void {
-    this.subscription = this.utenteService.utente$.subscribe((data) => {
+
+  submit(): void {
+    this.utenteService.autenticaUtente(this.nickname, this.password);
+
+    this.utenteService.utente$.subscribe((data) => {
       this.utente = data;
 
       if (this.utente) {
@@ -49,13 +49,5 @@ export class FinestraLoginComponent {
         this.erroreLogin = true;
       }
     });
-  }
-
-  ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
-  }
-
-  submit(): void {
-    this.utenteService.autenticaUtente(this.nickname, this.password);
   }
 }

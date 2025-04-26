@@ -4,6 +4,7 @@ import {ApiService} from '../../apiService';
 import {CardRicettaComponent} from '../card-ricetta/card-ricetta.component';
 import {Ricetta} from '../../model/ricetta';
 import {RicetteService} from '../../service/ricette.service';
+import {UtenteService} from '../../service/utente.service';
 
 @Component({
   selector: 'app-riga-regione',
@@ -18,13 +19,25 @@ export class RigaRegioneComponent implements OnInit {
   public ricette: Ricetta[] = []
   private apiUrl = 'http://localhost:8080/api/ricette';
 
-  constructor(private apiService: ApiService<Ricetta>, private ricetteService: RicetteService) {}
+  constructor(private apiService: ApiService<Ricetta>, private ricetteService: RicetteService, private utenteService: UtenteService) {}
+
 
   ngOnInit(): void {
-    this.regione=this.regioni[Math.floor(Math.random() * this.regioni.length)];
-    this.apiService.getByAny(this.apiUrl + "/regione",this.regione).subscribe((data) => {
-      this.ricette = data;
-      this.ricetteService.updateNumRicette(this.ricette.length);
-    })
+    const utente = this.utenteService.getUtenteCorrente();
+    if (!utente){
+      this.regione=this.regioni[Math.floor(Math.random() * this.regioni.length)];
+
+      this.apiService.getByAny(this.apiUrl + "/regione",this.regione).subscribe((data) => {
+        this.ricette = data;
+        this.ricetteService.updateNumRicette(this.ricette.length);
+      })
+    }
+    else{
+      this.regione="di tua appartenenza";
+      this.apiService.getByAny(this.apiUrl + "/regione",utente.regioneDiResidenza).subscribe((data) => {
+        this.ricette = data;
+        this.ricetteService.updateNumRicette(this.ricette.length);
+      })
+    }
   }
 }

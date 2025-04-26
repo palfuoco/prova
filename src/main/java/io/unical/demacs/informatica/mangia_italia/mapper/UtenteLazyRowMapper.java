@@ -20,6 +20,7 @@ public class UtenteLazyRowMapper implements RowMapper<UtenteProxy> {
                 rs.getString("nickname"),
                 rs.getString("password"),
                 rs.getString("email"),
+                rs.getString("regione_di_residenza"),
                 utenteDAO
         );
     }

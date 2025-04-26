@@ -19,9 +19,9 @@ export class UtenteService {
     const url = `${this.apiUrl}/autenticazione?nickname=${encodeURIComponent(nickname)}&password=${encodeURIComponent(password)}`;
     this.apiService.getAll(url).subscribe((data) => {
       if (data.length > 0) {
-        this.utenteSubject.next(data[0]); // 👈 prendi il primo utente
+        this.utenteSubject.next(data[0]);
       } else {
-        this.utenteSubject.next(null); // 👈 nessun utente trovato
+        this.utenteSubject.next(null);
       }
     });
   }
