@@ -39,9 +39,7 @@ CREATE TABLE recensione (
                             commento VARCHAR(800) NOT NULL,
                             data_pubblicazione DATE NOT NULL,
                             email_utente VARCHAR(200) NOT NULL,
-                            id_ricetta INTEGER NOT NULL,
-                            FOREIGN KEY (email_utente) REFERENCES utente(email),
-                            FOREIGN KEY (id_ricetta) REFERENCES ricetta(id)
+                            id_ricetta INTEGER NOT NULL
 );
 
 create table preferiti(

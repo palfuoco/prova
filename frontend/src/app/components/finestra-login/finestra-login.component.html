@@ -24,6 +24,14 @@
 
       <button type="submit" class="btn btn-primary w-100" (click)="submit()">Accedi</button>
     </form>
+
+    <div class="text-center my-3">
+      <span>oppure</span>
+    </div>
+
+    <div class="google-login-section">
+      <asl-google-signin-button [theme]="'outline'" [size]="'large'" (click)="signInWithGoogle()"></asl-google-signin-button>
+    </div>
     <div *ngIf="erroreLogin" class="alert alert-danger mt-3 text-center">
       Credenziali non valide. Riprova.
     </div>
