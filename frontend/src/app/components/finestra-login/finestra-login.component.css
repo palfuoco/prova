@@ -66,12 +66,38 @@
   text-align: center;
 }
 
-.text-center span {
-  font-size: 0.9rem;
-  color: #999;
-}
-/* Bottone Google */
-.google-login-section {
-  margin-top: 20px;
+.separator {
+  display: flex;
+  align-items: center;
   text-align: center;
+  margin: 20px 0;
+  font-weight: bold;
+  color: #888;
+}
+
+.separator::before,
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #ccc;
+  margin: 0 10px;
+}
+
+.google-login-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.google-login-wrapper asl-google-signin-button {
+  width: 50px;
+  height: 50px;
+}
+
+.google-login-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: #0d6efd;
 }
