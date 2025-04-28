@@ -49,6 +49,7 @@ export class FinestraLoginComponent {
   }
 
   closeLogin(): void {
+    this.erroreLogin = false;
     this.closed.emit();
   }
 

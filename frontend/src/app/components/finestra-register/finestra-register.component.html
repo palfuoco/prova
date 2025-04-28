@@ -30,7 +30,12 @@
 
       <div class="mb-3 text-start">
         <label for="regione" class="form-label">Regione di appartenenza</label>
-        <input [(ngModel)]="regione" [ngModelOptions]="{standalone: true}" type="text" id="regione" class="form-control" placeholder="Inserisci la tua regione">
+        <select [(ngModel)]="regione" [ngModelOptions]="{standalone: true}" id="regione" class="form-select">
+          <option value="" disabled selected>Seleziona una regione</option>
+          <option *ngFor="let regioneNome of regioni" [value]="regioneNome">
+            {{ regioneNome }}
+          </option>
+        </select>
       </div>
 
       <button type="submit" class="btn btn-success w-100" (click)="register()">Registrati</button>

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { NgClass, NgIf } from '@angular/common';
+import {NgClass, NgForOf, NgIf} from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UtenteService } from '../../service/utente.service';
 import { Utente } from '../../model/utente';
@@ -10,7 +10,8 @@ import { Utente } from '../../model/utente';
   imports: [
     NgClass,
     NgIf,
-    FormsModule
+    FormsModule,
+    NgForOf
   ],
   templateUrl: './finestra-register.component.html',
   styleUrl: './finestra-register.component.css'
@@ -25,12 +26,21 @@ export class FinestraRegisterComponent {
   public password: string = "";
   public regione: string = "";
 
+  public regioni: string[] = [
+    'Calabria', 'Sardegna', 'Sicilia', 'Campania', 'Basilicata', 'Lazio', 'Umbria',
+    'Lombardia', 'Marche', 'Piemonte', 'Abruzzo', 'Trentino Alto-Adige', 'Veneto',
+    'Toscana', 'Liguria', 'Emilia Romagna', "Valle d'Aosta", 'Molise', 'Puglia',
+    'Friuli Venezia Giulia'
+  ];
+
   public erroreRegistrazione: boolean = false;
   public successoRegistrazione: boolean = false;
 
   constructor(private utenteService: UtenteService) {}
 
   closeRegistrazione(): void {
+    this.erroreRegistrazione = false;
+    this.successoRegistrazione = false;
     this.closed.emit();
   }
 
