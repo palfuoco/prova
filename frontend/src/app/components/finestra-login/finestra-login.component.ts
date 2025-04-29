@@ -42,6 +42,7 @@ export class FinestraLoginComponent {
           password: '',
           regioneDiResidenza: ''
         };
+        this.utenteService.registraUtente(utenteGoogle);
         this.utenteService.setUtenteCorrente(utenteGoogle);
         this.closeLogin();
       }

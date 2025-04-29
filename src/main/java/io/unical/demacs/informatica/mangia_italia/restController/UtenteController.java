@@ -2,7 +2,6 @@ package io.unical.demacs.informatica.mangia_italia.restController;
 
 import io.unical.demacs.informatica.mangia_italia.DAOImpl.UtenteDAOImpl;
 import io.unical.demacs.informatica.mangia_italia.model.UtenteModel;
-import io.unical.demacs.informatica.mangia_italia.proxy.UtenteProxy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +20,7 @@ public class UtenteController {
 
     @GetMapping("/autenticazione")
     public ResponseEntity<?> autenticazione(@RequestParam String nickname, @RequestParam String password) {
-        List<UtenteProxy> utente = utenteDAO.getAutenticazione(nickname, password);
+        List<UtenteModel> utente = utenteDAO.getAutenticazione(nickname, password);
         if (utente != null && !utente.isEmpty()) {
             return ResponseEntity.ok().body(utente);
         } else {
