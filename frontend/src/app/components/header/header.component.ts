@@ -38,4 +38,9 @@ export class HeaderComponent implements OnInit{
     this.isLoginVisible = false;
     this.isRegistrazioneVisible = true;
   }
+
+  logout(): void {
+    this.utenteService.logout();
+    this.utenteCorrente = null;
+  }
 }

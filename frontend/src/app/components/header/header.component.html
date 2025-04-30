@@ -17,12 +17,22 @@
       </div>
 
       <div class="col-md-4 d-flex align-items-center justify-content-center">
-        <button class="icon-login" (click)="showLogin()">
-          <i class="fas fa-user"></i>
-        </button>
-        <div *ngIf="utenteCorrente" class="icon-login-text mt-1">
-          {{ utenteCorrente.nickname }}
-        </div>
+        <ng-container *ngIf="utenteCorrente; else loginBlock">
+          <div class="d-flex align-items-center gap-2">
+            <div class="icon-login-text mt-1">
+              {{ utenteCorrente.nickname }}
+            </div>
+            <button class="btn btn-outline-danger btn-sm ms-2" (click)="logout()" title="Logout">
+              <i class="fas fa-sign-out-alt"></i>
+            </button>
+          </div>
+        </ng-container>
+
+        <ng-template #loginBlock>
+          <button class="icon-login" (click)="showLogin()" title="Login">
+            <i class="fas fa-user"></i>
+          </button>
+        </ng-template>
       </div>
     </div>
   </div>
