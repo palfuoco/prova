@@ -94,3 +94,12 @@
 .btn-reset:hover {
   color: #feb47b;
 }
+
+.card-link {
+  text-decoration: none;
+  color: #0A0A0A;
+}
+
+.card-link:hover {
+  color: var(--primary-color);
+}

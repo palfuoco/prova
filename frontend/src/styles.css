@@ -6,7 +6,7 @@
   --mute-color: #f8f9fa;
 }
 
-.navbar .nav-link, a {
+.navbar .nav-link {
 
   font-family: "Lobster Two", serif;
   font-weight: 400;
@@ -46,7 +46,7 @@
   color: var(--primary-color);
 }
 
-p, h1, h4, h5, h6, .btn {
+p, h1, h4, h5, h6, .btn, a {
   font-family: "Fredoka", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;

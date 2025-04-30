@@ -1,15 +1,16 @@
 import {Component, HostListener} from '@angular/core';
 import {ButtonCarouselComponent} from '../button-carousel/button-carousel.component';
 import {MapComponent} from '../map/map.component';
-import {NgIf} from '@angular/common';
+import {NgForOf, NgIf} from '@angular/common';
 import {RicetteService} from '../../service/ricette.service';
 import {FormsModule} from '@angular/forms';
 import {PreferitiService} from '../../service/preferiti.service';
 import {Ricetta} from '../../model/ricetta';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-banner-risultati-ricette',
-  imports: [MapComponent, NgIf, FormsModule],
+  imports: [MapComponent, NgIf, FormsModule, NgForOf, RouterLink],
   templateUrl: './banner-risultati-ricette.component.html',
   standalone: true,
   styleUrl: './banner-risultati-ricette.component.css'
@@ -60,11 +61,12 @@ export class BannerRisultatiRicetteComponent {
     const target = event.target as HTMLElement;
     if (!target.closest('.custom-dropdown')) {
       this.filtraOpen = false;
+      this.filtraOpen = false;
     }
   }
 
   ricettePreferite: Ricetta[] = [];
-  emailUtente: string = 'utente@example.com'; // TODO: prendi da login/auth
+  emailUtente: string = 'lucacaputo180743@gmail.com'; // TODO: prendi da login/auth
   preferitiOpen = false;
 
   togglePreferitiDropdown(): void {
@@ -72,10 +74,18 @@ export class BannerRisultatiRicetteComponent {
     this.filtraOpen = false;
 
     if (this.preferitiOpen) {
-      this.preferitiService.getPreferitiRicette(this.emailUtente).subscribe((ricette: Ricetta[]) => {
-        this.ricettePreferite = ricette;
-      });
+      this.getAllPreferiti()
     }
+  }
+
+  removePreferito(email:string, idRicetta: number): void {
+    this.preferitiService.deletePreferito(email,idRicetta);
+  }
+
+  getAllPreferiti():void {
+    this.preferitiService.getPreferitiRicette(this.emailUtente).subscribe((ricette: Ricetta[]) => {
+      this.ricettePreferite = ricette;
+    });
   }
 
 

@@ -17,7 +17,7 @@ export class PreferitiService {
   }
 
   addPreferito(email: string, ricettaId: number): Observable<any> {
-    return this.apiService.create(this.apiUrl, {
+    return this.apiService.create(this.apiUrl + "/save", {
       utente: { email },
       ricetta: { id: ricettaId }
     });

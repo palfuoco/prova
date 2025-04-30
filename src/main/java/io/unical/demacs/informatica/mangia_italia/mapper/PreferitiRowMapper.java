@@ -13,10 +13,11 @@ public class PreferitiRowMapper implements RowMapper<PreferitiModel> {
     @Override
     public PreferitiModel mapRow(ResultSet rs, int rowNum) throws SQLException {
         UtenteModel utenteModel = new UtenteModel();
-        utenteModel.setEmail(rs.getString("email_utente"));
+        utenteModel.setEmail(rs.getString("email"));
 
         RicettaModel ricettaModel = new RicettaModel();
-        ricettaModel.setId(rs.getInt("id_ricetta"));
+        ricettaModel.setId(rs.getInt("id"));
+        ricettaModel.setNome(rs.getString("nome"));
 
 
         PreferitiModel preferitiModel = new PreferitiModel();

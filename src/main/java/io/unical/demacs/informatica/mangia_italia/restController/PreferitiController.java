@@ -11,6 +11,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/preferiti")
 public class PreferitiController {
+
     private final PreferitiDAOImpl preferitiDAO;
 
     public PreferitiController(PreferitiDAOImpl preferitiDAO) {
@@ -27,18 +28,19 @@ public class PreferitiController {
         return ResponseEntity.ok().header("Content-Type","application/json").body(preferitiDAO.getByEmail(email));
     }
 
-    @PostMapping
+    @PostMapping("/save")
     public ResponseEntity<String> savePreferito(@RequestBody PreferitiModel preferito) {
+        System.out.println("Chiamata ricevuta dal frontend!");
+        System.out.println("Ricevuto: " + preferito.getUtente().getEmail() + ", " + preferito.getRicetta().getId());
         preferitiDAO.save(preferito);
         return ResponseEntity.ok("Preferito aggiunto con successo.");
     }
 
     @DeleteMapping("/delete/{emailUtente}/{idRicetta}")
-    public ResponseEntity<String> deletePreferito(
+    public void deletePreferito(
             @PathVariable String emailUtente,
             @PathVariable int idRicetta) {
         preferitiDAO.delete(emailUtente, idRicetta);
-        return ResponseEntity.ok("Preferito eliminato con successo.");
     }
 
 
