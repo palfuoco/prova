@@ -78,8 +78,10 @@ export class BannerRisultatiRicetteComponent {
     }
   }
 
-  removePreferito(email:string, idRicetta: number): void {
-    this.preferitiService.deletePreferito(email,idRicetta);
+  removePreferito(idRicetta: number): void {
+    this.preferitiService.deletePreferito(this.emailUtente, idRicetta).subscribe(() => {
+      this.getAllPreferiti(); // aggiorna subito la lista
+    });
   }
 
   getAllPreferiti():void {

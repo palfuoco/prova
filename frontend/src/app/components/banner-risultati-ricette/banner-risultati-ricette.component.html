@@ -64,16 +64,18 @@
             <i class="fas fa-heart me-1" style="font-size: 10pt"></i> Preferiti
           </button>
 
-          <div class="dropdown-menu filter-dropdown p-3 show" *ngIf="preferitiOpen" (click)="$event.stopPropagation()">
+          <div class="dropdown-menu p-3 show shopping-list" *ngIf="preferitiOpen" (click)="$event.stopPropagation()">
             <div *ngIf="ricettePreferite.length > 0; else nessunPreferito">
-              <ul class="list-unstyled mb-0">
-                <li *ngFor="let ricetta of ricettePreferite" class="d-flex justify-content-between align-items-center">
-                  <a [routerLink]="['/dettagli', ricetta.id]" class="card-link">
-                    ~ {{ ricetta.nome }}
-                  </a>
-                  <button class="btn btn-sm btn-outline-danger" (click)="removePreferito('lucacaputo180743@gmail.com',ricetta.id)">
-                    <i class="fas fa-trash-alt"></i>
-                  </button>
+              <ul>
+                <li *ngFor="let ricetta of ricettePreferite">
+                  <div class="shopping-item-label">
+                    <button class="heart-btn" (click)="removePreferito(ricetta.id)">
+                      <i class="fas fa-heart" style="font-size: 12pt"></i>
+                    </button>
+                    <a [routerLink]="['/dettagli', ricetta.id]" class="card-link">
+                      {{ ricetta.nome }}
+                    </a>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -81,7 +83,7 @@
               <div class="text-muted">Nessuna ricetta tra i preferiti</div>
             </ng-template>
           </div>
-        </div>
+
 
       </div>
     </div>

@@ -103,3 +103,72 @@
 .card-link:hover {
   color: var(--primary-color);
 }
+
+.shopping-list {
+  width: 90vw;
+  max-width: 480px;
+  min-width: 320px;
+  background-color: #fffdf7;
+  border: 2px dashed #feb47b;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.08);
+  overflow-x: auto;
+}
+.dropdown-menu {
+  right: 0 !important;
+  left: auto !important;
+}
+
+
+.shopping-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.shopping-list li {
+  padding: 10px 0;
+  border-bottom: 1px dashed #ffd5c2;
+}
+
+.shopping-list li:last-child {
+  border-bottom: none;
+}
+
+.shopping-item-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.heart-btn {
+  border: none;
+  background: transparent;
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 4px;
+}
+
+.heart-btn:hover {
+  color: #000;
+}
+
+
+.card-link {
+  text-decoration: none;
+  color: #000;
+  transition: color 0.2s ease;
+  font-weight: 500;
+}
+
+.card-link:hover {
+  color: var(--primary-color);
+}
+
+
+

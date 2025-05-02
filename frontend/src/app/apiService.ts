@@ -32,6 +32,11 @@ export class ApiService<T> {
     return this.http.get<T>(`${url}/${value}`);
   }
 
+  getByTwoValues(url: string, val1: any, val2: any): Observable<any> {
+    return this.http.get<any>(`${url}/${val1}/${val2}`);
+  }
+
+
   delete(url: string): Observable<void> {
     return this.http.delete<void>(`${url}`);
   }

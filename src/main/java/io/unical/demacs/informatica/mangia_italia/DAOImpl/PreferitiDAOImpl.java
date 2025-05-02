@@ -24,7 +24,7 @@ public class PreferitiDAOImpl implements DAO<PreferitiModel,String> {
                     "WHERE p.email_utente = ?";
     private final String INSERT_QUERY = "INSERT INTO preferiti(email_utente,id_ricetta) VALUES(?,?)";
     private final String UPDATE_QUERY = "UPDATE preferiti SET id_ricetta = ? WHERE email_utente = ?";
-    private final String DELETE_QUERY = "DELETE preferiti WHERE email_utente = ? AND id_ricetta = ?";
+    private final String DELETE_QUERY = "DELETE FROM preferiti WHERE email_utente = ? AND id_ricetta = ?";
 
     public PreferitiDAOImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -33,6 +33,11 @@ public class PreferitiDAOImpl implements DAO<PreferitiModel,String> {
     @Override
     public PreferitiModel get(String email) {
         return null;
+    }
+
+    public boolean existsByEmailAndIdRicetta(String email, int idRicetta) {
+        return getByEmail(email).stream()
+                .anyMatch(p -> p.getRicetta().getId() == idRicetta);
     }
 
 

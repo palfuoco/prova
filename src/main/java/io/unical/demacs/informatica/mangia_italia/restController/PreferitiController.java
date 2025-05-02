@@ -28,6 +28,15 @@ public class PreferitiController {
         return ResponseEntity.ok().header("Content-Type","application/json").body(preferitiDAO.getByEmail(email));
     }
 
+    @GetMapping("/check/{email}/{idRicetta}")
+    public ResponseEntity<Boolean> isPreferito(
+            @PathVariable String email,
+            @PathVariable int idRicetta) {
+        boolean isPreferito = preferitiDAO.existsByEmailAndIdRicetta(email, idRicetta);
+        return ResponseEntity.ok(isPreferito);
+    }
+
+
     @PostMapping("/save")
     public ResponseEntity<String> savePreferito(@RequestBody PreferitiModel preferito) {
         System.out.println("Chiamata ricevuta dal frontend!");
