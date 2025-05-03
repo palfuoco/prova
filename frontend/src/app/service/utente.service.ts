@@ -13,15 +13,21 @@ export class UtenteService {
   private utenteSubject = new BehaviorSubject<Utente | null>(null);
   utente$ = this.utenteSubject.asObservable();
 
-  constructor(private apiService: ApiService<Utente>) {}
+  constructor(private apiService: ApiService<Utente>) {
+    const utenteSalvato = sessionStorage.getItem('utente');
+    if (utenteSalvato) {
+      const utente = JSON.parse(utenteSalvato);
+      this.utenteSubject.next(utente);
+    }
+  }
 
   autenticaUtente(nickname: string, password: string): void {
     const url = `${this.apiUrl}/autenticazione?nickname=${encodeURIComponent(nickname)}&password=${encodeURIComponent(password)}`;
     this.apiService.getAll(url).subscribe((data) => {
       if (data.length > 0) {
-        this.utenteSubject.next(data[0]);
+        this.setUtenteCorrente(data[0])
       } else {
-        this.utenteSubject.next(null);
+        this.logout();
       }
     });
   }
@@ -32,6 +38,7 @@ export class UtenteService {
 
   setUtenteCorrente(utente: Utente): void {
     this.utenteSubject.next(utente);
+    sessionStorage.setItem('utente', JSON.stringify(utente));
   }
   registraUtente(utente: Utente): Observable<HttpResponse<string>> {
     const url = `${this.apiUrl}/registrazione?email=${encodeURIComponent(utente.email)}&nickname=${encodeURIComponent(utente.nickname)}&password=${encodeURIComponent(utente.password)}&regione=${encodeURIComponent(utente.regioneDiResidenza)}`;
@@ -40,5 +47,6 @@ export class UtenteService {
 
   logout(): void {
     this.utenteSubject.next(null);
+    sessionStorage.removeItem('utente');
   }
 }

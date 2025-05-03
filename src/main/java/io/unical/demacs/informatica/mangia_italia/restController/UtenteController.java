@@ -28,7 +28,7 @@ public class UtenteController {
         }
     }
 
-    @GetMapping("registrazione")
+    @GetMapping("registrazione")/*modificare con Post*/
     public ResponseEntity<?> registrazione(@RequestParam String email, @RequestParam String nickname, @RequestParam String password, @RequestParam String regione) {
         try {
             UtenteModel utente=new UtenteModel(email, nickname, password, regione);
