@@ -14,15 +14,15 @@ export class UtenteService {
   utente$ = this.utenteSubject.asObservable();
 
   constructor(private apiService: ApiService<Utente>) {
-    const utenteSalvato = sessionStorage.getItem('utente');
+    const utenteSalvato = localStorage.getItem('utente');
     if (utenteSalvato) {
       const utente = JSON.parse(utenteSalvato);
       this.utenteSubject.next(utente);
     }
   }
 
-  autenticaUtente(nickname: string, password: string): void {
-    const url = `${this.apiUrl}/autenticazione?nickname=${encodeURIComponent(nickname)}&password=${encodeURIComponent(password)}`;
+  autenticaUtente(email: string, password: string): void {
+    const url = `${this.apiUrl}/autenticazione?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
     this.apiService.getAll(url).subscribe((data) => {
       if (data.length > 0) {
         this.setUtenteCorrente(data[0])
@@ -38,7 +38,7 @@ export class UtenteService {
 
   setUtenteCorrente(utente: Utente): void {
     this.utenteSubject.next(utente);
-    sessionStorage.setItem('utente', JSON.stringify(utente));
+    localStorage.setItem('utente', JSON.stringify(utente));
   }
   registraUtente(utente: Utente): Observable<HttpResponse<string>> {
     const url = `${this.apiUrl}/registrazione?email=${encodeURIComponent(utente.email)}&nickname=${encodeURIComponent(utente.nickname)}&password=${encodeURIComponent(utente.password)}&regione=${encodeURIComponent(utente.regioneDiResidenza)}`;
@@ -47,6 +47,6 @@ export class UtenteService {
 
   logout(): void {
     this.utenteSubject.next(null);
-    sessionStorage.removeItem('utente');
+    localStorage.removeItem('utente');
   }
 }

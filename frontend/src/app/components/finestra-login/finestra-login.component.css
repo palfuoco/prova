@@ -22,7 +22,7 @@
 
 .login-title {
   align-content: center;
-  margin-left: 120px;
+  margin-left: 110px;
 }
 
 .btn-close-inline {
@@ -31,7 +31,7 @@
   border: none;
   color: #333;
   cursor: pointer;
-  margin-left: 100px;
+  margin-left: 75px;
   margin-bottom: 25px;
   line-height: 1;
 }
@@ -100,4 +100,22 @@
   font-size: 18px;
   font-weight: 600;
   color: #0d6efd;
+}
+
+button[type="submit"] {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #fff;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--primary-color-hover);
+  border-color: var(--primary-color-hover);
+  color: #fff;
+}
+
+.link-registrati {
+  color: var(--primary-color);
+  text-decoration: underline;
+  cursor: pointer;
 }

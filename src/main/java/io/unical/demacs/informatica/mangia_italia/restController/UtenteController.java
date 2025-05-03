@@ -19,8 +19,8 @@ public class UtenteController {
     }
 
     @GetMapping("/autenticazione")
-    public ResponseEntity<?> autenticazione(@RequestParam String nickname, @RequestParam String password) {
-        List<UtenteModel> utente = utenteDAO.getAutenticazione(nickname, password);
+    public ResponseEntity<?> autenticazione(@RequestParam String email, @RequestParam String password) {
+        List<UtenteModel> utente = utenteDAO.getAutenticazione(email, password);
         if (utente != null && !utente.isEmpty()) {
             return ResponseEntity.ok().body(utente);
         } else {
@@ -28,7 +28,7 @@ public class UtenteController {
         }
     }
 
-    @GetMapping("registrazione")/*modificare con Post*/
+    @GetMapping("registrazione")
     public ResponseEntity<?> registrazione(@RequestParam String email, @RequestParam String nickname, @RequestParam String password, @RequestParam String regione) {
         try {
             UtenteModel utente=new UtenteModel(email, nickname, password, regione);

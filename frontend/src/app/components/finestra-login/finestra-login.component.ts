@@ -27,7 +27,7 @@ export class FinestraLoginComponent {
   @Input() visible: boolean = false;
   @Output() closed = new EventEmitter<void>();
   @Output() registrazioneRichiesta = new EventEmitter<void>();
-  public nickname: string = "";
+  public email: string = "";
   public password: string = "";
   public utente: Utente | null = null;
   public erroreLogin: boolean = false;
@@ -59,7 +59,7 @@ export class FinestraLoginComponent {
   }
 
   submit(): void {
-    this.utenteService.autenticaUtente(this.nickname, this.password);
+    this.utenteService.autenticaUtente(this.email, this.password);
 
     this.utenteService.utente$.subscribe((data) => {
       this.utente = data;

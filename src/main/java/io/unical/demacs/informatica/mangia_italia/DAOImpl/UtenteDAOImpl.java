@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 public class UtenteDAOImpl implements DAO<UtenteModel, String> {
-    private static final String SELECT_USER = "SELECT * FROM utente WHERE nickname=?";
+    private static final String SELECT_USER = "SELECT * FROM utente WHERE email=?";
     private static final String INSERT_QUERY = "INSERT INTO utente (email, nickname, password, regione_di_residenza) VALUES (?, ?, ?, ?)";
     private static final String UPDATE_QUERY = "UPDATE utente SET email=?, nickname=?, password=? WHERE email=?";
     private static final String DELETE_QUERY = "DELETE FROM utente WHERE email=?";
@@ -20,11 +20,11 @@ public class UtenteDAOImpl implements DAO<UtenteModel, String> {
     @Autowired
     private final JdbcTemplate jdbcTemplate = null;
 
-    public List<UtenteModel> getAutenticazione(String nickname, String password) {
+    public List<UtenteModel> getAutenticazione(String email, String password) {
         try {
             List<UtenteModel> utenti = jdbcTemplate.query(
                     SELECT_USER,
-                    new Object[]{nickname},
+                    new Object[]{email},
                     new UtenteRowMapper()
             );
             for (UtenteModel utente : utenti) {

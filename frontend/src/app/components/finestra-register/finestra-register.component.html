@@ -8,7 +8,7 @@
     <div class="register-text mb-4">
       <p>
         Compila i campi per registrarti al portale. Se sei già registrato,
-        <a (click)="vaiALogin()" style="cursor: pointer;">accedi</a>.
+        <a (click)="vaiALogin()" class="link-accedi">accedi</a>.
       </p>
     </div>
 
@@ -20,7 +20,7 @@
 
       <div class="mb-3 text-start">
         <label for="nickname" class="form-label">Nome utente</label>
-        <input [(ngModel)]="nickname" [ngModelOptions]="{standalone: true}" type="text" id="nickname" class="form-control" placeholder="Scegli un nickname">
+        <input [(ngModel)]="nickname" [ngModelOptions]="{standalone: true}" type="text" id="nickname" class="form-control" placeholder="Scegli un nome utente">
       </div>
 
       <div class="mb-3 text-start">
