@@ -42,10 +42,14 @@
     </form>
 
     <div *ngIf="successoRegistrazione" class="alert alert-success mt-3 text-center">
-      Registrazione avvenuta con successo.
+      Registrazione avvenuta con successo,
+      puoi chiudere la finestra.
     </div>
     <div *ngIf="erroreRegistrazione" class="alert alert-danger mt-3 text-center">
       Errore durante la registrazione. Riprova.
+    </div>
+    <div *ngIf="erroreEmail" class="alert alert-danger mt-3 text-center">
+      L'email non è nel formato corretto.
     </div>
 
   </div>

@@ -31,6 +31,7 @@ export class FinestraLoginComponent {
   public password: string = "";
   public utente: Utente | null = null;
   public erroreLogin: boolean = false;
+  public erroreGenerico: boolean = false;
 
   constructor(private utenteService: UtenteService, private socialAuthService: SocialAuthService) {
     this.socialAuthService.authState.subscribe((user: SocialUser) => {
@@ -50,29 +51,34 @@ export class FinestraLoginComponent {
   }
 
   closeLogin(): void {
-    this.erroreLogin = false;
+    this.resetErrori();
     this.closed.emit();
   }
 
   vaiARegistrazione(): void {
+    this.resetErrori();
     this.registrazioneRichiesta.emit();
   }
 
   submit(): void {
-    this.utenteService.autenticaUtente(this.email, this.password);
+    this.resetErrori();
 
-    this.utenteService.utente$.subscribe((data) => {
-      this.utente = data;
-      if (this.utente) {
-        this.erroreLogin = false;
-        this.closeLogin();
-      } else {
-        this.erroreLogin = true;
-      }
-    });
+    try {
+      this.utenteService.autenticaUtente(this.email, this.password).subscribe((success) => {
+        if (success) {
+          this.utente = this.utenteService.getUtenteCorrente();
+          this.closeLogin();
+        } else {
+          this.erroreLogin = true;
+        }
+      });
+    } catch (e) {
+      this.erroreGenerico = true;
+    }
   }
 
   signInWithGoogle(): void {
+    this.resetErrori();
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
       .then(() => {
         console.log('Richiesta login Google inviata');
@@ -82,4 +88,8 @@ export class FinestraLoginComponent {
       });
   }
 
+  resetErrori(): void {
+    this.erroreLogin = false;
+    this.erroreGenerico = false;
+  }
 }

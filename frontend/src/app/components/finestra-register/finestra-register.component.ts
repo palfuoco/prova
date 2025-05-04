@@ -35,20 +35,29 @@ export class FinestraRegisterComponent {
 
   public erroreRegistrazione: boolean = false;
   public successoRegistrazione: boolean = false;
+  public erroreEmail: boolean = false;
 
   constructor(private utenteService: UtenteService) {}
 
   closeRegistrazione(): void {
-    this.erroreRegistrazione = false;
-    this.successoRegistrazione = false;
+    this.resetErrori();
     this.closed.emit();
   }
 
   vaiALogin(): void {
+    this.resetErrori();
     this.loginRichiesto.emit();
   }
 
   register(): void {
+    this.resetErrori();
+
+    const emailValida = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailValida.test(this.email)) {
+      this.erroreEmail=true;
+      return;
+    }
+
     const nuovoUtente: Utente = {
       email: this.email,
       nickname: this.nickname,
@@ -61,6 +70,10 @@ export class FinestraRegisterComponent {
         if (response.status === 200) {
           this.erroreRegistrazione = false;
           this.successoRegistrazione = true;
+          this.email="";
+          this.nickname="";
+          this.password="";
+          this.regione="";
         }
       },
       error: (error) => {
@@ -68,5 +81,11 @@ export class FinestraRegisterComponent {
         this.successoRegistrazione = false;
       }
     });
+  }
+
+  resetErrori(): void{
+    this.erroreRegistrazione = false;
+    this.successoRegistrazione = false;
+    this.erroreEmail = false;
   }
 }

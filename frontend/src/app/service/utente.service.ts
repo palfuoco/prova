@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {BehaviorSubject, catchError, map, Observable, of} from 'rxjs';
 import { ApiService } from '../apiService';
 import { Utente } from '../model/utente';
-import {HttpResponse} from '@angular/common/http';
+import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -21,15 +21,26 @@ export class UtenteService {
     }
   }
 
-  autenticaUtente(email: string, password: string): void {
+  autenticaUtente(email: string, password: string): Observable<boolean> {
     const url = `${this.apiUrl}/autenticazione?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
-    this.apiService.getAll(url).subscribe((data) => {
-      if (data.length > 0) {
-        this.setUtenteCorrente(data[0])
-      } else {
-        this.logout();
-      }
-    });
+    return this.apiService.getAll(url).pipe(
+      map((data) => {
+        if (data.length > 0) {
+          this.setUtenteCorrente(data[0]);
+          return true;
+        } else {
+          this.logout();
+          return false;
+        }
+      }),
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          this.logout();
+          return of(false);
+        }
+        throw error;
+      })
+    );
   }
 
   getUtenteCorrente(): Utente | null {
