@@ -19,8 +19,8 @@
       <div class="col-md-4 d-flex align-items-center justify-content-center">
         <ng-container *ngIf="utenteCorrente; else loginBlock">
           <div class="d-flex align-items-center gap-2">
-            <div class="icon-login-text mt-1">
-              {{ utenteCorrente.nickname }}
+            <div class="icon-login-text d-flex align-items-center mt-1">
+              <a [routerLink]="['/profilo']" class="link-login-text">Bentornato <span class="login-text" style="color: var(--primary-color)">{{ utenteCorrente.nickname.toUpperCase() }}</span></a>
             </div>
             <button class="btn btn-outline-danger btn-sm ms-2" (click)="logout()" title="Logout">
               <i class="fas fa-sign-out-alt"></i>

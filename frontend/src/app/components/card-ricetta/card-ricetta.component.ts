@@ -2,11 +2,13 @@ import {Component, Input, OnInit} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {Ricetta} from '../../model/ricetta';
 import {PreferitiService} from '../../service/preferiti.service';
-import {NgClass} from '@angular/common';
+import {NgClass, NgIf} from '@angular/common';
+import {BannerAvvisoComponent} from '../banner-avviso/banner-avviso.component';
+import {UtenteService} from '../../service/utente.service';
 
 @Component({
   selector: 'app-card-ricetta',
-  imports: [RouterLink, NgClass],
+  imports: [RouterLink, NgClass, BannerAvvisoComponent, NgIf],
   templateUrl: './card-ricetta.component.html',
   standalone: true,
   styleUrl: './card-ricetta.component.css'
@@ -16,28 +18,49 @@ export class CardRicettaComponent implements OnInit{
   @Input() ricetta!: Ricetta;
 
   isFavorite: boolean = false;
-  emailUtente: string = 'lucacaputo180743@gmail.com';
+  mostraBanner = false;
 
 
-  constructor(private preferitiService: PreferitiService) {}
+  constructor(private preferitiService: PreferitiService, private utenteService: UtenteService) {}
 
   ngOnInit() {
-    this.preferitiService.isPreferito(this.emailUtente, this.ricetta.id)
+    const email: string | null = this.getEmailUtente();
+    if (email == null) {
+      this.mostraBanner = true;
+      return;
+    }
+
+    this.preferitiService.isPreferito(email, this.ricetta.id)
       .subscribe((result: boolean) => {
         this.isFavorite = result;
       });
   }
 
+  getEmailUtente(): string | null {
+    const email: string | undefined = this.utenteService.getUtenteCorrente()?.email;
+    if (!email) {
+      return null;
+    }
+    return email;
+  }
+
   togglePreferito(): void {
+    const email: string | null = this.getEmailUtente();
+    if (email == null) {
+      this.mostraBanner = true;
+      return;
+    }
+
     if (this.isFavorite) {
-      this.preferitiService.deletePreferito(this.emailUtente, this.ricetta.id).subscribe(() => {
+      this.preferitiService.deletePreferito(email, this.ricetta.id).subscribe(() => {
         this.isFavorite = false;
       });
     } else {
-      this.preferitiService.addPreferito(this.emailUtente, this.ricetta.id).subscribe(() => {
+      this.preferitiService.addPreferito(email, this.ricetta.id).subscribe(() => {
         this.isFavorite = true;
       });
     }
+    this.preferitiService.refreshLista();
   }
 
 }

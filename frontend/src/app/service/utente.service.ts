@@ -43,7 +43,7 @@ export class UtenteService {
     );
   }
 
-  getUtenteCorrente(): Utente | null {
+  public getUtenteCorrente(): Utente | null {
     return this.utenteSubject.value;
   }
 

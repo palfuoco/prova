@@ -160,6 +160,16 @@ header {
   }
 }
 
+.login-text {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.link-login-text {
+  text-decoration: none;
+  color: black;
+}
+
 
 
 

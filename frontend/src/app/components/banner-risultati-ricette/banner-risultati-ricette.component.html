@@ -93,3 +93,9 @@
 <div *ngIf="showMap" class="map-container">
   <app-map></app-map>
 </div>
+  <app-banner-avviso
+    *ngIf="mostraBanner"
+    [messaggio]="'Per aggiungere o visualizzare i preferiti devi prima accedere.'"
+    (chiuso)="mostraBanner = false">
+  </app-banner-avviso>
+</div>

@@ -25,3 +25,8 @@
     </div>
   </div>
 </a>
+<app-banner-avviso
+  *ngIf="mostraBanner"
+  [messaggio]="'Per aggiungere o visualizzare i preferiti devi prima accedere.'"
+  (chiuso)="mostraBanner = false">
+</app-banner-avviso>

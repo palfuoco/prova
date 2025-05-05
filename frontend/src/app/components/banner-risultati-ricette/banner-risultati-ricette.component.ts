@@ -1,16 +1,17 @@
 import {Component, HostListener} from '@angular/core';
-import {ButtonCarouselComponent} from '../button-carousel/button-carousel.component';
 import {MapComponent} from '../map/map.component';
 import {NgForOf, NgIf} from '@angular/common';
 import {RicetteService} from '../../service/ricette.service';
 import {FormsModule} from '@angular/forms';
 import {PreferitiService} from '../../service/preferiti.service';
 import {Ricetta} from '../../model/ricetta';
-import {RouterLink} from '@angular/router';
+import {RouterLink, RouterModule} from '@angular/router';
+import {UtenteService} from '../../service/utente.service';
+import {BannerAvvisoComponent} from '../banner-avviso/banner-avviso.component';
 
 @Component({
   selector: 'app-banner-risultati-ricette',
-  imports: [MapComponent, NgIf, FormsModule, NgForOf, RouterLink],
+  imports: [MapComponent, NgIf, FormsModule, NgForOf, RouterLink, BannerAvvisoComponent, RouterModule],
   templateUrl: './banner-risultati-ricette.component.html',
   standalone: true,
   styleUrl: './banner-risultati-ricette.component.css'
@@ -21,7 +22,9 @@ export class BannerRisultatiRicetteComponent {
   selectedTipo: string = "";
   selectedTempo: number = 0;
 
-  constructor(private ricetteService: RicetteService, private preferitiService: PreferitiService) {
+  mostraBanner = false;
+
+  constructor(private ricetteService: RicetteService, private preferitiService: PreferitiService, private utenteService: UtenteService) {
     this.ricetteService.numRicette$.subscribe((num) => {
       this.numRicetteTrovate = num;
     });
@@ -66,7 +69,6 @@ export class BannerRisultatiRicetteComponent {
   }
 
   ricettePreferite: Ricetta[] = [];
-  emailUtente: string = 'lucacaputo180743@gmail.com'; // TODO: prendi da login/auth
   preferitiOpen = false;
 
   togglePreferitiDropdown(): void {
@@ -78,19 +80,37 @@ export class BannerRisultatiRicetteComponent {
     }
   }
 
+  getEmailUtente(): string | null {
+    const email: string | undefined = this.utenteService.getUtenteCorrente()?.email;
+    if (!email) {
+      return null;
+    }
+    return email;
+  }
+
   removePreferito(idRicetta: number): void {
-    this.preferitiService.deletePreferito(this.emailUtente, idRicetta).subscribe(() => {
-      this.getAllPreferiti(); // aggiorna subito la lista
+    const email: string | null = this.getEmailUtente();
+    if (email == null) {
+      this.mostraBanner = true;
+      return;
+    }
+
+    this.preferitiService.deletePreferito(email, idRicetta).subscribe(() => {
+      this.getAllPreferiti();
     });
+    this.preferitiService.refreshLista();
   }
 
   getAllPreferiti():void {
-    this.preferitiService.getPreferitiRicette(this.emailUtente).subscribe((ricette: Ricetta[]) => {
+    const email: string | null = this.getEmailUtente();
+    if (email == null) {
+      this.mostraBanner = true;
+      return;
+    }
+
+    this.preferitiService.getPreferitiRicette(email).subscribe((ricette: Ricetta[]) => {
       this.ricettePreferite = ricette;
     });
   }
-
-
-
 
 }
