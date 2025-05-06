@@ -43,7 +43,7 @@ export class FinestraLoginComponent {
           password: '',
           regioneDiResidenza: ''
         };
-        this.utenteService.registraUtente(utenteGoogle);
+        this.utenteService.registraUtente(utenteGoogle).subscribe();
         this.utenteService.setUtenteCorrente(utenteGoogle);
         this.closeLogin();
       }
