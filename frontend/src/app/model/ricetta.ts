@@ -9,5 +9,6 @@ export interface Ricetta {
   tipo: string,
   descrizionePreparazione: string,
   img: string,
-  dose: number
+  dose: number,
+  isFavorite:boolean
 }

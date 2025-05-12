@@ -25,6 +25,7 @@ public class RicettaDAOImpl implements DAO<RicettaModel, Integer> {
     private static final String INSERT_QUERY = "INSERT INTO ricetta VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_QUERY = "UPDATE ricetta SET (nome, descrizione, ingredienti, tempo_preparazione, regione, difficolta, tipo, descrizione_preparazione, img, dose_iniziale) = ROW(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) WHERE id = ?";
     private static final String DELETE_QUERY = "DELETE FROM ricetta WHERE id=?";
+    private static final String SEARCH_QUERY = "SELECT id, nome, ingredienti, descrizione, difficolta, tempo_preparazione, img, tipo FROM ricetta WHERE LOWER(nome) LIKE LOWER(?)";
 
 
     @Autowired
@@ -61,6 +62,11 @@ public class RicettaDAOImpl implements DAO<RicettaModel, Integer> {
 
     public List<RicettaProxy> getByRegioneLazy(String regione) {
         return jdbcTemplate.query(SELECT_QUERY_BY_REGIONE, new Object[]{regione}, new RicettaLazyRowMapper(this));
+    }
+
+    public List<RicettaProxy> getByNomeLazy(String nome) {
+        String searchTerm = "%" + nome + "%"; // aggiungi i wildcard
+        return jdbcTemplate.query(SEARCH_QUERY, new Object[]{searchTerm}, new RicettaLazyRowMapper(this));
     }
 
 

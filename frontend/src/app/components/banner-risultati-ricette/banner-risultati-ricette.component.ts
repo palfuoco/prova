@@ -64,7 +64,7 @@ export class BannerRisultatiRicetteComponent {
     const target = event.target as HTMLElement;
     if (!target.closest('.custom-dropdown')) {
       this.filtraOpen = false;
-      this.filtraOpen = false;
+      this.preferitiOpen = false;
     }
   }
 
@@ -97,6 +97,8 @@ export class BannerRisultatiRicetteComponent {
 
     this.preferitiService.deletePreferito(email, idRicetta).subscribe(() => {
       this.getAllPreferiti();
+      this.ricettePreferite = this.ricettePreferite.filter(r => r.id !== idRicetta);
+      window.location.reload();
     });
     this.preferitiService.refreshLista();
   }

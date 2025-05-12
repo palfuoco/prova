@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {ApiService} from '../apiService';
 import {Ricetta} from '../model/ricetta';
 import {PreferitiService} from './preferiti.service';
@@ -65,5 +65,13 @@ export class RicetteService {
       this.updateNumRicette(ricette.length);
     });
   }
+
+  searchRicetteByNome(nome: string) {
+    return this.apiService.getAll(`${this.apiUrl}/search?nome=${encodeURIComponent(nome)}`);
+  }
+
+
+
+
 
 }

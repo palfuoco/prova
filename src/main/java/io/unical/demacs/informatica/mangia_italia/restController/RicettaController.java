@@ -29,7 +29,12 @@ public class RicettaController {
         ricettaDAO.save(ricettaModel);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/search")
+    public ResponseEntity<List<RicettaProxy>> getRicettaByNome(@RequestParam String nome) {
+        return ResponseEntity.ok().header("Content-Type","application/json").body(ricettaDAO.getByNomeLazy(nome));
+    }
+
+    @GetMapping("/{id:[0-9]+}")
     public ResponseEntity<RicettaModel> getRicettaById(@PathVariable int id) {
         return ResponseEntity.ok().header("Content-Type","application/json").body(ricettaDAO.get(id));
     }
@@ -58,8 +63,9 @@ public class RicettaController {
                 .body(ricettaDAO.getByRegioneLazy(regione));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id:[0-9]+}")
     public void deleteRicetta(@PathVariable int id) {
         ricettaDAO.delete(id);
     }
+
 }

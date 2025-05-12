@@ -19,7 +19,11 @@
           <i class="fas fa-star" style="color: var(--primary-color)"></i>
         </div>
         <div class="col-md-6 d-flex justify-content-end align-items-center">
-          <button class="btn-clean heart-toggle-btn" (click)="$event.stopPropagation(); $event.preventDefault(); togglePreferito()"><i class="fas fa-heart" [ngClass]="{'preferita': isFavorite}"></i> </button>
+          <button type="button"
+                  class="btn-clean heart-toggle-btn"
+                  (click)="$event.stopPropagation(); $event.preventDefault(); togglePreferito()">
+            <i class="fas fa-heart" [ngClass]="{'preferita': isFavorite, 'heart-animate': heartAnimating}"></i>
+          </button>
         </div>
       </div>
     </div>

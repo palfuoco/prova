@@ -19,6 +19,7 @@ export class CardRicettaComponent implements OnInit{
 
   isFavorite: boolean = false;
   mostraBanner = false;
+  heartAnimating:boolean = false;
 
 
   constructor(private preferitiService: PreferitiService, private utenteService: UtenteService) {}
@@ -50,6 +51,12 @@ export class CardRicettaComponent implements OnInit{
       this.mostraBanner = true;
       return;
     }
+
+    this.heartAnimating = true;
+
+    setTimeout(() => {
+      this.heartAnimating = false;
+    }, 400);
 
     if (this.isFavorite) {
       this.preferitiService.deletePreferito(email, this.ricetta.id).subscribe(() => {
