@@ -72,10 +72,9 @@ export class BannerRisultatiRicetteComponent {
     }
   }
 
-  @HostListener('document:click', ['$event'])
-  togglePreferitiDropdown(event?: Event): void {
-    event?.preventDefault();
+  togglePreferitiDropdown(): void {
     const email: string | null = this.getEmailUtente();
+
     if (!email) {
       this.mostraBanner = true;
       return;
@@ -88,6 +87,7 @@ export class BannerRisultatiRicetteComponent {
       this.getAllPreferiti();
     }
   }
+
 
 
   getEmailUtente(): string | null {
@@ -114,12 +114,10 @@ export class BannerRisultatiRicetteComponent {
   }
 
   getAllPreferiti(): void {
-    console.log('[DEBUG] getAllPreferiti() chiamata');
     const email: string | null = this.getEmailUtente();
     if (!email) {
-      if (!this.mostraBanner) {
-        this.mostraBanner = true;
-      }
+      // NON mostrare subito il banner. Solo log.
+      console.warn('Utente non autenticato, impossibile caricare preferiti');
       return;
     }
 
@@ -127,6 +125,7 @@ export class BannerRisultatiRicetteComponent {
       this.ricettePreferite = ricette;
     });
   }
+
 
 
 }

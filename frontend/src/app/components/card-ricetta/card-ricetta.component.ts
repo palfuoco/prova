@@ -25,14 +25,15 @@ export class CardRicettaComponent implements OnInit{
   constructor(private preferitiService: PreferitiService, private utenteService: UtenteService) {}
 
   ngOnInit() {
-    const email = this.getEmailUtente();
-    if (email) {
-      this.preferitiService.isPreferito(email, this.ricetta.id)
-        .subscribe((result: boolean) => {
-          this.isFavorite = result;
-        });
-    }
+    const email = this.utenteService.getUtenteCorrente()?.email;
+    if (!email) return;
+
+    this.preferitiService.isPreferito(email, this.ricetta.id)
+      .subscribe((result: boolean) => {
+        this.isFavorite = result;
+      });
   }
+
 
 
   getEmailUtente(): string | null {
@@ -51,10 +52,7 @@ export class CardRicettaComponent implements OnInit{
     }
 
     this.heartAnimating = true;
-
-    setTimeout(() => {
-      this.heartAnimating = false;
-    }, 400);
+    setTimeout(() => this.heartAnimating = false, 400);
 
     if (this.isFavorite) {
       this.preferitiService.deletePreferito(email, this.ricetta.id).subscribe(() => {
@@ -65,7 +63,9 @@ export class CardRicettaComponent implements OnInit{
         this.isFavorite = true;
       });
     }
+
     this.preferitiService.refreshLista();
   }
+
 
 }
