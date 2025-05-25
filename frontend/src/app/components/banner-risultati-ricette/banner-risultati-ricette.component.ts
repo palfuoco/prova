@@ -24,10 +24,14 @@ export class BannerRisultatiRicetteComponent {
 
   mostraBanner = false;
 
+  ricettePreferite: Ricetta[] = [];
+  preferitiOpen = false;
+
   constructor(private ricetteService: RicetteService, private preferitiService: PreferitiService, private utenteService: UtenteService) {
     this.ricetteService.numRicette$.subscribe((num) => {
       this.numRicetteTrovate = num;
     });
+    this.mostraBanner = false;
   }
 
   toggleMap(event: Event) {
@@ -68,17 +72,23 @@ export class BannerRisultatiRicetteComponent {
     }
   }
 
-  ricettePreferite: Ricetta[] = [];
-  preferitiOpen = false;
+  @HostListener('document:click', ['$event'])
+  togglePreferitiDropdown(event?: Event): void {
+    event?.preventDefault();
+    const email: string | null = this.getEmailUtente();
+    if (!email) {
+      this.mostraBanner = true;
+      return;
+    }
 
-  togglePreferitiDropdown(): void {
     this.preferitiOpen = !this.preferitiOpen;
     this.filtraOpen = false;
 
     if (this.preferitiOpen) {
-      this.getAllPreferiti()
+      this.getAllPreferiti();
     }
   }
+
 
   getEmailUtente(): string | null {
     const email: string | undefined = this.utenteService.getUtenteCorrente()?.email;
@@ -90,7 +100,7 @@ export class BannerRisultatiRicetteComponent {
 
   removePreferito(idRicetta: number): void {
     const email: string | null = this.getEmailUtente();
-    if (email == null) {
+    if (!email) {
       this.mostraBanner = true;
       return;
     }
@@ -103,10 +113,13 @@ export class BannerRisultatiRicetteComponent {
     this.preferitiService.refreshLista();
   }
 
-  getAllPreferiti():void {
+  getAllPreferiti(): void {
+    console.log('[DEBUG] getAllPreferiti() chiamata');
     const email: string | null = this.getEmailUtente();
-    if (email == null) {
-      this.mostraBanner = true;
+    if (!email) {
+      if (!this.mostraBanner) {
+        this.mostraBanner = true;
+      }
       return;
     }
 
@@ -114,5 +127,6 @@ export class BannerRisultatiRicetteComponent {
       this.ricettePreferite = ricette;
     });
   }
+
 
 }

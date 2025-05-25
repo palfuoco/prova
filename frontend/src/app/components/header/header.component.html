@@ -22,13 +22,23 @@
         <ng-container *ngIf="utenteCorrente; else loginBlock">
           <div class="d-flex align-items-center gap-2">
             <div class="icon-login-text d-flex align-items-center mt-1">
-              <a [routerLink]="['/profilo']" class="link-login-text" >  <div class="profile-logo">
-                {{ getInitials(utenteCorrente.nickname) }}
-              </div></a>
+              <div class="profile-wrapper position-relative" (click)="toggleProfiloMenu()">
+                <div class="profile-logo cursor-pointer">
+                  {{ getInitials(utenteCorrente.nickname) }}
+                </div>
+
+                <div class="profile-dropdown shadow-sm" *ngIf="profiloMenuVisible">
+                  <div class="arrow-up"></div>
+                  <div class="px-3 py-2">
+                    <p class="mb-1 fw-bold">{{ utenteCorrente.nickname }}</p>
+                    <p class="mb-2 text-muted" *ngIf="utenteCorrente.regioneDiResidenza">Regione: {{ utenteCorrente.regioneDiResidenza }}</p>
+                    <a class="btn btn-outline-danger btn-sm w-100" (click)="logout(); profiloMenuVisible = false">
+                      <i class="fas fa-sign-out-alt me-1"></i> Logout
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
-            <button class="btn btn-outline-danger btn-sm ms-2" (click)="logout()" title="Logout">
-              <i class="fas fa-sign-out-alt"></i>
-            </button>
           </div>
         </ng-container>
 

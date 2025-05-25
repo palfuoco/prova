@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit{
   ricetteCercate: any[] = [];
   path_img: string = "assets/img_ricette/";
   private searchTerms = new Subject<string>();
+  profiloMenuVisible = false;
 
   utenteCorrente: Utente | null = null;
 
@@ -41,6 +42,11 @@ export class HeaderComponent implements OnInit{
       )
     ).subscribe(results => this.ricetteCercate = results);
   }
+
+  toggleProfiloMenu(): void {
+    this.profiloMenuVisible = !this.profiloMenuVisible;
+  }
+
 
   showLogin() {
     this.isRegistrazioneVisible = false;

@@ -25,17 +25,15 @@ export class CardRicettaComponent implements OnInit{
   constructor(private preferitiService: PreferitiService, private utenteService: UtenteService) {}
 
   ngOnInit() {
-    const email: string | null = this.getEmailUtente();
-    if (email == null) {
-      this.mostraBanner = true;
-      return;
+    const email = this.getEmailUtente();
+    if (email) {
+      this.preferitiService.isPreferito(email, this.ricetta.id)
+        .subscribe((result: boolean) => {
+          this.isFavorite = result;
+        });
     }
-
-    this.preferitiService.isPreferito(email, this.ricetta.id)
-      .subscribe((result: boolean) => {
-        this.isFavorite = result;
-      });
   }
+
 
   getEmailUtente(): string | null {
     const email: string | undefined = this.utenteService.getUtenteCorrente()?.email;
