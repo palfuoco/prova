@@ -1,10 +1,25 @@
 <div class="container-fluid row mt-5 px-md-5">
-  <h4 class="text-left mb-3">Prepara queste ricette in meno di 15 minuti</h4>
-  <div class="col-md-12 mt-3">
-    <div class="horizontal-scroll d-flex flex-nowrap">
-      <div class="col-10 col-sm-6 col-md-4 col-lg-3 me-3" *ngFor="let ricetta of ricette">
-        <app-card-ricetta [ricetta] = "ricetta"></app-card-ricetta>
-      </div>
+  <h3 class="text-left mb-2">Prepara queste ricette in meno di 15 minuti</h3>
+  <h5 class="text-left text-muted">Hai poco tempo? Prova queste ricette!</h5>
+
+  <div class="col-md-12 mt-3 position-relative">
+    <div class="scroll-buttons text-center">
+      <button class="scroll-btn me-2" (click)="scrollFastLeft()">&#9664;</button>
+      <button class="scroll-btn" (click)="scrollFastRight()">&#9654;</button>
     </div>
+
+    <div class="horizontal-scroll d-flex flex-nowrap" #fastRicetteContainer>
+      <ng-container *ngIf="ricette.length > 0; else noRicette">
+        <div class="col-10 col-sm-6 col-md-4 col-lg-3 me-3" *ngFor="let ricetta of ricette">
+          <app-card-ricetta [ricetta]="ricetta"></app-card-ricetta>
+        </div>
+      </ng-container>
+
+      <ng-template #noRicette>
+        <div class="text-center w-100 py-5 text-muted" style="font-style: italic;">
+          Nessuna ricetta disponibile per questa regione.
+        </div>
+      </ng-template>
   </div>
 </div>
+

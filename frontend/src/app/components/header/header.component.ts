@@ -61,6 +61,10 @@ export class HeaderComponent implements OnInit{
     this.searchTerms.next(term);
   }
 
+  getInitials(nickname: string): string {
+    if (!nickname) return '';
+    return nickname.slice(0, 2).toUpperCase();
+  }
 
 
 }

@@ -1,10 +1,47 @@
 .horizontal-scroll {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding: 20px;
+  padding: 20px 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) transparent;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  height: 10px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.horizontal-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 10px;
 }
 
 .horizontal-scroll > div {
   scroll-snap-align: start;
 }
 
+.scroll-buttons {
+  position: absolute;
+  bottom: -25px;
+  right: 0;
+  z-index: 10;
+}
+
+.scroll-btn {
+  background-color: var(--primary-color);
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 50px;
+  font-size: 18px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.scroll-btn:hover {
+  background-color: var(--primary-color-hover);
+}

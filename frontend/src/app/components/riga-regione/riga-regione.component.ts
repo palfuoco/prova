@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {NgForOf} from '@angular/common';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {NgForOf, NgIf} from '@angular/common';
 import {ApiService} from '../../apiService';
 import {CardRicettaComponent} from '../card-ricetta/card-ricetta.component';
 import {Ricetta} from '../../model/ricetta';
@@ -8,7 +8,7 @@ import {UtenteService} from '../../service/utente.service';
 
 @Component({
   selector: 'app-riga-regione',
-  imports: [NgForOf, CardRicettaComponent],
+  imports: [NgForOf, CardRicettaComponent, NgIf],
   templateUrl: './riga-regione.component.html',
   standalone: true,
   styleUrl: './riga-regione.component.css'
@@ -18,6 +18,8 @@ export class RigaRegioneComponent implements OnInit {
   public regione: String = "";
   public ricette: Ricetta[] = []
   private apiUrl = 'http://localhost:8080/api/ricette';
+
+  @ViewChild('scrollContainer') scrollContainer!: ElementRef;
 
   constructor(private apiService: ApiService<Ricetta>, private ricetteService: RicetteService, private utenteService: UtenteService) {
   }
@@ -40,5 +42,13 @@ export class RigaRegioneComponent implements OnInit {
         });
       }
     });
+  }
+
+  scrollLeft(): void {
+    this.scrollContainer.nativeElement.scrollBy({ left: -300, behavior: 'smooth' });
+  }
+
+  scrollRight(): void {
+    this.scrollContainer.nativeElement.scrollBy({ left: 300, behavior: 'smooth' });
   }
 }
