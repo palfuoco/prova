@@ -65,18 +65,6 @@
   }
 }
 
-.btn-reset {
-  background-color: transparent;
-  border: none;
-  color: #ff7e5f;
-  font-weight: 500;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.btn-reset:hover {
-  color: #feb47b;
-}
 
 .card-link {
   text-decoration: none;

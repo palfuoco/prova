@@ -16,12 +16,12 @@ import java.util.List;
 
 @Repository
 public class RicettaDAOImpl implements DAO<RicettaModel, Integer> {
-    private static final String SELECT_QUERY_LAZY = "SELECT id, nome, ingredienti, descrizione, difficolta, tempo_preparazione, img, tipo FROM ricetta";
-    private static final String SELECT_QUERY = "SELECT * FROM ricetta WHERE id=?";
-    private static final String SELECT_QUERY_BY_TIPO = "SELECT id, nome, ingredienti, descrizione, difficolta, tempo_preparazione, img, tipo FROM ricetta WHERE tipo =?";
-    private static final String SELECT_QUERY_BY_TEMPO = "SELECT id, nome, ingredienti, descrizione, difficolta, tempo_preparazione, img, tipo FROM ricetta WHERE tempo_preparazione <= ?";
-    private static final String SELECT_QUERY_BY_REGIONE = "SELECT id, nome, ingredienti, descrizione, difficolta, tempo_preparazione, img, tipo FROM ricetta WHERE regione = ?";
-    private static final String SELECT_ALL_QUERY = "SELECT * FROM ricetta";
+    private static final String SELECT_QUERY_LAZY = "SELECT id, nome, ingredienti, descrizione, difficolta, tempo_preparazione, img, tipo FROM ricetta ORDER BY nome";
+    private static final String SELECT_QUERY = "SELECT * FROM ricetta WHERE id=? ORDER BY nome";
+    private static final String SELECT_QUERY_BY_TIPO = "SELECT id, nome, ingredienti, descrizione, difficolta, tempo_preparazione, img, tipo FROM ricetta WHERE tipo =? ORDER BY nome";
+    private static final String SELECT_QUERY_BY_TEMPO = "SELECT id, nome, ingredienti, descrizione, difficolta, tempo_preparazione, img, tipo FROM ricetta WHERE tempo_preparazione <= ? ORDER BY nome";
+    private static final String SELECT_QUERY_BY_REGIONE = "SELECT id, nome, ingredienti, descrizione, difficolta, tempo_preparazione, img, tipo FROM ricetta WHERE regione = ? ORDER BY nome";
+    private static final String SELECT_ALL_QUERY = "SELECT * FROM ricetta ORDER BY nome";
     private static final String INSERT_QUERY = "INSERT INTO ricetta VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_QUERY = "UPDATE ricetta SET (nome, descrizione, ingredienti, tempo_preparazione, regione, difficolta, tipo, descrizione_preparazione, img, dose_iniziale) = ROW(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) WHERE id = ?";
     private static final String DELETE_QUERY = "DELETE FROM ricetta WHERE id=?";

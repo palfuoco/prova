@@ -13,8 +13,12 @@ import {Ricetta} from '../../model/ricetta';
   templateUrl: './tabella-ricettario.component.html',
   styleUrls: ['./tabella-ricettario.component.css']
 })
-export class TabellaRicettarioComponent implements OnInit {
+export class TabellaRicettarioComponent implements OnInit, AfterViewInit {
   public ricette: Ricetta[] = [];
+
+  alphabet: string[] = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  private suppressActiveUpdate = false;
+  activeLetter: string = '';
 
   constructor(private ricetteService: RicetteService) {}
 
@@ -25,4 +29,49 @@ export class TabellaRicettarioComponent implements OnInit {
 
     this.ricetteService.showAll();
   }
+
+  ngAfterViewInit() {
+    window.addEventListener('scroll', this.updateActiveLetter.bind(this));
+  }
+
+
+  scrollToLetter(letter: string, event: Event): void {
+    event.preventDefault();
+
+    const element = document.getElementById('letter-' + letter);
+    if (element) {
+      this.suppressActiveUpdate = true;
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      this.activeLetter = letter;
+
+      setTimeout(() => {
+        this.suppressActiveUpdate = false;
+      }, 600);
+    }
+  }
+
+
+  updateActiveLetter(): void {
+    if (this.suppressActiveUpdate) return;
+
+    const headings = this.alphabet
+      .map(letter => ({
+        letter,
+        el: document.getElementById('letter-' + letter)
+      }))
+      .filter(obj => obj.el !== null);
+
+    for (let i = headings.length - 1; i >= 0; i--) {
+      const { letter, el } = headings[i]!;
+      const rect = el!.getBoundingClientRect();
+      if (rect.top <= 120) {
+        this.activeLetter = letter;
+        break;
+      }
+    }
+  }
+
+
+
+
 }

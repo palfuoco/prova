@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit} from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { FinestraLoginComponent } from '../finestra-login/finestra-login.component';
 import { UtenteService } from '../../service/utente.service';
@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit{
 
   utenteCorrente: Utente | null = null;
 
-  constructor(private utenteService: UtenteService, private ricetteService: RicetteService) {}
+  constructor(private utenteService: UtenteService, private ricetteService: RicetteService, private elementRef: ElementRef) {}
 
   ngOnInit(): void {
     this.utenteService.utente$.subscribe(utente => {
@@ -71,6 +71,15 @@ export class HeaderComponent implements OnInit{
     if (!nickname) return '';
     return nickname.slice(0, 2).toUpperCase();
   }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const clickedInside = this.elementRef.nativeElement.contains(event.target);
+    if (!clickedInside && this.profiloMenuVisible) {
+      this.profiloMenuVisible = false;
+    }
+  }
+
 
 
 }

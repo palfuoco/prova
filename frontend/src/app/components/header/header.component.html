@@ -27,16 +27,24 @@
                   {{ getInitials(utenteCorrente.nickname) }}
                 </div>
 
-                <div class="profile-dropdown shadow-sm" *ngIf="profiloMenuVisible">
+                <div class="profile-dropdown rounded shadow fade-in" *ngIf="profiloMenuVisible">
                   <div class="arrow-up"></div>
-                  <div class="px-3 py-2">
-                    <p class="mb-1 fw-bold">{{ utenteCorrente.nickname }}</p>
-                    <p class="mb-2 text-muted" *ngIf="utenteCorrente.regioneDiResidenza">Regione: {{ utenteCorrente.regioneDiResidenza }}</p>
-                    <a class="btn btn-outline-danger btn-sm w-100" (click)="logout(); profiloMenuVisible = false">
-                      <i class="fas fa-sign-out-alt me-1"></i> Logout
-                    </a>
+                  <div class="p-4 text-center bg-white rounded-3 border">
+                    <p class="fs-5 fw-semibold mb-1">
+                      Bentornato/a <span class="" style="color: var(--primary-color)">{{ utenteCorrente.nickname.toUpperCase() }}</span>
+                    </p>
+                    <hr class="my-2">
+                    <p class="text-muted small mb-3" *ngIf="utenteCorrente.regioneDiResidenza">
+                      <i class="fas fa-map-marker-alt me-1 text-danger"></i>
+                      {{ utenteCorrente.regioneDiResidenza }}
+                    </p>
+                    <button class="btn-reset w-100 d-flex align-items-center justify-content-center gap-2 mt-5"
+                            (click)="logout(); profiloMenuVisible = false">
+                      Esci
+                    </button>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>

@@ -242,19 +242,25 @@ header {
 }
 
 .profile-logo {
-  width: 42px;
-  height: 42px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   background-color: var(--primary-color);
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
-  font-size: 1rem;
+  font-weight: bold;
+  font-size: 1.1rem;
   text-transform: uppercase;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
 }
+.profile-logo:hover {
+  transform: scale(1.05);
+}
+
 
 .profile-wrapper {
   position: relative;
@@ -266,12 +272,32 @@ header {
   top: 60px;
   right: 0;
   background-color: white;
-  border-radius: 10px;
-  min-width: 200px;
+  border-radius: 15px;
+  min-width: 240px;
   z-index: 1000;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  animation: fadeInDropdown 0.2s ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  animation: fadeInDropdown 0.25s ease;
+  padding: 20px;
+  transition: all 0.2s ease-in-out;
 }
+
+.profile-dropdown p {
+  margin: 0 0 10px;
+  font-size: 15px;
+}
+
+.profile-dropdown .btn {
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.profile-dropdown hr,
+.search-divider {
+  margin: 10px 0;
+  border-top: 1px solid #eee;
+}
+
 
 .arrow-up {
   position: absolute;
