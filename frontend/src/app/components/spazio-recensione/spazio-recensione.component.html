@@ -48,7 +48,13 @@
     </span>
   </div>
 
+
   <textarea [(ngModel)]="nuovaRecensione.commento" placeholder="Scrivi un commento..."></textarea>
   <button (click)="inviaRecensione()">Invia</button>
 </div>
+<app-banner-avviso
+  *ngIf="mostraBanner"
+  [messaggio]="messaggioBanner"
+  (chiuso)="mostraBanner = false">
+</app-banner-avviso>
 

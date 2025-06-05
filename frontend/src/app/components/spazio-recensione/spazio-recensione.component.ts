@@ -4,12 +4,13 @@ import { CommonModule } from '@angular/common';
 import { Recensione } from '../../model/recensione';
 import { RecensioniService } from '../../service/recensioni.service';
 import { UtenteService } from '../../service/utente.service';
+import {BannerAvvisoComponent} from '../banner-avviso/banner-avviso.component';
 
 
 @Component({
   standalone: true,
   selector: 'app-spazio-recensione',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, BannerAvvisoComponent],
   templateUrl: './spazio-recensione.component.html',
   styleUrl: './spazio-recensione.component.css'
 })
@@ -17,7 +18,8 @@ export class SpazioRecensioneComponent implements OnInit {
   @Input() id_ricetta!: number;
   hoverVoto: number = 0;
 
-
+  mostraBanner = false;
+  messaggioBanner: string = '';
 
   recensioni: Recensione[] = [];
   mostraTutte: boolean = false;
@@ -52,7 +54,8 @@ export class SpazioRecensioneComponent implements OnInit {
 
   inviaRecensione(): void {
     if (this.nuovaRecensione.voto === 0 || !this.nuovaRecensione.commento.trim()) {
-      alert("Per favore inserisci un voto e un commento.");
+      this.messaggioBanner = "Per favore inserisci un voto e un commento.";
+      this.mostraBanner = true;
       return;
     }
 
@@ -60,7 +63,8 @@ export class SpazioRecensioneComponent implements OnInit {
 
     const utente = this.utenteService.getUtenteCorrente();
     if (!utente) {
-      alert("Devi essere loggato per inviare una recensione.");
+      this.messaggioBanner = "Devi essere loggato per inviare una recensione.";
+      this.mostraBanner = true;
       return;
     }
 
