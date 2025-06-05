@@ -9,7 +9,7 @@
     <div *ngFor="let r of recensioniMostrate" class="recensione">
       <div class="dettagli-recensione">
         <div>
-          <span class="utente">{{ r.email_utente }}</span>
+          <span class="utente">{{ r.utente.email }}</span>
           <div class="stelle-recensione">
             <ng-container *ngFor="let i of [].constructor(r.voto)">
               <span class="stella piena">&#9733;</span>

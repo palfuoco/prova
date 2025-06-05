@@ -71,8 +71,12 @@ export class SpazioRecensioneComponent implements OnInit {
       voto: this.nuovaRecensione.voto,
       commento: this.nuovaRecensione.commento,
       data_pubblicazione: oggi,
-      email_utente: utente.email,
-      id_ricetta: this.id_ricetta
+      utente: {
+        email: utente.email
+      },
+      ricetta: {
+        id: this.id_ricetta
+      }
     };
      console.log("ciao");
      console.log(utente.email);
@@ -81,9 +85,9 @@ export class SpazioRecensioneComponent implements OnInit {
     console.log("Oggetto inviato:", {
       voto: recensione.voto,
       commento: recensione.commento,
-      data_pubblicazione: new Date().toISOString().split("T")[0], // o come lo gestisci
-      email_utente: recensione.email_utente,
-      id_ricetta:recensione.id_ricetta
+      data_pubblicazione: new Date().toISOString().split("T")[0],
+      email_utente: utente.email,// o come lo gestisci
+      id_ricetta: this.id_ricetta
     });
 
     this.recensioniService.addRecensione(this.id_ricetta, recensione).subscribe(() => {

@@ -29,10 +29,11 @@ public class RecensioneDAOImp {
                 recensione.getVoto(),
                 recensione.getCommento(),
                 Date.valueOf(LocalDate.now()),
-                recensione.getEmail_utente(),
-                recensione.getId_ricetta()
+                recensione.getUtente().getEmail(),
+                recensione.getRicetta().getId()
 
         );
+
     }
 
     public List<RecensioneModel> getRecensioniByRicetta(int ricettaId) {

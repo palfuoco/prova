@@ -23,8 +23,7 @@ public class RecensioneController {
 
 
     @PostMapping("/ricetta/{id}")
-    public void createReview(@PathVariable int id, @RequestBody RecensioneModel recensione) {
-        recensione.setId_ricetta(id);
+    public void createReview( @RequestBody RecensioneModel recensione) {
         recensioneDAO.saveRecensione(recensione);
     }
 
