@@ -10,12 +10,12 @@
       <div class="dettagli-recensione">
         <div>
           <span class="utente">{{ r.utente.email }}</span>
-          <div class="stelle-recensione">
+          <div class="cappelli-recensione">
             <ng-container *ngFor="let i of [].constructor(r.voto)">
-              <span class="stella piena">&#9733;</span>
+              <img src="assets/chef-hat.svg" class="cappello pieno" />
             </ng-container>
             <ng-container *ngFor="let i of [].constructor(5 - r.voto)">
-              <span class="stella">&#9733;</span>
+              <img src="assets/chef-hat.svg" class="cappello vuoto" />
             </ng-container>
           </div>
         </div>
@@ -36,16 +36,17 @@
 
   <h3>Lascia una recensione</h3>
 
-  <div class="stelle-scelta">
-    <span
-      *ngFor="let stella of [1,2,3,4,5]"
-      (click)="setVoto(stella)"
-      (mouseover)="hoverVoto = stella"
+  <div class="cappelli-scelta">
+    <img
+      *ngFor="let cappello of [1,2,3,4,5]"
+      src="assets/chef-hat.svg"
+      (click)="setVoto(cappello)"
+      (mouseover)="hoverVoto = cappello"
       (mouseleave)="hoverVoto = 0"
-      class="stella"
-      [class.piena]="stella <= (hoverVoto || nuovaRecensione.voto)">
-      &#9733;
-    </span>
+      class="cappello"
+      [class.pieno]="cappello <= (hoverVoto || nuovaRecensione.voto)"
+    />
+
   </div>
 
 

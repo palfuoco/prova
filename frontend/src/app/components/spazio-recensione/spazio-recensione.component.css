@@ -10,21 +10,36 @@
   font-family: Arial, sans-serif;
 }
 
-.stelle-scelta,
-.stelle-recensione {
+.cappelli-scelta,
+.cappelli-recensione {
   font-size: 2rem;
   margin: 0.5rem 0;
+
 }
 
-.stella {
+.cappelli-scelta {
+  font-size: 2rem;
+  margin: 0.5rem 0;
   cursor: pointer;
-  color: lightgray;
-  transition: color 0.2s;
+
 }
 
-.stella.piena {
-  color: gold;
+.cappello {
+  width: 32px;
+  height: 32px;
+  opacity: 0.2;
+  transition: opacity 0.2s ease;
 }
+
+.cappelli-scelta .cappello.pieno {
+  opacity: 1;
+}
+
+
+.cappelli-recensione .cappello.pieno {
+  opacity: 1;
+}
+
 
 textarea {
   width: 100%;
@@ -80,11 +95,18 @@ button:hover {
     font-style: italic;
   }
 
-  .stelle-recensione {
+  .cappelli-recensione {
     display: flex;
     gap: 0.1rem;
     margin-bottom: 0.5rem;
     padding-left: 0.2rem;
+
   }
 
+
+
+
 }
+
+
+
