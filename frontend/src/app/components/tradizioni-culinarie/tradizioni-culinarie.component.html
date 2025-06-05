@@ -1,0 +1,23 @@
+<div class="card">
+  <!-- Link cliccabile sull'intera card (o solo sull'immagine/titolo) per il dettaglio -->
+  <a [routerLink]="['/dettagli', tradizione.urlRicettaDettaglio]" class="card-link">
+    <img [src]="getImagePath(tradizione.img)"
+         [alt]="tradizione.titolo"
+         class="card-img-top"
+         onerror="this.onerror=null;this.src='https://placehold.co/300x150/cccccc/333333?text=No+Image';">
+  </a>
+  <div class="card-body">
+    <h5 class="card-title">{{ tradizione.titolo }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{ tradizione.regione }}</h6>
+    <p class="card-text">{{ tradizione.testo }}</p>
+    <div class="card-actions mt-auto"> <!-- mt-auto per spingere in basso -->
+      <!-- Aggiunto [disabled] basato sulla proprietà isLiked -->
+      <button class="heart-toggle-btn" (click)="onLike()" [disabled]="isLiked">
+        <!-- Aggiunta classe dinamica 'preferita' -->
+        <span class="heart-icon" [class.preferita]="isLiked">❤️</span> {{ tradizione.likes }}
+      </button>
+      <!-- Questo link ora punta alla pagina di dettaglio della ricetta, usando urlRicettaDettaglio come ID -->
+      <a [routerLink]="['/dettagli', tradizione.urlRicettaDettaglio]" class="detail-link">Vedi Ricetta</a>
+    </div>
+  </div>
+</div>

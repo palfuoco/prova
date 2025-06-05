@@ -1,0 +1,200 @@
+.tradizioni-page-container {
+  padding: 40px 20px; /* Più padding per respiro */
+  max-width: 1400px; /* Aumenta la larghezza massima per più card per riga */
+  margin: 0 auto;
+  font-family: 'Inter', sans-serif; /* Usiamo un font moderno e pulito */
+  background-color: #f8f9fa; /* Sfondo leggermente grigio per il corpo della pagina */
+  border-radius: 12px; /* Bordi arrotondati per il container principale */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08); /* Ombra leggera */
+}
+
+/* Stile per il titolo principale della pagina */
+h2 {
+  text-align: center;
+  margin-bottom: 50px; /* Più spazio sotto il titolo */
+  color: #2c3e50; /* Un grigio scuro, meno harsh del nero */
+  font-size: 3em; /* Titolo più grande e impattante */
+  font-weight: 700; /* Bold */
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.05); /* Ombra leggera per il testo */
+}
+
+/* Stile per i messaggi di errore */
+.error-message {
+  background-color: #ffe0e6; /* Sfondo rosso pastello */
+  color: #cc0000; /* Testo rosso scuro */
+  border: 1px solid #ffb3c1;
+  padding: 18px; /* Più padding */
+  border-radius: 8px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 600; /* Semi-bold */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Stile per il messaggio quando non ci sono tradizioni */
+.no-tradizioni {
+  text-align: center;
+  padding: 60px; /* Più padding */
+  color: #7f8c8d; /* Grigio più morbido */
+  font-style: italic;
+  font-size: 1.3em; /* Testo leggermente più grande */
+  background-color: #eceff1;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+/* Griglia delle card delle tradizioni */
+.tradizioni-grid {
+  display: grid;
+  /* Layout responsive: 3 colonne per desktop, 2 per tablet, 1 per mobile */
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Leggermente più grandi per adattarsi meglio */
+  gap: 35px; /* Spazio tra le card */
+  justify-content: center; /* Centra le card nella griglia */
+  padding-bottom: 40px;
+}
+
+/* Media Queries per la responsività */
+@media (max-width: 1024px) {
+  .tradizioni-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+  }
+  h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tradizioni-page-container {
+    padding: 30px 15px;
+  }
+  .tradizioni-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tradizioni-page-container {
+    padding: 20px 10px;
+  }
+  .tradizioni-grid {
+    grid-template-columns: 1fr; /* Una colonna su schermi molto piccoli */
+    gap: 20px;
+  }
+  h2 {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+  }
+}
+
+/* --- Stili aggiunti per elementi che potrebbero essere utili in questa pagina o globalmente --- */
+/* Questi stili sembrano essere per componenti di navigazione o scroller,
+   se non sono presenti nell'HTML di tradizioni.component.html, non avranno effetto.
+   Potrebbero essere più adatti in un file CSS globale (es. styles.css)
+   o nel CSS del componente specifico (es. header.component.css) a cui appartengono. */
+
+.top-bar {
+  position: sticky;
+  top: 0;
+  background-color: var(--bs-light); /* Assicurati che --bs-light sia definito, ad esempio in styles.css */
+  z-index: 1000;
+  border-radius: 0 0 12px 12px;
+}
+
+.dropdown-menu {
+  min-width: 250px;
+}
+
+@media (max-width: 768px) {
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+.alphabet-scroller {
+  position: sticky;
+  top: 100px; /* Regola se necessario per adattarsi all'altezza del tuo header */
+  max-height: 80vh;
+  overflow-y: auto;
+  font-weight: bold;
+  font-size: 0.9rem;
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.alphabet-scroller a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 55%;
+  background-color: white;
+  color: #444;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+.alphabet-scroller a.active {
+  background-color: var(--primary-color); /* Assicurati che --primary-color sia definito */
+  color: white;
+  transform: scale(1.3);
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+
+.alphabet-scroller a:hover {
+  color: var(--primary-color); /* Assicurati che --primary-color sia definito */
+}
+
+
+.alphabet-scroller-mobile .scrolling-wrapper {
+  display: flex;
+  overflow-x: auto;
+  gap: 0.5rem;
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+}
+
+.alphabet-scroller-mobile a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #f1f1f1;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 0.85rem;
+  flex: 0 0 auto;
+  transition: all 0.2s;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.alphabet-scroller-mobile a.active {
+  background-color: var(--primary-color); /* Assicurati che --primary-color sia definito */
+  color: white;
+  transform: scale(1.2);
+}
+
+
+.alphabet-scroller-mobile a:hover {
+  background-color: var(--primary-color); /* Assicurati che --primary-color sia definito */
+  color: white;
+}
