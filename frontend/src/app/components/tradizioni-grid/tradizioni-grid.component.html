@@ -1,0 +1,23 @@
+<div class="tradizioni-grid-container">
+  <h2>Tradizioni Culinarie Regionali</h2>
+
+  <!-- Visualizza messaggio di errore se presente -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Visualizza messaggio se non ci sono tradizioni -->
+  <div *ngIf="!tradizioni || tradizioni.length === 0 && !errorMessage" class="no-tradizioni">
+    <p>Nessuna tradizione culinaria trovata. Aggiungine alcune dal backend!</p>
+  </div>
+
+  <!-- Griglia delle tradizioni, utilizza il componente app-tradizioni-culinarie -->
+  <div *ngIf="tradizioni && tradizioni.length > 0" class="tradizioni-grid">
+    <app-tradizioni-culinarie
+      *ngFor="let tradizione of tradizioni"
+      [tradizione]="tradizione"
+      [isLiked]="tradizione.isLiked || false"
+      (likeClicked)="onLikeClicked($event)">
+    </app-tradizioni-culinarie>
+  </div>
+</div>

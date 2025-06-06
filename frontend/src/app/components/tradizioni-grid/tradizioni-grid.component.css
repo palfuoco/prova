@@ -1,0 +1,95 @@
+.tradizioni-grid-container {
+  padding: 40px 20px; /* Più padding per respiro */
+  max-width: 1400px; /* Aumenta la larghezza massima per più card per riga */
+  margin: 0 auto;
+  /* Rimosso font-family: 'Inter', sans-serif; - ora gestito globalmente da styles.css con Fredoka */
+  background-color: var(--mute-color); /* Usa la variabile globale per lo sfondo */
+  border-radius: 12px; /* Bordi arrotondati per il container principale */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08); /* Ombra leggera */
+}
+
+/* Stile per il titolo principale della pagina */
+h2 {
+  text-align: center;
+  margin-bottom: 50px; /* Più spazio sotto il titolo */
+  color: var(--text-dark, #2c3e50); /* Usa la variabile text-dark o un fallback */
+  font-size: 3em; /* Titolo più grande e impattante */
+  font-weight: 700; /* Bold */
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.05); /* Ombra leggera per il testo */
+  /* Il font Fredoka verrà applicato da styles.css */
+}
+
+/* Stile per i messaggi di errore */
+.error-message {
+  background-color: #ffe0e6; /* Sfondo rosso pastello */
+  color: #cc0000; /* Testo rosso scuro */
+  border: 1px solid #ffb3c1;
+  padding: 18px; /* Più padding */
+  border-radius: 8px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 600; /* Semi-bold */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Stile per il messaggio quando non ci sono tradizioni */
+.no-tradizioni {
+  text-align: center;
+  padding: 60px; /* Più padding */
+  color: var(--text-medium, #7f8c8d); /* Usa la variabile text-medium o un fallback */
+  font-style: italic;
+  font-size: 1.3em; /* Testo leggermente più grande */
+  background-color: #eceff1; /* Puoi considerare di usare un'altra variabile globale qui se esiste un colore simile */
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+/* Griglia delle card delle tradizioni */
+.tradizioni-grid {
+  display: grid;
+  /* Layout responsive: 3 colonne per desktop, 2 per tablet, 1 per mobile */
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Leggermente più grandi per adattarsi meglio */
+  gap: 35px; /* Spazio tra le card */
+  justify-content: center; /* Centra le card nella griglia */
+  padding-bottom: 40px;
+}
+
+/* Media Queries per la responsività */
+@media (max-width: 1024px) {
+  .tradizioni-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+  }
+  h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tradizioni-grid-container {
+    padding: 30px 15px;
+  }
+  .tradizioni-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tradizioni-grid-container {
+    padding: 20px 10px;
+  }
+  .tradizioni-grid {
+    grid-template-columns: 1fr; /* Una colonna su schermi molto piccoli */
+    gap: 20px;
+  }
+  h2 {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+  }
+}
