@@ -2,8 +2,8 @@
   padding: 40px 20px; /* Più padding per respiro */
   max-width: 1400px; /* Aumenta la larghezza massima per più card per riga */
   margin: 0 auto;
-  font-family: 'Inter', sans-serif; /* Usiamo un font moderno e pulito */
-  background-color: #f8f9fa; /* Sfondo leggermente grigio per il corpo della pagina */
+  /* Rimosso font-family: 'Inter', sans-serif; - ora gestito globalmente da styles.css */
+  background-color: var(--mute-color); /* Usa la variabile globale per lo sfondo */
   border-radius: 12px; /* Bordi arrotondati per il container principale */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08); /* Ombra leggera */
 }
@@ -16,6 +16,7 @@ h2 {
   font-size: 3em; /* Titolo più grande e impattante */
   font-weight: 700; /* Bold */
   text-shadow: 1px 1px 2px rgba(0,0,0,0.05); /* Ombra leggera per il testo */
+  /* Il font Fredoka verrà applicato da styles.css */
 }
 
 /* Stile per i messaggi di errore */
@@ -93,16 +94,17 @@ h2 {
   }
 }
 
-/* --- Stili aggiunti per elementi che potrebbero essere utili in questa pagina o globalmente --- */
-/* Questi stili sembrano essere per componenti di navigazione o scroller,
-   se non sono presenti nell'HTML di tradizioni.component.html, non avranno effetto.
-   Potrebbero essere più adatti in un file CSS globale (es. styles.css)
-   o nel CSS del componente specifico (es. header.component.css) a cui appartengono. */
+/* --- Stili per elementi che potrebbero essere utili ma potrebbero non essere presenti direttamente in questo componente HTML --- */
+/* Questi stili sembrano essere per componenti di navigazione o scroller.
+   Se gli elementi con queste classi non sono nel template di tradizioni.component.html,
+   queste regole non avranno alcun effetto visivo sulla pagina delle tradizioni.
+   Potrebbero essere più appropriati in un file CSS globale (es. styles.css)
+   o nel CSS del componente specifico (es. header.component.css, o un componente di filtro). */
 
 .top-bar {
   position: sticky;
   top: 0;
-  background-color: var(--bs-light); /* Assicurati che --bs-light sia definito, ad esempio in styles.css */
+  background-color: var(--bs-light); /* Assicurati che --bs-light sia definito globalmente */
   z-index: 1000;
   border-radius: 0 0 12px 12px;
 }
@@ -149,7 +151,7 @@ h2 {
 }
 
 .alphabet-scroller a.active {
-  background-color: var(--primary-color); /* Assicurati che --primary-color sia definito */
+  background-color: var(--primary-color);
   color: white;
   transform: scale(1.3);
   font-size: 1rem;
@@ -158,7 +160,7 @@ h2 {
 
 
 .alphabet-scroller a:hover {
-  color: var(--primary-color); /* Assicurati che --primary-color sia definito */
+  color: var(--primary-color);
 }
 
 
@@ -188,13 +190,13 @@ h2 {
 }
 
 .alphabet-scroller-mobile a.active {
-  background-color: var(--primary-color); /* Assicurati che --primary-color sia definito */
+  background-color: var(--primary-color);
   color: white;
   transform: scale(1.2);
 }
 
 
 .alphabet-scroller-mobile a:hover {
-  background-color: var(--primary-color); /* Assicurati che --primary-color sia definito */
+  background-color: var(--primary-color);
   color: white;
 }

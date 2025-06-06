@@ -123,13 +123,6 @@
   transform: scale(1.1);
 }
 
-/* Stile per il pulsante like disabilitato */
-.heart-toggle-btn[disabled] {
-  cursor: not-allowed;
-  opacity: 0.6; /* Rendi il pulsante più trasparente */
-  color: var(--primary-color); /* Mantieni il colore rosso per indicare che è "piaciuto" */
-}
-
 
 .heart-toggle-btn .preferita { /* Classe per cuore "preferito" */
   color: var(--primary-color) !important;

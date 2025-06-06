@@ -12,7 +12,7 @@
     <p class="card-text">{{ tradizione.testo }}</p>
     <div class="card-actions mt-auto"> <!-- mt-auto per spingere in basso -->
       <!-- Aggiunto [disabled] basato sulla proprietà isLiked -->
-      <button class="heart-toggle-btn" (click)="onLike()" [disabled]="isLiked">
+      <button class="heart-toggle-btn" (click)="onLike()">
         <!-- Aggiunta classe dinamica 'preferita' -->
         <span class="heart-icon" [class.preferita]="isLiked">❤️</span> {{ tradizione.likes }}
       </button>
