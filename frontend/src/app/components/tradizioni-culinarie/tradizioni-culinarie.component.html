@@ -10,14 +10,17 @@
     <h5 class="card-title">{{ tradizione.titolo }}</h5>
     <h6 class="card-subtitle mb-2 text-muted">{{ tradizione.regione }}</h6>
     <p class="card-text">{{ tradizione.testo }}</p>
-    <div class="card-actions mt-auto"> <!-- mt-auto per spingere in basso -->
-      <!-- Aggiunto [disabled] basato sulla proprietà isLiked -->
+    <div class="card-actions mt-auto">
+      <!-- Icona Font Awesome per il like (pollicione all'insù) -->
+      <!-- Usa 'far fa-thumbs-up' per l'icona vuota di default. -->
+      <!-- Quando `isLiked` è true, Font Awesome cambierà automaticamente a 'fas fa-thumbs-up' (solida) -->
+      <!-- grazie all'inclusione di entrambi i set di icone (regular e solid) nel CSS di FA. -->
       <button class="heart-toggle-btn" (click)="onLike()">
-        <!-- Aggiunta classe dinamica 'preferita' -->
-        <span class="heart-icon" [class.preferita]="isLiked">❤️</span> {{ tradizione.likes }}
+        <!-- La classe `preferita` gestirà il colore come prima. -->
+        <i class="far fa-thumbs-up heart-icon" [class.fas]="isLiked" [class.preferita]="isLiked"></i> {{ tradizione.likes }}
       </button>
-      <!-- Questo link ora punta alla pagina di dettaglio della ricetta, usando urlRicettaDettaglio come ID -->
-      <a [routerLink]="['/dettagli', tradizione.urlRicettaDettaglio]" class="detail-link">Vedi Ricetta</a>
+      <!-- Applica la classe btn-custom per lo stile del bottone globale -->
+      <a [routerLink]="['/dettagli', tradizione.urlRicettaDettaglio]" class="btn-custom">Vedi Ricetta</a>
     </div>
   </div>
 </div>

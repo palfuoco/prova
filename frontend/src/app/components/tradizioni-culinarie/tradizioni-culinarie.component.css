@@ -111,7 +111,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: #333; /* Colore base del testo/icona, come in .btn-clean */
+  color: var(--text-medium); /* Colore di default per l'icona vuota (grigio medio) */
   font-weight: 600; /* Come in .btn-clean */
   padding: 6px 12px; /* Padding come in .btn-clean */
   transition: color 0.2s ease, transform 0.2s ease;
@@ -126,12 +126,15 @@
 }
 
 .heart-toggle-btn:hover {
-  color: var(--primary-color); /* Usa la variabile globale per l'hover */
+  color: var(--primary-color-hover); /* Usa la variabile globale per l'hover */
   transform: scale(1.1);
 }
 
-.heart-toggle-btn .preferita { /* Classe per icona "preferita" (quando il like è attivo) */
+/* Classe per icona "preferita" (quando il like è attivo) */
+/* Questa classe verrà applicata sia per il colore che, indirettamente, per l'icona solida */
+.heart-toggle-btn .preferita {
   color: var(--primary-color) !important; /* Forza il colore arancione (dal styles.css) quando è piaciuto */
+  /* Font Awesome gestirà il cambio da 'far' a 'fas' tramite [class.fas]="isLiked" */
 }
 
 /* Animazione del cuore (lasciata per compatibilità, anche se ora è un thumbs-up) */
@@ -146,25 +149,12 @@
   animation: heart-pop 0.4s ease;
 }
 
-/* Link "Vedi Ricetta" - Rimosse le proprietà che saranno gestite dalla classe .btn-custom
-   La classe .btn-custom è definita in styles.css e gestisce:
-   background, color, padding, border-radius, text-decoration, font-weight, cursor,
-   transition per transform e box-shadow, e gli stili :hover.
-*/
+/* Stili per il pulsante "Vedi Ricetta" che usa .btn-custom */
+/* Rimosse le proprietà che sono gestite dalla classe .btn-custom nel styles.css globale */
 .detail-link {
-  /* Non più background-color: var(--secondary-color); */
-  /* Non più color: white; */
-  /* Non più padding: 10px 18px; */
-  /* Non più border-radius: 8px; */
-  /* Non più text-decoration: none; */
-  /* Non più font-weight: 600; */
-  /* Non più cursor: pointer; */
-  /* Non più box-shadow: 0 3px 6px rgba(0, 123, 255, 0.25); */
-  /* Non più transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out; */
-
-  /* Se vuoi un piccolo effetto di sollevamento aggiuntivo sull'hover del link, puoi mantenerlo.
-     Altrimenti, puoi rimuovere anche questo se .btn-custom:hover è sufficiente. */
-  /* transform: translateY(-2px); - Gestito da .btn-custom:hover */
+  /* Le proprietà come background, color, padding, border-radius, text-decoration, font-weight, cursor,
+     e le transizioni/ombre di base sono definite in .btn-custom nel styles.css. */
+  /* Puoi aggiungere qui solo stili *aggiuntivi* o *override* se strettamente necessario. */
 }
 
 /* Media Queries per la responsività delle card */
