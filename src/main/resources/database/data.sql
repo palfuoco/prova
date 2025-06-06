@@ -28,8 +28,7 @@ INSERT INTO ricetta (id, nome, descrizione, ingredienti, tempo_preparazione, reg
                                                                                                                                                           (17, 'Insalata di riso', 'Un piatto fresco e leggero, perfetto per l''estate.', '300g riso, 1 peperone, 100g piselli, 1 tonno in scatola, 50g mais, q.b. olio, sale e pepe', 30, 'Lazio', 'Facile', 'Contorno', '1.Cuociamo il riso e lo lasciamo raffreddare.2.Aggiungiamo i peperoni, piselli, tonno e mais.3.Condiamo con olio, sale e pepe.', 'insalata_riso', 4);
 
 
--- Inserimenti per la tabella tradizione_culinaria
--- I valori url_ricetta_dettaglio qui sotto DEVONO corrispondere agli ID delle ricette sopra!
+
 INSERT INTO tradizione_culinaria (id, titolo, testo, regione, likes, url_ricetta_dettaglio, img) VALUES
                                                                                                      (101, 'Cotoletta alla Milanese', 'Una deliziosa cotoletta di vitello impanata e fritta nel burro chiarificato, tipica di Milano, celebre per la sua panatura croccante e la carne tenera. Un classico della cucina lombarda.', 'Lombardia', 250, '3', 'cotoletta_milanese.jpg'),
                                                                                                      (102, 'Pasta alla Norma', 'Un capolavoro della cucina siciliana, la pasta alla Norma è un primo piatto ricco di sapori mediterranei, con melanzane fritte, ricotta salata e salsa di pomodoro al basilico.', 'Sicilia', 180, '5', 'pasta_norma.jpg'),

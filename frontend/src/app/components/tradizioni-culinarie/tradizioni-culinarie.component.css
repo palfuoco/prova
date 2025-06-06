@@ -9,8 +9,9 @@
 
 /* Stile generale della card */
 .card {
-  height: 400px; /* Altezza fissa come da richiesta */
-  width: 300px; /* Larghezza fissa come da richiesta */
+  /* Rimosso height e width fissi per maggiore fluidità */
+  /* width: 100%; sarà implicitamente gestito dalla griglia genitore */
+  min-height: 380px; /* Altezza minima ripristinata per card più grandi */
   display: flex;
   flex-direction: column;
   border: 1px solid var(--border-color); /* Bordo più sottile */
@@ -29,7 +30,7 @@
 /* Immagine della card */
 .card-img-top {
   width: 100%;
-  height: 150px; /* Altezza fissa per l'immagine */
+  height: 180px; /* Altezza immagine ripristinata */
   object-fit: cover; /* Assicura che l'immagine copra l'area senza distorsioni */
   border-bottom: 1px solid var(--border-color);
 }
@@ -40,23 +41,23 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* Spinge il footer in basso */
-  padding: 15px;
-  min-height: 150px; /* Assicura un'altezza minima per il body */
+  padding: 15px; /* Padding ripristinato */
+  /* min-height: 150px; /* Assicura un'altezza minima per il body */ /* Rimosso per maggiore fluidità con min-height della card */
 }
 
 .card-title {
   font-size: 1.4em; /* Titolo leggermente più grande */
   font-weight: 700; /* Extra bold */
-  margin-bottom: 8px;
+  margin-bottom: 8px; /* Spazio ripristinato */
   color: var(--text-dark);
   line-height: 1.3;
   /* Font Fredoka applicato da styles.css */
 }
 
 .card-subtitle {
-  font-size: 1em;
+  font-size: 1em; /* Sottotitolo ripristinato */
   color: var(--text-medium);
-  margin-bottom: 10px;
+  margin-bottom: 10px; /* Spazio ripristinato */
   font-weight: 500; /* Semi-bold */
   text-transform: uppercase; /* Regione in maiuscolo */
   /* Font Fredoka applicato da styles.css */
@@ -66,7 +67,7 @@
   max-height: 80px; /* Limita l'altezza del testo */
   overflow-y: auto; /* Aggiunge scroll se il testo è troppo lungo */
   padding-right: 5px; /* Spazio per la scrollbar se presente */
-  font-size: 0.9em; /* Testo leggermente più piccolo per adattarsi */
+  font-size: 0.9em; /* Testo ripristinato */
   color: var(--text-dark);
   line-height: 1.5;
   text-align: justify; /* Testo giustificato per un look pulito */
@@ -94,9 +95,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 15px;
+  padding-top: 15px; /* Spazio ripristinato */
   border-top: 1px solid var(--border-color);
-  margin-top: 15px; /* Spazio sopra le azioni */
+  margin-top: 15px; /* Spazio ripristinato */
 }
 
 /* Link sull'intera card (solo per hover, per non interferire con i bottoni) */
@@ -113,16 +114,16 @@
   cursor: pointer;
   color: var(--text-medium); /* Colore di default per l'icona vuota (grigio medio) */
   font-weight: 600; /* Come in .btn-clean */
-  padding: 6px 12px; /* Padding come in .btn-clean */
+  padding: 6px 12px; /* Padding ripristinato */
   transition: color 0.2s ease, transform 0.2s ease;
   display: flex;
   align-items: center;
-  gap: 5px; /* Spazio tra icona e numero */
+  gap: 5px; /* Spazio ripristinato */
   /* Font Fredoka applicato da styles.css */
 }
 
 .heart-toggle-btn .heart-icon {
-  font-size: 1.3em; /* Dimensione specifica per l'icona FA */
+  font-size: 1.3em; /* Dimensione specifica per l'icona FA, ripristinata */
 }
 
 .heart-toggle-btn:hover {
@@ -155,6 +156,7 @@
   /* Le proprietà come background, color, padding, border-radius, text-decoration, font-weight, cursor,
      e le transizioni/ombre di base sono definite in .btn-custom nel styles.css. */
   /* Puoi aggiungere qui solo stili *aggiuntivi* o *override* se strettamente necessario. */
+  /* Padding del pulsante ripristinato (o affidato a .btn-custom) */
 }
 
 /* Media Queries per la responsività delle card */
